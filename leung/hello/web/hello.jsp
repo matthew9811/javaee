@@ -4,6 +4,6 @@
     <title>the first application</title>
 </head>
 <body>
-Congratulations <%=request.getParameter("name")%>
+Congratulations <%=request.getParameter("name")%> login success
 </body>
 </html>
