@@ -1,7 +1,10 @@
 package com.shengxi.carblog.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -9,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -16,10 +20,15 @@ import java.io.Serializable;
  * @ClassName TestUser
  * @Date: 2019-09-17 19:35
  * @Version: 1.0.0
- * @description:
+ * @description: 实体类
+ * 需要有无参构造器
+ * 根据需求增加其他构造器
  */
-@Entity(name = "test_user")
+@Table(name ="test_user")
+@Entity(name = "TestUser")
 @DynamicUpdate
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @ToString
 @EqualsAndHashCode

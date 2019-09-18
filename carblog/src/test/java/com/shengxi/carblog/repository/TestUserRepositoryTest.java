@@ -32,4 +32,12 @@ public class TestUserRepositoryTest {
             System.out.println(users.toString());
         }
     }
+
+    @Test
+    public void findUserByName() {
+        TestUser lyh = userRepository.findUserByName("lyh");
+        for (int i = 0; i < 500000; i++) {
+            System.out.println(lyh.toString());
+        }
+    }
 }
