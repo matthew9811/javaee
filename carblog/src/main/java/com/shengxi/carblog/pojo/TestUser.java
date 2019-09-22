@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -42,4 +41,9 @@ public class TestUser implements Serializable {
     private String name;
     @Column(name = "age")
     private Integer age;
+
+    public TestUser(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
 }

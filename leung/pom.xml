@@ -6,7 +6,11 @@
 
     <groupId>com.shengxi.leung</groupId>
     <artifactId>leung</artifactId>
+    <packaging>pom</packaging>
     <version>7.7.7</version>
+    <modules>
+        <module>examfour</module>
+    </modules>
     <dependencies>
 
     </dependencies>

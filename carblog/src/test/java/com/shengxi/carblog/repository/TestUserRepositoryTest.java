@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,5 +40,11 @@ public class TestUserRepositoryTest {
         for (int i = 0; i < 500000; i++) {
             System.out.println(lyh.toString());
         }
+    }
+
+    @Test
+    @Transactional
+    public void save(){
+        userRepository.saveAndFlush(new TestUser("lcl", 17));
     }
 }
