@@ -85,3 +85,9 @@ log
 /log/**
 carblog/carblog.iml
 muliang/hello/hello.iml
+carblog/target/classes/static/
+carblog/target/classes/template/
+carblog/target/generated-sources/
+carblog/target/generated-test-sources/
+carblog/target/classes/com/shengxi/carblog/service/
+carblog/target/test-classes/com/shengxi/carblog/service/
