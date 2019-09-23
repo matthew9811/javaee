@@ -1,4 +1,4 @@
-package com.shengxi.carblog.controller;
+package com.shengxi.carblog.controller.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
