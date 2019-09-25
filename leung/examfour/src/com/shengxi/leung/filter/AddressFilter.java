@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
 /**
@@ -16,7 +17,9 @@ import java.io.IOException;
  * @Version: 1.0.0
  * @description:
  */
-@WebFilter(filterName = "AddressFilter")
+@WebFilter(filterName = "AddressFilter", initParams = {
+        @WebInitParam(name = "addressProhibited", value = "192.168.1.44")
+})
 public class AddressFilter implements Filter {
 
     private FilterConfig filterConfig = null;

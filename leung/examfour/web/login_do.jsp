@@ -10,7 +10,7 @@
 <head>
     <title>登录处理页面</title>
 </head>
-<jsp:useBean id="user" class="com.shengxi.entity.User"/>
+<jsp:useBean id="user" class="com.shengxi.leung.entity.User"/>
 <jsp:setProperty name="user" property="*"/>
 <%
     user = user.login();

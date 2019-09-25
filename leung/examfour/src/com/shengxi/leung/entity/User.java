@@ -1,4 +1,4 @@
-package com.shengxi.entity;
+package com.shengxi.leung.entity;
 
 import java.util.Date;
 import java.util.List;
@@ -68,19 +68,24 @@ public class User {
         this.money = money;
     }
 
+    public User login() {
+
+        return new User();
+    }
+
     public void delete(int id) {
         System.out.println("delete");
     }
 
     public User get(int id) {
+        return new User();
+    }
+
+    public List<User> listAll() {
         return null;
     }
 
-    public List listAll() {
-        return null;
-    }
-
-    public List listAllByName(String queryName) {
+    public List<User> listAllByName(String queryName) {
         return null;
     }
 
@@ -90,9 +95,5 @@ public class User {
 
     public void update() {
         System.out.println("update");
-    }
-
-    public User login() {
-        return null;
     }
 }
