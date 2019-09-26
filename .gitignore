@@ -80,6 +80,7 @@ fabric.properties
 .idea/workspace.xml
 .idea/encodings.xml
 .idea
+/.idea/**
 .mvn/
 log
 /log/**
@@ -88,6 +89,7 @@ muliang/hello/hello.iml
 carblog/target/**
 carblog/target/classes/static/
 carblog/target/classes/template/
+carblog/target/classes/spring-configuration-metadata.json
 carblog/target/generated-sources/
 carblog/target/generated-test-sources/
 carblog/target/classes/com/shengxi/carblog/service/
@@ -95,4 +97,9 @@ carblog/target/test-classes/com/shengxi/carblog/service/
 carblog/target/classes/com/shengxi/carblog/controller/
 carblog/target/classes/templates/
 leung/struts2/target/
-/javaee.iml
+leung/leung.iml
+leung/struts2/struts2.xml
+leung/drill4/drill4.iml
+leung/drill4/drill41.iml
+javaee.iml
+/.idea/encodings.xml
