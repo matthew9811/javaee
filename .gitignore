@@ -94,3 +94,5 @@ carblog/target/classes/com/shengxi/carblog/service/
 carblog/target/test-classes/com/shengxi/carblog/service/
 carblog/target/classes/com/shengxi/carblog/controller/
 carblog/target/classes/templates/
+leung/struts2/target/
+/javaee.iml
