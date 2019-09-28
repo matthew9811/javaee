@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
     <version>7.7.7</version>
     <modules>
-        <module>examfour</module>
-        <module>helloStruts</module>
         <module>struts2</module>
+        <module>ssh</module>
+        <module>s-sum</module>
     </modules>
     <dependencies>
 
