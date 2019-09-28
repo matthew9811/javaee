@@ -6,9 +6,19 @@
 
 <struts>
     <package name="default" extends="struts-default" namespace="/">
-        <action name="struts" class="com.shengxi.leung.action.StrutsAction" method="execute">
+        <!--        定义拦截器-->
+        <interceptors>
+            <interceptor name="myInterceptor" class="com.shengxi.leung.interceptor.MyInterceptor"></interceptor>
+        </interceptors>
+        <action name="struts" class="com.shengxi.leung.StrutsAction" method="execute">
             <result name="success">/welcome.jsp</result>
+            <result name="input">/hello.jsp</result>
             <result name="error">/hello.jsp</result>
+            <!--            配置在result后-->
+            <!--            使用系统默认的拦截器链-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <!--            引用自定义的拦截器-->
+            <interceptor-ref name="myInterceptor"></interceptor-ref>
         </action>
     </package>
 </struts>

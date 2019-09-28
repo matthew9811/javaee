@@ -12,6 +12,7 @@
         <module>struts2</module>
         <module>ssh</module>
         <module>s-sum</module>
+        <module>tsgl</module>
     </modules>
     <dependencies>
 

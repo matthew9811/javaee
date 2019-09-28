@@ -5,12 +5,14 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <!--    开启国际化-->
+    <constant name="struts.custom.i18n.resources" value="messageResource"></constant>
     <package name="default" extends="struts-default" namespace="/">
-
+        <!--        定义拦截器-->
         <interceptors>
             <interceptor name="myInterceptor" class="com.shengxi.leung.interceptor.MyInterceptor"></interceptor>
         </interceptors>
-        <default-interceptor-ref name=""></default-interceptor-ref>
+
         <action name="struts" class="com.shengxi.leung.action.StrutsAction" method="execute">
             <result name="success">/welcome.jsp</result>
             <result name="input">/hello.jsp</result>
@@ -18,8 +20,12 @@
             <!--            配置在result后-->
             <!--            使用系统默认的拦截器链-->
             <interceptor-ref name="defaultStack"></interceptor-ref>
-            <!--            增加自定义的拦截器-->
+            <!--            引用自定义的拦截器-->
             <interceptor-ref name="myInterceptor"></interceptor-ref>
+        </action>
+
+        <action name="login" class="com.shengxi.leung.action.LoginAction">
+            <result name="success">/HelloWorld.jsp</result>
         </action>
     </package>
 </struts>
