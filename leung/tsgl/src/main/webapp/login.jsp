@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme().concat("//".concat(request.getServerName().
@@ -17,6 +18,12 @@
     <meta>
 </head>
 <body>
-
+<form action="login.action" method="post">
+    name:
+    <input type="text" name="user.un"><br>
+    pwd <input type="text" name="user.pwd">
+    <br>
+    <input type="submit" value="提交">
+</form>
 </body>
 </html>

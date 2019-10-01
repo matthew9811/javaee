@@ -40,8 +40,6 @@ public class DBList {
             //出现异常时，进行事务回滚。
             connection.rollback();
             e.printStackTrace();
-        } finally {
-            DBUtil.close(connection, statement, resultSet);
         }
         return flag;
     }
