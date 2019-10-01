@@ -13,6 +13,7 @@
         <module>ssh</module>
         <module>s-sum</module>
         <module>tsgl</module>
+        <module>hibernate</module>
     </modules>
     <dependencies>
 

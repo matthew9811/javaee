@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.shengxi.leung.model">
+    <!--    配置对应实体类和表的关系-->
+    <class name="com.shengxi.leung.model.Student" table="stu">
+        <!--        配置字段和属性的关系-->
+        <id name="sid" type="int" column="sid"></id>
+        <property name="sname" type="java.lang.String" column="sname"></property>
+    </class>
+</hibernate-mapping>

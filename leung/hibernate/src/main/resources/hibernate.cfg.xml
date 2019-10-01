@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--    数据库连接配置-->
+        <property name="connection.url">jdbc:postgresql://47.106.188.177:5432/s2sh</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">s2sh</property>
+        <property name="connection.password">s2sh</property>
+        <!--    使用对应的数据库方言-->
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+        <!--    显示使用的sql-->
+        <property name="show_sql">true</property>
+        <!--    注册一个mapping-->
+        <mapping resource="mapping/Student.hbm.xml"></mapping>
+    </session-factory>
+</hibernate-configuration>
