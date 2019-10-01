@@ -25,9 +25,9 @@ public class LoginAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        ResultSet check = DBList.check(this.getUser().getUn(), this.getUser().getPwd());
+        Boolean check = DBList.check(this.getUser().getUn(), this.getUser().getPwd());
         HttpServletRequest request = ServletActionContext.getRequest();
-        if (check == null) {
+        if (!check) {
             request.setAttribute("check", "密码错误");
             return ERROR;
         }

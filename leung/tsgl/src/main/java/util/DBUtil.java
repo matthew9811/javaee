@@ -41,6 +41,12 @@ public class DBUtil {
                 }
             }
         }
+        try {
+            //默认数据不自动提交事务
+            conn.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return dbUtil;
     }
 
@@ -72,7 +78,7 @@ public class DBUtil {
         return flag;
     }
 
-    public static Connection getConn() {
+    public Connection getConn() {
         return conn;
     }
 
