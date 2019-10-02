@@ -1,10 +1,17 @@
+import com.shengxi.leung.model.SeatEntity;
 import com.shengxi.leung.model.Student;
+import com.shengxi.leung.model.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.junit.Test;
+
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @Author: matthew
@@ -15,6 +22,9 @@ import org.junit.Test;
  */
 public class TestHibernate {
 
+    /**
+     * 6-1
+     */
     @Test
     public void Test() {
         //生成sessionFactory
@@ -45,5 +55,64 @@ public class TestHibernate {
         }
     }
 
+    /**
+     * 6-2
+     */
+    @Test
+    public void Test62() {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session session = null;
+        Transaction tx = null;
+        try {
+            Student stu = new Student(004, "wangwu");
+            session = sf.openSession();
+            tx = session.beginTransaction();
+            session.save(stu);
+            tx.commit();
+            Query query = session.createQuery("from Student where sid=004");
+            List<Student> list = query.list();
+            Student student = list.get(0);
+            System.out.println(student.toString());
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (null != session) {
+                session.close();
+            }
+        }
+
+    }
+
+
+    @Test
+    public void Test63(){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = null;
+        Transaction transaction = null;
+        try{
+            SeatEntity seatEntity = new SeatEntity();
+            seatEntity.setPlace("三排一列");
+            SeatEntity seatEntity1 = new SeatEntity();
+            seatEntity1.setPlace("三排二列");
+            UserEntity userEntity = new UserEntity();
+            userEntity.setName("lyh");
+            userEntity.setSeats(new HashSet<SeatEntity>());
+            userEntity.addSeat(seatEntity);
+            userEntity.addSeat(seatEntity1);
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(userEntity);
+            transaction.commit();
+            System.out.println("操作成功");
+        }catch (Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            if (null != session){
+                session.close();
+            }
+        }
+    }
 
 }
