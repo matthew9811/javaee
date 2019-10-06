@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hellospring" class="hello.impl.HelloImpl">
+        <property name="name" value="lyh"/>
+    </bean>
+
+    <bean id="Chinese" class="s2.impl.Chinese"/>
+    <bean id="American" class="s2.impl.American"/>
+    <bean id="stomeAxe" class="s3.impl.StomeAxe"/>
+    <bean id="chinese" class="s3.impl.Chinese">
+        <property name="axe">
+            <ref bean="stomeAxe"/>
+        </property>
+    </bean>
+
+
+
+    <bean class="s5.advice.impl.LoginAdviceSupport" id="loginAdviceSupport"/>
+    <bean class="s5.aop.impl.UserImpl" id="userTarget"/>
+    <bean id="user" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="s5.aop.IUser"/>
+        <property name="interceptorNames">
+            <list>
+                <value>loginAdviceSupport</value>
+            </list>
+        </property>
+        <property name="target" ref="userTarget"/>
+    </bean>
+</beans>

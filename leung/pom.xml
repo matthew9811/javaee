@@ -14,6 +14,7 @@
         <module>s-sum</module>
         <module>tsgl</module>
         <module>hibernate</module>
+        <module>spring</module>
     </modules>
     <dependencies>
 
