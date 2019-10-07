@@ -39,7 +39,7 @@
 <%--     out.println("</table><br>");--%>
 <%-- }--%>
 <%--%>--%>
-       <form method="post" enctype="multipart/form-data" id="upload" action="../up.jsp">
+       <form method="post" enctype="multipart/form-data" id="upload" action="up.jsp">
            <input type="file" name="file"/>
            <input type="submit" value="Submit"/>
            <input type="reset" value="Reset"/>

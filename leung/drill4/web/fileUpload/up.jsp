@@ -9,25 +9,27 @@
 
 <body>
 <%
-    String path = "/pic/";
+//    String path = "/pic/";
     //之所以要放到异常抛出结构里面，是为了避免直接访问此页报错
     try {
         //指定动作
         SmartUpload smart = new SmartUpload();
         smart.initialize(pageContext);
         smart.upload();
+        String uploadPath = "D:\\shengxi\\javaee\\leung\\drill4\\web\\pic";
         //把文件保存到同目录的pic文件夹
-        File file = new File(application.getRealPath("/") + path);
+//        File file = new File(application.getRealPath("/") + path);
+        File file = new File(uploadPath);
         if (!file.exists()){
             file.mkdirs();
         }
-        smart.save(application.getRealPath("/") + path);
+        smart.save(uploadPath);
         out.print("上传成功");
     } catch (Exception e) {
         out.print(e.toString());
         e.printStackTrace();
     }
 %>
-<a href="fileUpload/doUpload.jsp">返回</a>
+<a href="doUpload.jsp">返回</a>
 </body>
 </html>

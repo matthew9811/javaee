@@ -3,6 +3,7 @@
 <body>
      <h1 align="center">用SmartUpload组件实现文件下载</h1>
      <div align="center">
-     <a href="do_download.jsp">单击下载</a>
+
+          下载:<a href="<%=request.getContextPath() %>/download?filename=01.png">01.png</a>
      </div>
 </body> 
