@@ -30,6 +30,7 @@ public class AddressFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        System.out.println("进行地址检测 当前地址为: " + req.getRemoteAddr());
         String address = (req).getRemoteAddr();
         if (address.equals(addressProhibited)) {
             resp.setContentType("text/html;charset=UTF-8");

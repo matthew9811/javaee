@@ -13,6 +13,6 @@
     </filter>
     <filter-mapping>
         <filter-name>loginAuthenticationFilter</filter-name>
-        <url-pattern>/web/*</url-pattern>
+        <url-pattern>/protected/*</url-pattern>
     </filter-mapping>
 </web-app>

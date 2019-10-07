@@ -26,10 +26,11 @@ public class LoginAuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        System.out.println("登录校验");
         HttpSession session = ((HttpServletRequest) req).getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            req.getRequestDispatcher("/web/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         } else {
             chain.doFilter(req, resp);
         }
