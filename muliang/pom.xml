@@ -6,7 +6,12 @@
 
     <groupId>com.shengxi.muliang</groupId>
     <artifactId>muliang</artifactId>
+    <packaging>pom</packaging>
     <version>77.77.77</version>
+    <modules>
+        <module>struts2</module>
+        <module>hi</module>
+    </modules>
 
 
 </project>

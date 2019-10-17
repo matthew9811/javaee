@@ -55,7 +55,7 @@ public class AddressFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
         this.filterConfig = config;
         addressProhibited = filterConfig.getInitParameter("addressProhibited");
-
+        System.out.println(addressProhibited);
     }
 
 }

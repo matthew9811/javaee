@@ -12,6 +12,6 @@
     <title>第一个程序</title>
 </head>
 <body>
-恭喜<%=request.getParameter("name")%>，登录成功！
+恭喜，登录成功！
 </body>
 </html>
