@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @author chuling
+ * @author matthew
  * 禁止某个地址访问hello.jsp
  */
 @WebFilter(filterName = "AddressFilter", initParams = {
@@ -53,7 +53,7 @@ public class AddressFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config)  {
         this.filterConfig = config;
         addressProhibited = filterConfig.getInitParameter("addressProhibited");
 

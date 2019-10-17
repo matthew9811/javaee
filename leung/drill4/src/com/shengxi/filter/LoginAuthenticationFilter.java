@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * @author chuling
+ * @author matthew
  * 创建登录验证的过滤器
  */
 public class LoginAuthenticationFilter implements Filter {
@@ -37,7 +37,7 @@ public class LoginAuthenticationFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config)  {
         this.config = config;
     }
 
