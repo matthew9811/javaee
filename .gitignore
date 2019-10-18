@@ -104,3 +104,12 @@ leung/drill4/drill41.iml
 javaee.iml
 /.idea/encodings.xml
 *.iml
+leung/hibernate/target/
+leung/s-sum/target/
+leung/spring/target/
+leung/ssh/target/
+leung/tsgl/target/
+muliang/hi/src/test/
+muliang/hi/target/
+muliang/struts2/src/test/
+muliang/struts2/target/
