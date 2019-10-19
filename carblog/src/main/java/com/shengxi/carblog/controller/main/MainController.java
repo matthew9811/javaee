@@ -16,8 +16,13 @@ public class MainController {
     private String prefix = "";
 
 
-    @GetMapping("")
+    @GetMapping("/login")
     public String login(){
-        return "/blog/login";
+        return prefix + "/blog/login";
+    }
+
+    @GetMapping("/")
+    public String pageHome(){
+        return prefix + "/pageHome";
     }
 }
