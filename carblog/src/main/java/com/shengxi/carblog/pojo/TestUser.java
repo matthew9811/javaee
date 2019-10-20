@@ -23,7 +23,7 @@ import java.io.Serializable;
  * 需要有无参构造器
  * 根据需求增加其他构造器
  */
-@Table(name ="test_user")
+@Table(name = "test_user")
 @Entity(name = "TestUser")
 @DynamicUpdate
 @NoArgsConstructor
