@@ -28,23 +28,23 @@ public class TestUserRepositoryTest {
 
     @Test
     public void findAll(){
-        List<TestUser> users = userRepository.findAll();
-        for (int i = 0; i< 100; i++ ){
-            System.out.println(users.toString());
-        }
+//        List<TestUser> users = userRepository.findAll();
+//        for (int i = 0; i< 100; i++ ){
+//            System.out.println(users.toString());
+//        }
     }
 
     @Test
     public void findUserByName() {
-        TestUser lyh = userRepository.findUserByName("lyh");
-        for (int i = 0; i < 500000; i++) {
-            System.out.println(lyh.toString());
-        }
+//        TestUser lyh = userRepository.findUserByName("lyh");
+//        for (int i = 0; i < 500000; i++) {
+//            System.out.println(lyh.toString());
+//        }
     }
 
     @Test
     @Transactional
     public void save(){
-        userRepository.saveAndFlush(new TestUser("lcl", 17));
+//        userRepository.saveAndFlush(new TestUser("lcl", 17));
     }
 }
