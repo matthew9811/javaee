@@ -18,5 +18,7 @@ spring:
       #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   main:
     allow-bean-definition-overriding: true
+  mvc:
+    static-path-pattern: /**
 logging:
   config: classpath:config/log4j2.xml
