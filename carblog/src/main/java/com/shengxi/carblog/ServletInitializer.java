@@ -21,15 +21,27 @@ public class ServletInitializer extends SpringBootServletInitializer implements 
         return application.sources(CarblogApplication.class);
     }
 
+    /**
+     * 配置启动成功后提示
+     *
+     * @param args 环境变量
+     */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         System.out.println("BUILD SUCCESS!");
     }
 
+    /**
+     * 增加资源控制器
+     *
+     * @param registry 注册列表
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/")
-        .addResourceLocations("classpath:/resources/");
+                .addResourceLocations("classpath:/resources/");
     }
+
+
 }

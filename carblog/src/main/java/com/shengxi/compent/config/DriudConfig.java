@@ -27,7 +27,7 @@ public class DriudConfig {
     private static final Logger logger = LoggerFactory.getLogger(DriudConfig.class);
 
     @Bean(name = "springDruidDataSource")
-    // 该注解可以自动注入对象的属性(对应配置文件spring.datasource下的属性)
+    /** 该注解可以自动注入对象的属性(对应配置文件spring.datasource下的属性) */
     @ConfigurationProperties("spring.datasource")
     public DruidDataSource newPoiDataSource() {
         return new DruidDataSource();
