@@ -8,11 +8,11 @@ spring:
     hibernate:
       #自动建表
       #项目启动表结构进行校验 如果不一致则报错
-      ddl-auto: validate
+      #ddl-auto: validate
       #查看sql
       show-sql: true
       format_sql: true
-      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      # database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       show-sql: true
       format_sql: true
