@@ -1,37 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<!--博客详情页-->
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="blog,resposive,sailor,bootstrap4,modern,html,html5,personal blog,agency blog,video,grid,Clean">
-    <meta name="author" content="Dreambuzz">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="format-detection" content="telephone=no">
+    <title>摄影家</title>
 
-
-    <title>博客详情</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--  Icon Font stylesheet  -->
-    <link href="assets/css/icofont.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!--   Common stylesheet  -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <!--   Custom stylesheet  -->
-    <link href="assets/css/blog.css" rel="stylesheet">
-    <!--   Responsive stylesheet  -->
-    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/responsive.css}" rel="stylesheet" media="all">
 </head>
 
 <body>
-
-<!--博客详情页-->
-
 <!--头部导航-->
 <header class="blog-header">
     <nav class="navbar navbar-expand-lg site-navigation ">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img th:src="@{images/logo.png}" alt="logo" class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
@@ -40,7 +36,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item" style="padding-top: 10px">
-                        <a class="nav-link page-scroll" href="index.html">主页</a>
+                        <a class="nav-link page-scroll" href="index-header2.html">主页</a>
                     </li>
                     <li class="nav-item dropdown" style="padding-top: 10px">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
@@ -48,7 +44,7 @@
                             博客
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="blogIndex.html">博客主页</a>
+                            <a class="dropdown-item" href="single-blog.html">博客主页</a>
                             <a class="dropdown-item" href="sidebar.html">写博客</a>
                         </div>
                     </li>
@@ -70,7 +66,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="about.html">关于我们</a>
-                            <a class="dropdown-item" href="contact.html">联系我们</a>
+                            <a class="dropdown-item" href="contact.html">联系</a>
                             <a class="dropdown-item" href="404.html">404</a>
                         </div>
                     </li>
@@ -78,8 +74,8 @@
                         <a class="nav-link page-scroll" href="http://www.baidu.com">搜索</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll navbar-brand" style="width: 100px;height: auto;">
-                            <img src="assets/images/blog/author.jpeg.jpg" alt="" class=" img-fluid rounded-circle">
+                        <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
+                            <img th:src="@{images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                     </li>
 
@@ -88,58 +84,54 @@
         </div>
     </nav>
 </header>
-
-
+<!--封面图-->
 <div class="page-header jumbotron p-3 p-md-5 text-white">
     <div class="dark-overlay"></div>
     <div class="container">
         <div class="col-md-6 px-0 mx-auto ">
             <div class="text-center page-banner-coontent">
                 <h2>摄影博客</h2>
-                <!--<p>在这里，网站用户分享了有关自己的摄影经验及摄影技巧</p>-->
+                <p>在这里，网站用户分享了有关自己的摄影经验及摄影技巧</p>
             </div>
         </div>
     </div>
 </div>
-
-
+<!--内容-->
 <main class="container">
     <div class="row">
         <div class="col-md-8 blog-main col-sm-7">
             <div class="blog-post text-center blog-post-single">
                 <div class="blog-block-img">
-                    <img src="assets/images/blog/inner-5.jpg" alt="" class="img-fluid">
+                    <img th:src="@{images/blog/inner-5.jpg}" alt="" class="img-fluid">
                 </div>
                 <p class="blog-post-cat">分类</p>
                 <a href="#">
                     <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
                 </a>
 
-
-                <p class="blog-post-meta"> <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid small">January 1, 2014 by <a href="#">Mark</a></p>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
+                    1, 2014 by <a href="#">Mark</a></p>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
+                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
+                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                    risus.</p>
 
                 <blockquote class="post-quote">
-                    <i class="icofont icofont-quote-left"></i> Viral dreamcatcher keytar typewriter, aesthetic offal umami. Aesthetic polaroid pug pitchfork post-ironic.
+                    <i class="icofont icofont-quote-left"></i> Viral dreamcatcher keytar typewriter, aesthetic offal
+                    umami. Aesthetic polaroid pug pitchfork post-ironic.
                 </blockquote>
-                <p>This story is part of the Bloggin Guide to Finally Getting a Good Night’s Sleep. Click here to read the whole guide—then get those things.Aspernatur quam natus neque laboriosam eaque sed corporis ullam doloribus consectetur! corporis ullam doloribus consectetur!</p>
+                <p>This story is part of the Bloggin Guide to Finally Getting a Good Night’s Sleep. Click here to read
+                    the whole guide—then get those things.Aspernatur quam natus neque laboriosam eaque sed corporis
+                    ullam doloribus consectetur! corporis ullam doloribus consectetur!</p>
 
-                <!--标签-->
-                <!--<div class="single-tags tagcloud">-->
-                    <!--<a href="#" rel="tag">Stories</a>-->
-                    <!--<a href="#" rel="tag">Technology</a>-->
-                    <!--<a href="#" rel="tag">Tips</a>-->
-                    <!--<a href="#" rel="tag">WordPress</a>-->
-                <!--</div>-->
             </div>
-            <!-- /.blog-post -->
             <div class="clearfix"></div>
 
             <!--    作者    -->
             <div class="author-area">
                 <div class="author-img">
                     <a href="#">
-                        <span class=""><img alt="" src="assets/images/blog/author.jpeg.jpg"></span>
+                        <span class=""><img alt="" th:src="@{images/blog/author.jpeg.jpg}"></span>
                     </a>
                 </div>
 
@@ -147,9 +139,7 @@
                     <h4 class="upper">
                         <a href="#">作者名</a>
                     </h4>
-
                     <p>作者个性签名.</p>
-
                     <!--邮箱等-->
                     <div class="author-social-link">
                         <a href="#" target="_blank" title="Twitter">
@@ -173,22 +163,17 @@
 
             <!-- 评论  -->
             <div class="comment" id="respond">
-
                 <div class="section-header">
                     <h3>评论</h3>
                     <hr>
                 </div>
-
-
                 <form action="#" method="post" id="commentform" class="comment-form">
                     <p class="comment-notes">
                         <span id="email-notes">与作者交流一下</span><span class="required">*</span></p>
-
                     <p class="comment-form-comment">
                         <label for="comment">评论</label>
                         <textarea id="comment" name="comment" cols="90" rows="8" required="required"></textarea>
                     </p>
-
                     <p class="form-submit">
                         <a href="#" class="btn btn-sm btn-dark">发送</a>
                     </p>
@@ -196,9 +181,7 @@
             </div>
             <!--  评论  END -->
         </div>
-        <!-- /.blog-main -->
 
-        <!-- blog-main SIDEBAR RIGHT -->
         <aside class="col-md-4 blog-sidebar col-sm-5">
 
             <div class="py-3">
@@ -215,41 +198,39 @@
             <div class="py-3">
                 <div class="sidebar-block latest-post">
                     <h4 class="sidebar-title">最新文章</h4>
+                    <!--最新文章 7篇-->
                     <ol class="list-unstyled">
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>High Fashion Black and White Photoshoot Art</h5>
                                 <p class="text-muted">20 June 2018 </p>
                             </a>
                         </li>
-
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018 </p>
                             </a>
                         </li>
-
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Beauty you lIfe with natural</h5>
                                 <p class="text-muted">20 June 2018</p>
                             </a>
                         </li>
-
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -259,33 +240,9 @@
                 </div>
             </div>
 
-            <!--<div class="py-3">-->
-            <!--<div class="">-->
-            <!--<h4 class="sidebar-title">Tags</h4>-->
-            <!--<div class="list-unstyled mb-0 tags-cloud">-->
-            <!--<a href="#">Beauty</a>-->
-            <!--<a href="#">fashion</a>-->
-            <!--<a href="#">Hair</a>-->
-            <!--<a href="#">Makeup</a>-->
-            <!--<a href="#">Life</a>-->
-            <!--<a href="#">Sunshine</a>-->
-            <!--<a href="#">Light</a>-->
-            <!--<a href="#">fashion</a>-->
-            <!--<a href="#">Hair</a>-->
-            <!--<a href="#">Makeup</a>-->
-            <!--<a href="#">Life</a>-->
-            <!--<a href="#">Sunshine</a>-->
-            <!--<a href="#">Light</a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-
         </aside>
-        <!-- /.blog-sidebar -->
     </div>
-    <!-- /.row -->
 </main>
-<!-- /.container -->
 
 <footer class="blog-footer">
 
@@ -304,13 +261,10 @@
     </p>
 </footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<!--  Custom js  -->
-<script src="assets/js/custom.js"></script>
+<script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
 
 </html>

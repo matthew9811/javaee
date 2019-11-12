@@ -1,38 +1,33 @@
 ﻿<!doctype html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--联系页 联系我们-->
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="blog,resposive,sailor,bootstrap4,modern,html,html5,personal blog,agency blog,video,grid,Clean">
-    <meta name="author" content="Dreambuzz">
-    
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="format-detection" content="telephone=no">
+    <title>摄影家</title>
 
-    <title>联系摄影家</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--  Icon Font stylesheet  -->
-    <link href="assets/css/icofont.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!--   Common stylesheet  -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <!--   Custom stylesheet  -->
-    <link href="assets/css/blog.css" rel="stylesheet">
-    <!--   Responsive stylesheet  -->
-    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/responsive.css}" rel="stylesheet" media="all">
 </head>
 
 <body>
-
-
-
 
 <!--头部导航-->
 <header class="blog-header">
     <nav class="navbar navbar-expand-lg site-navigation ">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img th:src="@{images/logo.png}" alt="logo" class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
@@ -41,7 +36,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item" style="padding-top: 10px">
-                        <a class="nav-link page-scroll" href="index.html">主页</a>
+                        <a class="nav-link page-scroll" href="index-header2.html">主页</a>
                     </li>
                     <li class="nav-item dropdown" style="padding-top: 10px">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
@@ -49,7 +44,7 @@
                             博客
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="blogIndex.html">博客主页</a>
+                            <a class="dropdown-item" href="single-blog.html">博客主页</a>
                             <a class="dropdown-item" href="sidebar.html">写博客</a>
                         </div>
                     </li>
@@ -71,7 +66,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="about.html">关于我们</a>
-                            <a class="dropdown-item" href="contact.html">联系我们</a>
+                            <a class="dropdown-item" href="contact.html">联系</a>
                             <a class="dropdown-item" href="404.html">404</a>
                         </div>
                     </li>
@@ -79,8 +74,8 @@
                         <a class="nav-link page-scroll" href="http://www.baidu.com">搜索</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll navbar-brand" style="width: 100px;height: auto;">
-                            <img src="assets/images/blog/author.jpeg.jpg" alt="" class=" img-fluid rounded-circle">
+                        <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
+                            <img th:src="@{images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                     </li>
 
@@ -90,69 +85,66 @@
     </nav>
 </header>
 
+<!--封面背景-->
+<div class="page-header jumbotron p-3 p-md-5 text-white mb-0">
+    <div class="dark-overlay"></div>
+    <div class="container">
+        <div class="col-md-6 px-0 mx-auto ">
+            <div class="text-center page-banner-coontent">
+                <h2>联系我们</h2>
+                <p>你可以联系我们，给我们提一些意见</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <div class="page-header jumbotron p-3 p-md-5 text-white mb-0">
-        <div class="dark-overlay"></div>
-        <div class="container">
-            <div class="col-md-6 px-0 mx-auto ">
-                <div class="text-center page-banner-coontent">
-                    <h2>联系我们</h2>
-                    <p>你可以联系我们，给我们提一些意见</p>
+<!--内容-->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 mx-auto">
+                <div class="contact-form text-center">
+                    <h3>是否有一些反馈？</h3>
+                    <p>期待你的反馈</p>
+                    <p></p>
+                    <form action="process.php">
+                        <div class="form-group">
+                            <input type="email" placeholder="你的邮箱" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="主题" name="subject" id="subject" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" cols="30" rows="4" placeholder="内容"
+                                      class="form-control"></textarea>
+                        </div>
+                        <a href="#" class="btn btn-danger">发送</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-sm-12 mx-auto">
-                    <div class="contact-form text-center">
-                        <h3>是否有一些反馈？</h3>
-                        <p>期待你的反馈</p>
-                        <p></p>
-                        <form action="process.php">
-                            <div class="form-group">
-                                <input type="email" placeholder="你的邮箱" name="email" id="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="主题" name="subject" id="subject" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="message" id="message" cols="30" rows="4" placeholder="内容" class="form-control"></textarea>
-                            </div>
-                            <a href="#" class="btn btn-danger">发送</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <footer class="blog-footer bg-light">
-        <div class="footer-social">
-            <a href="#" target="_blank" class="fa fa-facebook"></a>
-            <a href="#" target="_blank" class="fa fa-behance"></a>
-            <a href="#" target="_blank" class="fa fa-twitter"></a>
-            <a href="#" target="_blank" class="fa fa-linkedin"></a>
-            <a href="#" target="_blank" class="fa fa-google-plus"></a>
-            <a href="#" target="_blank" class="fa fa-youtube"></a>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit integer a urna vitae sem tempus.</p>
-        <p>2018.Copyright Reserved for <a href="#">Personal</a> by <a href="http://www.bootstrapmb.com/">Dreambuzz</a>.</p>
-        <p>
-            <a href="#">Back to top</a>
-        </p>
-    </footer>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!--  Custom js  -->
-    <script src="assets/js/custom.js"></script>
+<footer class="blog-footer bg-light">
+    <div class="footer-social">
+        <a href="#" target="_blank" class="fa fa-facebook"></a>
+        <a href="#" target="_blank" class="fa fa-behance"></a>
+        <a href="#" target="_blank" class="fa fa-twitter"></a>
+        <a href="#" target="_blank" class="fa fa-linkedin"></a>
+        <a href="#" target="_blank" class="fa fa-google-plus"></a>
+        <a href="#" target="_blank" class="fa fa-youtube"></a>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit integer a urna vitae sem tempus.</p>
+    <p>2018.Copyright Reserved for <a href="#">Personal</a> by <a href="http://www.bootstrapmb.com/">Dreambuzz</a>.</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+<script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
 
 </html>

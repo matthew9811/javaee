@@ -1,430 +1,387 @@
-﻿<!doctype html>
-<html lang="en">
-
+﻿<!DOCTYPE  html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--博客前台主页-->
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="blog,resposive,sailor,bootstrap4,modern,html,html5,personal blog,agency blog,video,grid,Clean">
-    <meta name="author" content="Dreambuzz">
-    
-
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="format-detection" content="telephone=no">
     <title>摄影家</title>
 
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!--  Icon Font stylesheet  -->
-    <link href="assets/css/icofont.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!--   Common stylesheet  -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <!--   Custom stylesheet  -->
-    <link href="assets/css/blog.css" rel="stylesheet">
-    <!--   Responsive stylesheet  -->
-    <link href="assets/css/responsive.css" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/responsive.css}" rel="stylesheet" media="all">
 </head>
 
 <body>
 
-    <!--头部导航-->
-    <header class="blog-header">
-        <nav class="navbar navbar-expand-lg site-navigation ">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
-                        aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item" style="padding-top: 10px">
-                            <a class="nav-link page-scroll" href="index.html">主页</a>
-                        </li>
-                        <li class="nav-item dropdown" style="padding-top: 10px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                博客
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                <a class="dropdown-item" href="blogIndex.html">博客主页</a>
-                                <a class="dropdown-item" href="sidebar.html">写博客</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown" style="padding-top: 10px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                相册
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="lifestyle.html">相册首页</a>
-                                <a class="dropdown-item" href="hairstyle.html">上传图片</a>
-                                <a class="dropdown-item" href="fashion.html">Fashion</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown" style="padding-top: 10px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                关于
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                <a class="dropdown-item" href="about.html">关于我们</a>
-                                <a class="dropdown-item" href="contact.html">联系我们</a>
-                                <a class="dropdown-item" href="404.html">404</a>
-                            </div>
-                        </li>
-                        <li class="nav-item" style="padding-top: 10px">
-                            <a class="nav-link page-scroll" href="http://www.baidu.com">搜索</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
-                                <img src="assets/images/blog/author.jpeg.jpg" alt="" class=" img-fluid rounded-circle">
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!--封面图-->
-    <div class="banner-bg jumbotron p-3 p-md-5 text-white">
+<!--头部导航-->
+<header class="blog-header">
+    <nav class="navbar navbar-expand-lg site-navigation ">
         <div class="container">
-            <div class="col-md-8 px-0 mx-auto ">
-                <div class="text-center main-banner-coontent">
-                    <h1 class="display-4 text-white">摄影</h1>
-                    <h1 class="display-4 text-white">小能手</h1>
-                    <p class="my-3">在这里，你可以根据他人的分享学习摄影的一些小技巧，也可以把自己的摄影作品分享给他人</p>
-                    <a href="#" class="btn btn-danger mt-4 btn-rounded">注册一个属于你的账号</a>
-                </div>
+            <a class="navbar-brand" href="#"><img th:src="@{images/logo.png}" alt="logo" class="img-fluid"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
+                    aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item" style="padding-top: 10px">
+                        <a class="nav-link page-scroll" href="index-header2.html">主页</a>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            博客
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="single-blog.html">博客主页</a>
+                            <a class="dropdown-item" href="sidebar.html">写博客</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            相册
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" href="lifestyle.html">相册首页</a>
+                            <a class="dropdown-item" href="hairstyle.html">上传图片</a>
+                            <a class="dropdown-item" href="fashion.html">Fashion</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            关于
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="about.html">关于我们</a>
+                            <a class="dropdown-item" href="contact.html">联系</a>
+                            <a class="dropdown-item" href="404.html">404</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="padding-top: 10px">
+                        <a class="nav-link page-scroll" href="http://www.baidu.com">搜索</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
+                            <img th:src="@{images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--封面图-->
+<div class="banner-bg jumbotron p-3 p-md-5 text-white">
+    <div class="container">
+        <div class="col-md-8 px-0 mx-auto ">
+            <div class="text-center main-banner-coontent">
+                <h1 class="display-4 text-white">摄影</h1>
+                <h1 class="display-4 text-white">小能手</h1>
+                <p class="my-3">在这里，你可以根据他人的分享学习摄影的一些小技巧，也可以把自己的摄影作品分享给他人</p>
+                <a href="#" class="btn btn-danger mt-4 btn-rounded">注册一个属于你的账号</a>
             </div>
         </div>
     </div>
+</div>
 
-    <main class="container">
-        <div class="row">
-            <div class="col-md-8 blog-main">
-                <div class="blog-post">
-                    <div class="blog-block-img">
-                        <img src="assets/images/blog/blog-big.jpg" alt="" class="img-fluid">
-                    </div>
-                    <p class="blog-post-cat">文章标签</p>
-                    <a href="#">
-                        <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
-                    </a>
-
-                    <p class="blog-post-meta"> <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid small">January 1, 2014 by <a href="#">Mark</a></p>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-                    <a href="#" class="read-more">Continue Reading</a>
+<!--内容-->
+<main class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <!--3篇文章-->
+            <!--文章 1篇（第1种样式）-->
+            <div class="blog-post">
+                <div class="blog-block-img">
+                    <img th:src="@{images/blog/blog-big.jpg}" alt="" class="img-fluid">
                 </div>
-                <!-- /.blog-post -->
+                <p class="blog-post-cat">文章标签</p>
+                <a href="#">
+                    <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
+                </a>
 
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid small">January
+                    1, 2014 by <a href="#">Mark</a></p>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
+                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
+                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                    risus.</p>
 
-                <div class="blog-post">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="blog-post-thumbnail-zone">
-                                <img src="assets/images/blog/pic-1.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class=" col-lg-6">
-                            <div class="blog-post-content ">
-                                <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
-                                <a href="#">
-                                    <h3>Only Photography What You Love Women Modelling </h3>
-                                </a>
-
-                                <p class="blog-post-meta"> <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid small">January 1, 2014 by <a href="#">Mark</a></p>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-                                <a href="#" class="read-more">Continue Reading</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.blog-post LList -->
-
-                <div class="blog-post">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="blog-post-thumbnail-zone">
-                                <img src="assets/images/blog/pic-2.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class=" col-lg-6">
-                            <div class="blog-post-content ">
-                                <p class="blog-post-cat mt0">Lifestyle</p>
-                                <a href="#">
-                                    <h3>Youtube Black and White Photography Ideas </h3>
-                                </a>
-
-                                <p class="blog-post-meta"> <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid small">January 1, 2014 by <a href="#">Mark</a></p>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-                                <a href="#" class="read-more">Continue Reading</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.blog-post LList -->
-
-                <!-- /.blog-post -->
-
+                <a href="#" class="read-more">Continue Reading</a>
             </div>
-            <!-- /.blog-main -->
 
-            <!-- blog-main SIDEBAR RIGHT -->
-            <aside class="col-md-4 blog-sidebar">
-
-                <!--搜索-->
-                <!--<div class="p-3 mb-3 bg-light rounded text-center">-->
-                    <!--<div class="top-header ">-->
-                        <!--<div class="input-group">-->
-                            <!--<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">-->
-                            <!--<div class="input-group-prepend">-->
-                                <!--<div class="input-group-text"><i class="fa fa-search"></i></div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="p-3 mb-3 bg-light rounded text-center">-->
-                    <!--<div class="sidebar-about">-->
-                        <!--<div class="about-img">-->
-                            <!--<img src="assets/images/blog/author.jpeg.jpg" alt="" class="img-fluid rounded-circle">-->
-                        <!--</div>-->
-                        <!--<h4 class="py-2">Hi! -That's Me</h4>-->
-                        <!--<p class="mb-3">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>-->
-
-                        <!--<ul class="list-inline social-link">-->
-                            <!--<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-                            <!--<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-                            <!--<li class="list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>-->
-                            <!--<li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>-->
-                            <!--<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--最新文章 8篇-->
-                <div class="py-3">
-                    <div class="sidebar-block latest-post">
-                        <h4 class="sidebar-title">最新文章</h4>
-                        <ol class="list-unstyled">
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>High Fashion Black and White Photoshoot Art</h5>
-                                    <p class="text-muted">20 June 2018 </p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018 </p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Beauty you lIfe with natural</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <div class="rpost-img">
-                                        <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                    <p class="text-muted">20 June 2018</p>
-                                </a>
-                            </li>
-                        </ol>
+            <!--文章 2篇（第2种样式）-->
+            <div class="blog-post">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="blog-post-thumbnail-zone">
+                            <img th:src="@{images/blog/pic-1.jpg}" alt="" class="img-fluid">
+                        </div>
                     </div>
-                </div>
+                    <div class=" col-lg-6">
+                        <div class="blog-post-content ">
+                            <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
+                            <a href="#">
+                                <h3>Only Photography What You Love Women Modelling </h3>
+                            </a>
 
-                <!--文章分类-->
-                <div class="py-3">
-                    <div class="sidebar-block">
-                        <h4 class="sidebar-title">博客分类</h4>
-                        <ol class="list-unstyled mb-0">
-                            <li><a href="#">Fashion <span>(10)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(5)</span></a></li>
-                            <li><a href="#">Hairstyle <span>(7)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(5)</span></a></li>
-                            <li><a href="#">Hairstyle <span>(7)</span></a></li>
-                        </ol>
-                    </div>
-                </div>
+                            <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt=""
+                                                           class="img-fluid small">January 1, 2014 by <a
+                                    href="#">Mark</a></p>
+                            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo,
+                                tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 
-                <!--相册-->
-                <div class="py-3">
-                    <div class="sidebar-block instagram">
-                        <h4 class="sidebar-title">最新摄影</h4>
-
-                        <div class="instgram-posts">
-                            <a href="#"><img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid"></a>
-                            <a href="#"><img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid"></a>
+                            <a href="#" class="read-more">Continue Reading</a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="blog-post">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="blog-post-thumbnail-zone">
+                            <img th:src="@{images/blog/pic-2.jpg}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class=" col-lg-6">
+                        <div class="blog-post-content ">
+                            <p class="blog-post-cat mt0">Lifestyle</p>
+                            <a href="#">
+                                <h3>Youtube Black and White Photography Ideas </h3>
+                            </a>
 
-                <!--注册-->
-                <!--<div class="py-3">-->
-                    <!--<div class="bg-light text-center subscribe">-->
-                        <!--<h4 class="sidebar-title">Subscribe Now</h4>-->
-                        <!--<p class="text-muted">Subscribe For latest Newsletter</p>-->
-                        <!--<form action="#">-->
-                            <!--<input type="text" class="form-control" placeholder="Type Your Email here">-->
-                            <!--<a href="#" class="btn btn-sm  btn-danger btn-rounded">Subscribe</a>-->
-                        <!--</form>-->
-                        <!--<p class="font-italic">Don't worry ! We don't spam</p>-->
-                    <!--</div>-->
-                <!--</div>-->
+                            <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt=""
+                                                           class="img-fluid small">January 1, 2014 by <a
+                                    href="#">Mark</a></p>
+                            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo,
+                                tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 
-            </aside>
-            <!-- /.blog-sidebar -->
+                            <a href="#" class="read-more">Continue Reading</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.row -->
 
-    </main>
-    <!-- /.container -->
-    <div class="popular-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="post-header border-bottom text-center">
-                        <h3 class="">摄影作品推荐</h3>
-                    </div>
+        <aside class="col-md-4 blog-sidebar">
+
+            <!--最新文章 7篇-->
+            <div class="py-3">
+                <div class="sidebar-block latest-post">
+                    <h4 class="sidebar-title">最新文章</h4>
+                    <ol class="list-unstyled">
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>High Fashion Black and White Photoshoot Art</h5>
+                                <p class="text-muted">20 June 2018 </p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018 </p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Beauty you lIfe with natural</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="rpost-img">
+                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
+                                </div>
+                                <h5>Spanish Women are the Epitome of Beautiful</h5>
+                                <p class="text-muted">20 June 2018</p>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <a class="popular-post" href="">
-                    <img src="assets/images/blog/blog-img1.jpg" alt="" class="img-fluid">
-                    
+            <!--文章分类-->
+            <div class="py-3">
+                <div class="sidebar-block">
+                    <h4 class="sidebar-title">博客分类</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li><a href="#">Fashion <span>(10)</span></a></li>
+                        <li><a href="#">Lifestyle <span>(5)</span></a></li>
+                        <li><a href="#">Hairstyle <span>(7)</span></a></li>
+                        <li><a href="#">Lifestyle <span>(5)</span></a></li>
+                        <li><a href="#">Hairstyle <span>(7)</span></a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!--相册 12张-->
+            <div class="py-3">
+                <div class="sidebar-block instagram">
+                    <h4 class="sidebar-title">最新摄影</h4>
+                    <div class="instgram-posts">
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<!--摄影作品推荐 4张-->
+<div class="popular-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="post-header border-bottom text-center">
+                    <h3 class="">摄影作品推荐</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <a class="popular-post" href="">
+                    <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+
                     <div class="post-content">
                         <h4 class="ptitle"> 作品描述</h4>
                         <p class="text-muted">上传时间</p>
                     </div>
-                 </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="popular-post" href="">
-                    <img src="assets/images/blog/blog-img2.jpg" alt="" class="img-fluid">
-                    
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <a class="popular-post" href="">
+                    <img th:src="@{images/blog/blog-img2.jpg}" alt="" class="img-fluid">
+
                     <div class="post-content">
                         <h4 class="ptitle"> Messenger Women's Leather Bag Design Idea</h4>
                         <p class="text-muted">January 16, 2018</p>
                     </div>
-                 </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="popular-post" href="">
-                    <img src="assets/images/blog/blog-img3.jpg" alt="" class="img-fluid">
-                    
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <a class="popular-post" href="">
+                    <img th:src="@{images/blog/blog-img3.jpg}" alt="" class="img-fluid">
+
                     <div class="post-content">
                         <h4 class="ptitle"> Messenger Women's Leather Bag Design Idea</h4>
                         <p class="text-muted">January 16, 2018</p>
                     </div>
-                 </a>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="popular-post" href="">
-                    <img src="assets/images/blog/blog-img1.jpg" alt="" class="img-fluid">
-                    
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <a class="popular-post" href="">
+                    <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+
                     <div class="post-content">
                         <h4 class="ptitle"> Messenger Women's Leather Bag Design Idea</h4>
                         <p class="text-muted">January 16, 2018</p>
                     </div>
-                 </a>
-                </div>
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <footer class="blog-footer bg-light">
-        <div class="footer-social">
-            <a href="#" target="_blank" class="fa fa-facebook"></a>
-            <a href="#" target="_blank" class="fa fa-behance"></a>
-            <a href="#" target="_blank" class="fa fa-twitter"></a>
-            <a href="#" target="_blank" class="fa fa-linkedin"></a>
-            <a href="#" target="_blank" class="fa fa-google-plus"></a>
-            <a href="#" target="_blank" class="fa fa-youtube"></a>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit integer a urna vitae sem tempus.</p>
-        <p>2018.Copyright Reserved for <a href="#">Personal</a> by <a href="http://www.bootstrapmb.com/">Dreambuzz</a>.</p>
-        <p>
-            <a href="#">Back to top</a>
-        </p>
-    </footer>
+<footer class="blog-footer bg-light">
+    <div class="footer-social">
+        <a href="#" target="_blank" class="fa fa-facebook"></a>
+        <a href="#" target="_blank" class="fa fa-behance"></a>
+        <a href="#" target="_blank" class="fa fa-twitter"></a>
+        <a href="#" target="_blank" class="fa fa-linkedin"></a>
+        <a href="#" target="_blank" class="fa fa-google-plus"></a>
+        <a href="#" target="_blank" class="fa fa-youtube"></a>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit integer a urna vitae sem tempus.</p>
+    <p>2018.Copyright Reserved for <a href="#">Personal</a> by <a href="http://www.bootstrapmb.com/">Dreambuzz</a>.</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+<script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
 
 </html>
