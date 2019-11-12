@@ -1,5 +1,10 @@
 package com.shengxi.carblog;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class ServletInitializer extends SpringBootServletInitializer implements WebMvcConfigurer, ApplicationRunner {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(CarblogApplication.class);
@@ -28,7 +35,7 @@ public class ServletInitializer extends SpringBootServletInitializer implements 
      */
     @Override
     public void run(ApplicationArguments args) {
-        System.out.println("BUILD SUCCESS!");
+        logger.info("\n BUILD SUCCESS! {}", LocalDateTime.now());
     }
 
     /**

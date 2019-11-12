@@ -308,3 +308,4 @@ local.properties
 
 /target/
 /target/
+/target/classes/config/
