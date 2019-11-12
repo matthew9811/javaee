@@ -5,49 +5,49 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>异清轩博客管理系统</title>
+    <title>摄影家</title>
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
     <link th:href="@{css/login-style.css}" rel="stylesheet" media="all">
     <link th:href="@{css/login.css}" rel="stylesheet" media="all">
-    <script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
+    <script type="application/x-javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body class="user-select">
 <div class="container">
-    <div class="siteIcon"><img th:src="@{images/logo.png}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用摄影家" draggable="false" /></div>
+    <div class="siteIcon"><img th:src="@{images/logo.png}" alt="" data-toggle="tooltip" data-placement="top"
+                               title="欢迎使用摄影家" draggable="false"/></div>
     <form action="index.html" method="post" autocomplete="off" class="form-signin">
         <h2 class="form-signin-heading">登录</h2>
         <br>
         <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名"
+               maxlength="10" autofocus required/>
         <br>
         <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码"
+               maxlength="16" required/>
         <br>
-        <a href="main.html"><button class="btn btn-lg btn-block btn-color" type="submit" id="signinSubmit">登录</button></a>
+        <button class="btn btn-lg btn-block btn-color" type="submit" id="signInSubmit">登录</button>
     </form>
     <div class="footer">
-        <p><a href="index.html" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到后台 →</a></p>
+        <p><a href="#" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到后台 →</a></p>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script>
-    $('[data-toggle="tooltip"]').tooltip();
-    window.oncontextmenu = function(){
-        //return false;
-    };
-    $('.siteIcon img').click(function(){
-        window.location.reload();
+<script th:inline="javascript">
+    $(function () {
+
     });
-    $('#signinSubmit').click(function(){
-        if($('#userName').val() === ''){
-            $(this).text('用户名不能为空');
-        }else if($('#userPwd').val() === ''){
-            $(this).text('密码不能为空');
-        }else{
-            $(this).text('请稍后...');
-        }
+
+    $("#signInSubmit").on('click',function () {
+        tips("请输入用户名!",'userName');
+        tips("请输入密码!",'userPwd');
+        console.log("=====");
     });
+
+    function tips(tip,tipId) {
+        $("#" + tipId).attr("oninvalid", "setCustomValidity('" + tip + "')");
+    }
 </script>
 </body>
 </html>
