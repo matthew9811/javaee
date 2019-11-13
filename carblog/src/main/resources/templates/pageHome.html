@@ -28,6 +28,9 @@
         <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码"
                maxlength="16" required/>
         <br>
+        <span>
+
+        </span>
         <button class="btn btn-lg btn-block btn-color" type="submit" id="signInSubmit">登录</button>
     </form>
     <div class="footer">
@@ -42,7 +45,6 @@
     $("#signInSubmit").on('click',function () {
         tips("请输入用户名!",'userName');
         tips("请输入密码!",'userPwd');
-        console.log("=====");
     });
 
     function tips(tip,tipId) {

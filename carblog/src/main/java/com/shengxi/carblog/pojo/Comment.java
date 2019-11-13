@@ -1,9 +1,22 @@
 package com.shengxi.carblog.pojo;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+/**
+ * @author yan
+ * @date 2019-11-13 23:32:41
+ * 博客评论
+ */
 @Entity
 @Table(name = "comment")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
     @Id
     @Column(name = "id")
@@ -13,7 +26,7 @@ public class Comment {
     private String concent;
 
     @Column(name = "create_time")
-    private java.sql.Timestamp createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "user_id")
     private Integer userId;
@@ -41,11 +54,11 @@ public class Comment {
         this.concent = concent;
     }
 
-    public java.sql.Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
@@ -71,5 +84,17 @@ public class Comment {
 
     public void setBlogUserId(Integer blogUserId) {
         this.blogUserId = blogUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", concent='" + concent + '\'' +
+                ", createTime=" + createTime +
+                ", userId=" + userId +
+                ", blogId='" + blogId + '\'' +
+                ", blogUserId=" + blogUserId +
+                '}';
     }
 }

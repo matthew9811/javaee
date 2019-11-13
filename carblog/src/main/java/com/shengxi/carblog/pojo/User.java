@@ -1,7 +1,14 @@
 package com.shengxi.carblog.pojo;
 
+import java.time.LocalDateTime;
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @version 1.0.0
+ * @date 2019-11-13 23:41:31
+ * 用户类
+ */
 @Entity
 @Table(name = "user")
 public class User {
@@ -16,10 +23,10 @@ public class User {
     private String pwd;
 
     @Column(name = "create_time")
-    private java.sql.Timestamp createTime;
+    private LocalDateTime createTime;
 
-    @Column(name = "concent")
-    private String concent;
+    @Column(name = "content")
+    private String content;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
@@ -52,20 +59,20 @@ public class User {
         this.pwd = pwd;
     }
 
-    public java.sql.Timestamp getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public String getConcent() {
-        return this.concent;
+    public String getContent() {
+        return this.content;
     }
 
-    public void setConcent(String concent) {
-        this.concent = concent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getAvatarUrl() {
@@ -82,5 +89,18 @@ public class User {
 
     public void setStatus(char status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", createTime=" + createTime +
+                ", content='" + content + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

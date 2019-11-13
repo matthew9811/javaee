@@ -2,6 +2,12 @@ package com.shengxi.carblog.pojo;
 
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @version 1.0.0
+ * @date 2019-11-13 23:33:40
+ * 相册类
+ */
 @Entity
 @Table(name = "draw")
 public class Draw {
@@ -15,8 +21,8 @@ public class Draw {
     @Column(name = "status")
     private char status;
 
-    @Column(name = "concent_url")
-    private String concentUrl;
+    @Column(name = "content_url")
+    private String contentUrl;
 
     @Column(name = "reviewer")
     private Integer reviewer;
@@ -46,12 +52,12 @@ public class Draw {
         this.status = status;
     }
 
-    public String getConcentUrl() {
-        return this.concentUrl;
+    public String getContentUrl() {
+        return this.contentUrl;
     }
 
-    public void setConcentUrl(String concentUrl) {
-        this.concentUrl = concentUrl;
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
     }
 
     public Integer getReviewer() {
@@ -60,5 +66,16 @@ public class Draw {
 
     public void setReviewer(Integer reviewer) {
         this.reviewer = reviewer;
+    }
+
+    @Override
+    public String toString() {
+        return "Draw{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", status=" + status +
+                ", contentUrl='" + contentUrl + '\'' +
+                ", reviewer=" + reviewer +
+                '}';
     }
 }

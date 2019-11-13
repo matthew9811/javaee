@@ -1,10 +1,17 @@
 package com.shengxi.carblog.pojo;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @date 2019-11-13 23:31:25
+ * @version 1.0.0
+ * 博客点赞
+ */
 @Entity
 @Table(name = "blog_like")
-public class BlogLike {
+public class BlogLike implements Serializable {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -38,5 +45,14 @@ public class BlogLike {
 
     public void setBlogId(String blogId) {
         this.blogId = blogId;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogLike{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", blogId='" + blogId + '\'' +
+                '}';
     }
 }

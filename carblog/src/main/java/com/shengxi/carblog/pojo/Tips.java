@@ -2,6 +2,12 @@ package com.shengxi.carblog.pojo;
 
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @version 1.0.0
+ * @date 2019-11-13 23:40:17
+ * 标签实体
+ */
 @Entity
 @Table(name = "tips")
 public class Tips {

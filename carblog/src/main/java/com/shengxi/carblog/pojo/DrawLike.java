@@ -2,6 +2,12 @@ package com.shengxi.carblog.pojo;
 
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @version 1.0.0
+ * @date 2019-11-13 23:38:26
+ * 相册点赞数
+ */
 @Entity
 @Table(name = "draw_like")
 public class DrawLike {
@@ -38,5 +44,14 @@ public class DrawLike {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "DrawLike{" +
+                "id=" + id +
+                ", drawId=" + drawId +
+                ", userId=" + userId +
+                '}';
     }
 }

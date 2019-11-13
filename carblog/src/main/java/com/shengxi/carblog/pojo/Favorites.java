@@ -2,6 +2,12 @@ package com.shengxi.carblog.pojo;
 
 import javax.persistence.*;
 
+/**
+ * @author yan
+ * @version 1.0.0
+ * @date 2019-11-13 23:39:03
+ * 收藏
+ */
 @Entity
 @Table(name = "favorites")
 public class Favorites {
@@ -38,5 +44,14 @@ public class Favorites {
 
     public void setBlogId(String blogId) {
         this.blogId = blogId;
+    }
+
+    @Override
+    public String toString() {
+        return "Favorites{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", blogId='" + blogId + '\'' +
+                '}';
     }
 }
