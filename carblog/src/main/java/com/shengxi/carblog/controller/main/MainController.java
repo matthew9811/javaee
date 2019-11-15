@@ -1,5 +1,11 @@
 package com.shengxi.carblog.controller.main;
 
+import com.shengxi.carblog.pojo.User;
+import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.service.admin.IUserService;
+import com.shengxi.compent.utils.ResponseStatus;
+import org.apache.commons.lang3.BooleanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 
+    private IUserService userService;
     private String prefix = "";
 
 
@@ -29,14 +36,28 @@ public class MainController {
     }
 
     /**
-     * 登录验证，成功返回首页。失败返回信息。
+     * 登录验证
+     * 失败返回登录页面并返回提示信息。
+     * <p>
+     * 成功返回首页。
      * 进入首页时进行一个欢迎提示，
      *
      * @return
      */
     @PostMapping("/login")
-    public String login(ModelMap modelMap) {
+    public String login(User loginUser, ModelMap modelMap) {
+        ResponsePojo responsePojo = userService.loginVerify(loginUser);
+        if (ResponseStatus.FAIL.equals(responsePojo.getStatus())) {
+            modelMap.put("msg", "登录信息不正确!");
+            return prefix + "/pageHome";
+        }
+        modelMap.put("msg", "欢迎登录博客家!");
 
         return prefix + "/blog/blogIndex";
+    }
+
+    @Autowired
+    public void setIUserService(IUserService userService) {
+        this.userService = userService;
     }
 }
