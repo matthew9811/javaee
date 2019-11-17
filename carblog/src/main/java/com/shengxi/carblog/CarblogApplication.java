@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author matthew
  * @date 2019年9月16日 09:14:43
  * 项目启动类
+ * EnableJpaRepositories注解给系统描述dao层的位置
  */
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.shengxi.carblog.repository")

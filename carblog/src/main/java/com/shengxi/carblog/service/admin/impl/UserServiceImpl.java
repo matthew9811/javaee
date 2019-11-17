@@ -7,6 +7,7 @@ import com.shengxi.carblog.service.admin.IUserService;
 import com.shengxi.compent.utils.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author yan
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements IUserService {
 
+    @Autowired
     private IUserRepository userRepository;
 
     /**
@@ -25,14 +27,11 @@ public class UserServiceImpl implements IUserService {
      * @return ResponsePojo
      */
     @Override
+    @Transactional(readOnly = true)
     public ResponsePojo loginVerify(User loginUser) {
-        Integer count = userRepository.countIntegerByNameAndPwd(loginUser.getName(), loginUser.getPwd());
+        Integer count = userRepository.countByNameAndPwd(loginUser.getName(), loginUser.getPwd());
         System.out.println(count);
         return new ResponsePojo(ResponseStatus.FAIL, "SUCCESS");
     }
 
-    @Autowired
-    public void setUserRepository(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 }

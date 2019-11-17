@@ -1,17 +1,22 @@
 package com.shengxi.carblog.pojo;
 
 import java.time.LocalDateTime;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  * @author yan
  * @version 1.0.0
  * @date 2019-11-13 23:41:31
- * 用户类
+ * 用户类实体
  */
-@Entity
+@Entity(name = "user")
 @Table(name = "user")
 public class User {
+
     @Id
     @Column(name = "id")
     private Integer id;
