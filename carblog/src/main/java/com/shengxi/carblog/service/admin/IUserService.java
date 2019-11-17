@@ -2,7 +2,6 @@ package com.shengxi.carblog.service.admin;
 
 import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
-import com.shengxi.compent.utils.ResponseStatus;
 
 /**
  * @author yan

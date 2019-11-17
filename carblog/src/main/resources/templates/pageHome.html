@@ -20,12 +20,12 @@
     <form action="#" method="post" autocomplete="off" class="form-signin">
         <h2 class="form-signin-heading">登录</h2>
         <br>
-        <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名"
+        <label for="name" class="sr-only">用户名</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="请输入用户名"
                maxlength="10" autofocus required/>
         <br>
-        <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="请输入密码"
+        <label for="pwd" class="sr-only">密码</label>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="请输入密码"
                maxlength="16" required/>
         <br>
         <p th:if="${not #strings.isEmpty(msg)}">
@@ -41,11 +41,11 @@
     $(function () {
 
     });
-
-    $("#signInSubmit").on('click',function () {
-        tips("请输入用户名!",'userName');
-        tips("请输入密码!",'userPwd');
-    });
+    //
+    // $("#signInSubmit").on('click',function () {
+    //     tips("请输入用户名!",'name');
+    //     tips("请输入密码!",'pwd');
+    // });
 
     function tips(tip,tipId) {
         $("#" + tipId).attr("oninvalid", "setCustomValidity('" + tip + "')");
