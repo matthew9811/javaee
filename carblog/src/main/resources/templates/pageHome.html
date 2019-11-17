@@ -17,7 +17,7 @@
 <div class="container">
     <div class="siteIcon"><img th:src="@{images/logo.png}" alt="" data-toggle="tooltip" data-placement="top"
                                title="欢迎使用摄影家" draggable="false"/></div>
-    <form action="#" method="post" autocomplete="off" class="form-signin">
+    <form th:action="@{/login}" method="post" autocomplete="off" class="form-signin">
         <h2 class="form-signin-heading">登录</h2>
         <br>
         <label for="name" class="sr-only">用户名</label>
