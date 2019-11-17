@@ -16,7 +16,7 @@ spring:
     properties:
       show-sql: true
       format_sql: true
-      #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      # database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   main:
     allow-bean-definition-overriding: true
   mvc:

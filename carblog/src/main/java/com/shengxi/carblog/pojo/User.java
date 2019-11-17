@@ -1,10 +1,17 @@
 package com.shengxi.carblog.pojo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 /**
@@ -13,11 +20,15 @@ import javax.persistence.Table;
  * @date 2019-11-13 23:41:31
  * 用户类实体
  */
-@Entity(name = "user")
+@Entity(name = "User")
 @Table(name = "user")
-public class User {
+@DynamicUpdate
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -37,7 +48,7 @@ public class User {
     private String avatarUrl;
 
     @Column(name = "status")
-    private char status;
+    private String status;
 
 
     public Integer getId() {
@@ -88,11 +99,11 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
