@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
     private IUserRepository userRepository;
 
     /**
@@ -30,28 +29,13 @@ public class UserServiceImpl implements IUserService {
     @Transactional(readOnly = true)
     public ResponsePojo loginVerify(User loginUser) {
         Long count = userRepository.countByNameAndPwd(loginUser.getName(), loginUser.getPwd());
-        System.out.println(count);
-        return new ResponsePojo(ResponseStatus.FAIL, "SUCCESS");
+        return new ResponsePojo(count != 0 ? ResponseStatus.SUCCESS : ResponseStatus.FAIL, "SUCCESS");
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<User> listAll() {
-        return userRepository.findAll();
-    }
 
-    @Override
-    @Transactional(readOnly = false, rollbackFor = Exception.class)
-    public Integer save(User newUser) {
-        User save = userRepository.save(newUser);
-        System.out.println(save.toString());
-        return 1;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public User findByNameAndPwd(String name, String pwd) {
-        return userRepository.findByNameAndPwd(name, pwd);
+    @Autowired
+    public void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
 }

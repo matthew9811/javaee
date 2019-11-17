@@ -2,7 +2,6 @@ package com.shengxi.carblog.service.admin;
 
 import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
-import java.util.List;
 
 /**
  * @author yan
@@ -18,9 +17,4 @@ public interface IUserService {
      */
     ResponsePojo loginVerify(User loginUser);
 
-    List<User> listAll();
-
-    Integer save(User newUser);
-
-    User findByNameAndPwd(String name, String pwd);
 }
