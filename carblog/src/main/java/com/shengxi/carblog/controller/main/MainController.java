@@ -23,10 +23,18 @@ public class MainController {
     private IUserService userService;
     private String prefix = "";
 
+    @GetMapping("/register")
+    public String register(){
+        return prefix + "/register";
+    }
 
+    /**
+     * 进入前台login
+     * @return login.html
+     */
     @GetMapping("/login")
     public String login() {
-        return prefix + "/blog/login";
+        return prefix + "/blog/blog-login";
     }
 
     @GetMapping("/")
@@ -52,7 +60,12 @@ public class MainController {
         }
         modelMap.put("msg", "欢迎登录博客家!");
 
-        return prefix + "/blog/blogIndex";
+        return prefix + "/blog/pageHome";
+    }
+
+    @GetMapping("/adminLogin")
+    public String adminLogin(){
+        return prefix + "/admin/admin-login";
     }
 
     @Autowired
