@@ -18,7 +18,7 @@ public class TestController {
 
     @GetMapping("/findAll")
     public void findAll(){
-        List<User> users = userService.listAll();
-        users.forEach(k-> System.out.println(k.toString()));
+//        List<User> users = userService.listAll();
+//        users.forEach(k-> System.out.println(k.toString()));
     }
 }

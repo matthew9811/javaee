@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--注册页-->
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>摄影家</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{css/login-style.css}" rel="stylesheet" media="all">
+    <link th:href="@{css/login.css}" rel="stylesheet" media="all">
+    <script type="application/x-javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body class="user-select">
+<div class="container">
+    <div class="siteIcon"><img th:src="@{images/logo.png}" alt="" data-toggle="tooltip" data-placement="top"
+                               title="欢迎使用摄影家" draggable="false"/></div>
+    <form th:action="@{/login}" method="post" autocomplete="off" class="form-signin">
+        <h2 class="form-signin-heading">注册</h2>
+        <br>
+        <label for="name" class="sr-only">用户名</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="用户名"
+               maxlength="10" autofocus required/>
+        <br>
+        <label for="pwd" class="sr-only">密码</label>
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="密码"
+               maxlength="16" required/>
+        <br>
+        <label for="pwd" class="sr-only">确认密码</label>
+        <input type="password" id="againPwd" name="againPwd" class="form-control" placeholder="确认密码"
+               maxlength="16" required/>
+        <br>
+        <p th:if="${not #strings.isEmpty(msg)}">
+            <span th:text="${msg}"></span>
+        </p>
+        <button class="btn btn-lg btn-block btn-color" type="submit" id="signInSubmit">登录</button>
+    </form>
+</div>
+<script th:inline="javascript">
+    $(function () {
+
+    });
+    //
+    // $("#signInSubmit").on('click',function () {
+    //     tips("请输入用户名!",'name');
+    //     tips("请输入密码!",'pwd');
+    // });
+
+    function tips(tip,tipId) {
+        $("#" + tipId).attr("oninvalid", "setCustomValidity('" + tip + "')");
+    }
+</script>
+</body>
+</html>
