@@ -60,7 +60,7 @@ public class MainController {
         }
         modelMap.put("msg", "欢迎登录博客家!");
 
-        return prefix + "/blog/pageHome";
+        return prefix + "/pageHome";
     }
 
     @GetMapping("/adminLogin")
