@@ -23,13 +23,19 @@ public class MainController {
     private IUserService userService;
     private String prefix = "";
 
+    /**
+     * 进入注册页面
+     *
+     * @return url
+     */
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return prefix + "/register";
     }
 
     /**
      * 进入前台login
+     *
      * @return login.html
      */
     @GetMapping("/login")
@@ -37,6 +43,11 @@ public class MainController {
         return prefix + "/blog/blog-login";
     }
 
+    /**
+     * 进入系统主页
+     *
+     * @return url
+     */
     @GetMapping("/")
     public String pageHome() {
         return prefix + "/pageHome";
@@ -63,8 +74,13 @@ public class MainController {
         return prefix + "/pageHome";
     }
 
+    /**
+     * 进入管理员登录页面
+     *
+     * @return url
+     */
     @GetMapping("/adminLogin")
-    public String adminLogin(){
+    public String adminLogin() {
         return prefix + "/admin/admin-login";
     }
 

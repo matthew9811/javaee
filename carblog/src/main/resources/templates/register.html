@@ -16,9 +16,9 @@
 
 <body class="user-select">
 <div class="container">
-    <div class="siteIcon"><img th:src="@{images/logo.png}" alt="" data-toggle="tooltip" data-placement="top"
+    <div class="siteIcon"><img th:src="@{/images/logo.png}" alt="" data-toggle="tooltip" data-placement="top"
                                title="欢迎使用摄影家" draggable="false"/></div>
-    <form th:action="@{/login}" method="post" autocomplete="off" class="form-signin">
+    <form th:action="@{#}" method="post" autocomplete="off" class="form-signin">
         <h2 class="form-signin-heading">注册</h2>
         <br>
         <label for="name" class="sr-only">用户名</label>
@@ -33,24 +33,39 @@
         <input type="password" id="againPwd" name="againPwd" class="form-control" placeholder="确认密码"
                maxlength="16" required/>
         <br>
-        <p th:if="${not #strings.isEmpty(msg)}">
-            <span th:text="${msg}"></span>
+        <p style="color: red">
+            <span id="tips"></span>
         </p>
         <button class="btn btn-lg btn-block btn-color" type="submit" id="signInSubmit">登录</button>
     </form>
 </div>
 <script th:inline="javascript">
     $(function () {
-
     });
-    //
-    // $("#signInSubmit").on('click',function () {
-    //     tips("请输入用户名!",'name');
-    //     tips("请输入密码!",'pwd');
-    // });
 
-    function tips(tip,tipId) {
-        $("#" + tipId).attr("oninvalid", "setCustomValidity('" + tip + "')");
+    /**
+     * 密码验证
+     */
+    $("#againPwd").on('blur', function () {
+        if (false === tips1()){
+            return false;
+        }
+    })
+
+
+    $("#signInSubmit").on('click', function () {
+        if (false === tips1()){
+            return false;
+        }
+    })
+    function tips1() {
+
+        let pwd = $('input[name = "pwd"]').val();
+        let againPwd = $('input[name = "againPwd"] ').val();
+        if (pwd != againPwd){
+            $('#tips').html("密码不一致");
+            return false;
+        }
     }
 </script>
 </body>
