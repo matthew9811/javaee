@@ -42,6 +42,11 @@ public class ResponsePojo {
         this.msg = msg;
     }
 
+    public void setInstance(ResponseStatus status, String msg) {
+        this.status = status;
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResponsePojo{" +

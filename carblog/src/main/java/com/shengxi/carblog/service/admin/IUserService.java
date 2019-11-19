@@ -17,4 +17,11 @@ public interface IUserService {
      */
     ResponsePojo loginVerify(User loginUser);
 
+    /**
+     * 进行注册用户
+     *
+     * @param register userBean
+     * @return status and msg
+     */
+    ResponsePojo register(User register);
 }

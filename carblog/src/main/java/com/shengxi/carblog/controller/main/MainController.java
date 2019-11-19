@@ -33,6 +33,24 @@ public class MainController {
         return prefix + "/register";
     }
 
+
+    /**
+     * 实现注册信息保存
+     * @param register userBean
+     * @param map map
+     * @return url
+     */
+    @PostMapping("/register")
+    public String register(User register, ModelMap map) {
+        ResponsePojo responsePojo = userService.register(register);
+        if (ResponseStatus.SUCCESS.equals(responsePojo.getStatus())) {
+            map.addAttribute("msg", responsePojo.getMsg());
+            return prefix + "/pageHome";
+        }
+        map.addAttribute("msg", responsePojo.getMsg());
+        return prefix + "/register";
+    }
+
     /**
      * 进入前台login
      *
