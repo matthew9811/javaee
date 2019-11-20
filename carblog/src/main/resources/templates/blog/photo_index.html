@@ -1,6 +1,5 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--博客页主页-->
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
@@ -13,12 +12,19 @@
     <meta name="format-detection" content="telephone=no">
     <title>摄影家</title>
 
-    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
-    <link th:href="@{css/icofont.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/font-awesome.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/style.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/blog.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/responsive.css}" rel="stylesheet" media="all">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/popper.min.js}"></script>
+    <script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{js/jquery.easing.min.js}"></script>
+    <script th:src="@{js/jquery.migrate.js}"></script>
+    <script th:src="@{js/slick.js}"></script>
+    <script th:src="@{js/custom.js}"></script>
 </head>
 
 <body>
@@ -85,45 +91,23 @@
     </nav>
 </header>
 
+<!--封面图-->
 <div class="page-header jumbotron p-3 p-md-5 text-white">
     <div class="dark-overlay"></div>
     <div class="container">
         <div class="col-md-6 px-0 mx-auto ">
             <div class="text-center page-banner-coontent">
-                <h2>摄影博客</h2>
-                <p>在这里，网站用户分享了有关自己的摄影经验及摄影技巧</p>
+                <h2>摄影相册</h2>
+                <p>在这里，网站用户分享了有关自己的摄影作品</p>
             </div>
         </div>
     </div>
 </div>
 
-<!--内容-->
 <main class="container">
     <div class="row">
-        <!--内容左边-->
-        <div class="col-md-8 blog-main col-sm-7">
-            <!--博客 4篇-->
-            <!--带大图片的博客1篇-->
-            <div class="blog-post">
-                <div class="blog-block-img">
-                    <img th:src="@{images/blog/inner-5.jpg}" alt="" class="img-fluid">
-                </div>
-                <p class="blog-post-cat">Lifestyle</p>
-                <a href="#">
-                    <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
-                </a>
-
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
-                    1, 2014 by <a href="#">Mark</a></p>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
-                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
-                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                    risus.</p>
-
-                <a href="#" class="read-more">Continue Reading</a>
-            </div>
-
-            <!--带小图片的博客3篇-->
+        <div class="col-md-8 blog-main grid-post col-sm-7">
+            <!--八张图片-->
             <div class="row">
                 <div class="col-lg-6">
                     <div class="blog-post ">
@@ -136,13 +120,14 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.blog-post LList -->
+
                 </div>
                 <div class="col-lg-6">
                     <div class="blog-post ">
@@ -155,13 +140,14 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.blog-post LList -->
+
                 </div>
                 <div class="col-lg-6">
                     <div class="blog-post ">
@@ -174,13 +160,13 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.blog-post LList -->
                 </div>
                 <div class="col-lg-6">
                     <div class="blog-post ">
@@ -193,17 +179,16 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.blog-post LList -->
                 </div>
             </div>
 
-            <!--页码-->
             <nav aria-label="navigation ">
                 <ul class="pagination blog-pagination justify-content-end">
                     <li class="page-item disabled">
@@ -217,16 +202,13 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
 
-        <!--内容右边-->
         <aside class="col-md-4 blog-sidebar col-sm-5">
-
-            <!--博客分类-->
+            <!--标签分类导航-->
             <div class="py-3">
                 <div class="sidebar-block">
-                    <h4 class="sidebar-title">分类</h4>
+                    <h4 class="sidebar-title">Categories</h4>
                     <ol class="list-unstyled mb-0">
                         <li><a href="#">Fashion <span>(10)</span></a></li>
                         <li><a href="#">Lifestyle <span>(5)</span></a></li>
@@ -235,7 +217,7 @@
                 </div>
             </div>
 
-            <!--最新文章 7篇-->
+            <!--最新文章7篇-->
             <div class="py-3">
                 <div class="sidebar-block latest-post">
                     <h4 class="sidebar-title">最新文章</h4>
@@ -243,7 +225,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>High Fashion Black and White Photoshoot Art</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -253,7 +235,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -263,7 +245,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Beauty you lIfe with natural</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -273,37 +255,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -313,91 +265,22 @@
                 </div>
             </div>
 
-            <!--热门文章 7篇-->
+            <!--最新图片9张-->
             <div class="py-3">
-                <div class="sidebar-block latest-post">
-                    <h4 class="sidebar-title">热门文章</h4>
-                    <ol class="list-unstyled">
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>High Fashion Black and White Photoshoot Art</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
+                <div class="sidebar-block instagram">
+                    <h4 class="sidebar-title">最新图片</h4>
 
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Beauty you lIfe with natural</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-                    </ol>
+                    <div class="instgram-posts">
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                    </div>
                 </div>
             </div>
 
@@ -406,6 +289,7 @@
 </main>
 
 <footer class="blog-footer">
+
     <div class="footer-social">
         <a href="#" target="_blank" class="fa fa-facebook"></a>
         <a href="#" target="_blank" class="fa fa-behance"></a>
@@ -421,9 +305,6 @@
     </p>
 </footer>
 
-<script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
+
 </html>
