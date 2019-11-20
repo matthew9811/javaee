@@ -48,7 +48,7 @@ public class MainController {
         ResponsePojo responsePojo = userService.register(register);
         if (ResponseStatus.SUCCESS.equals(responsePojo.getStatus())) {
             map.addAttribute("msg", responsePojo.getMsg());
-            return prefix + "/pageHome";
+            return prefix + "/index";
         }
         map.addAttribute("msg", responsePojo.getMsg());
         return prefix + "/register";
@@ -61,7 +61,7 @@ public class MainController {
      */
     @GetMapping("/login")
     public String login() {
-        return prefix + "/blog/blog-login";
+        return prefix + "/blog/blog_login";
     }
 
     /**
@@ -70,8 +70,8 @@ public class MainController {
      * @return url
      */
     @GetMapping("/")
-    public String pageHome() {
-        return prefix + "/pageHome";
+    public String index() {
+        return prefix + "/index";
     }
 
     /**
@@ -88,11 +88,11 @@ public class MainController {
         ResponsePojo responsePojo = userService.loginVerify(loginUser);
         if (ResponseStatus.FAIL.equals(responsePojo.getStatus())) {
             modelMap.put("msg", "登录信息不正确!");
-            return prefix + "/pageHome";
+            return prefix + "/blog/blog_login";
         }
         modelMap.put("msg", "欢迎登录博客家!");
 
-        return prefix + "/pageHome";
+        return prefix + "/index";
     }
 
     /**
@@ -102,7 +102,7 @@ public class MainController {
      */
     @GetMapping("/adminLogin")
     public String adminLogin() {
-        return prefix + "/admin/admin-login";
+        return prefix + "/admin/admin_login";
     }
 
     @GetMapping("/checkUserName/{username}")
