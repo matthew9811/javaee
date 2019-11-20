@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author: matthew
@@ -36,8 +38,9 @@ public class MainController {
 
     /**
      * 实现注册信息保存
+     *
      * @param register userBean
-     * @param map map
+     * @param map      map
      * @return url
      */
     @PostMapping("/register")
@@ -100,6 +103,12 @@ public class MainController {
     @GetMapping("/adminLogin")
     public String adminLogin() {
         return prefix + "/admin/admin-login";
+    }
+
+    @GetMapping("/checkUserName/{username}")
+    @ResponseBody
+    public void checkUserName(@PathVariable(name = "username") String username) {
+        System.out.println(username);
     }
 
     @Autowired

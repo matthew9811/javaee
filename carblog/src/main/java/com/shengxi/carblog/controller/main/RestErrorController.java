@@ -24,20 +24,9 @@ public class RestErrorController implements ErrorController {
         return ERROR_PATH;
     }
 
-    @RequestMapping("/error")
+    @RequestMapping("/error/404")
     public String handleError(HttpServletRequest request) {
-        //获取statusCode:401,404,500
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if (statusCode == Response.SC_UNAUTHORIZED) {
-            return ERROR_PATH.concat("/401");
-        } else if (statusCode == Response.SC_NOT_FOUND) {
-            return ERROR_PATH.concat("/404");
-        } else if (statusCode == Response.SC_FORBIDDEN) {
-            return ERROR_PATH.concat("/403");
-        } else {
-            return ERROR_PATH.concat("/500");
-        }
-
+        return ERROR_PATH.concat("/404");
     }
 
 }

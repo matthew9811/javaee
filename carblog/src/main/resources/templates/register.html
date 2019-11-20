@@ -40,29 +40,45 @@
     </form>
 </div>
 <script th:inline="javascript">
+    var prefix = [[@{/}]];
     $(function () {
+    });
+    /**
+     * 验证用户名是否重复
+     * */
+    $('#name').on('blur', function () {
+        let name = $('input[name = "name"]').val();
+        $.ajax({
+            url: prefix + 'checkUserName/' + name,
+            context: {name: name},
+            method: 'get',
+            success: function (data) {
+               console.log(data)
+            }
+        })
     });
 
     /**
      * 密码验证
      */
     $("#againPwd").on('blur', function () {
-        if (false === tips1()){
+        if (false === againPwdTips()) {
             return false;
         }
-    })
+    });
 
 
     $("#signInSubmit").on('click', function () {
-        if (false === tips1()){
+        if (false === againPwdTips()) {
             return false;
         }
-    })
-    function tips1() {
+    });
+
+    function againPwdTips() {
 
         let pwd = $('input[name = "pwd"]').val();
         let againPwd = $('input[name = "againPwd"] ').val();
-        if (pwd != againPwd){
+        if (pwd != againPwd) {
             $('#tips').html("密码不一致");
             return false;
         }
