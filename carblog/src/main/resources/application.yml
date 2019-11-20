@@ -21,5 +21,7 @@ spring:
     allow-bean-definition-overriding: true
   mvc:
     static-path-pattern: /**
+    favicon:
+      enabled: false
 logging:
   config: classpath:config/log4j2.xml
