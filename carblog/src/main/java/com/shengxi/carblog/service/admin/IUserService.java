@@ -24,4 +24,14 @@ public interface IUserService {
      * @return status and msg
      */
     ResponsePojo register(User register);
+
+    /**
+     * 查看用户名是否已经被占用
+     * 存在返回false，
+     * 不存在返回true
+     *
+     * @param username nameString
+     * @return bool
+     */
+    Boolean userNameVerify(String username);
 }

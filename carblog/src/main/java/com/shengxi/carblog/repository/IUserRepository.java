@@ -21,4 +21,13 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @return 查找到的记录数
      */
     Long countByNameAndPwd(@Param("name") String name, @Param("pwd") String pwd);
+
+    /**
+     * 根据用户名查看是否存在用户信息
+     *
+     * @param name name
+     * @return bool
+     */
+    Boolean existsByName(@Param("name") String name);
+
 }

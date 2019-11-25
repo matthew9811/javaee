@@ -50,4 +50,10 @@ public class UserServiceImplTest {
 //        User byNameAndPwd = userService.findByNameAndPwd("admin", "amdin");
 //        System.out.println(byNameAndPwd);
 //    }
+
+
+    @Test
+    public void existsByNameTest(){
+        userService.userNameVerify("admin");
+    }
 }

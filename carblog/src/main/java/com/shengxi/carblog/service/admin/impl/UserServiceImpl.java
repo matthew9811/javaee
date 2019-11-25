@@ -59,6 +59,19 @@ public class UserServiceImpl implements IUserService {
         return response;
     }
 
+    /**
+     * 查看用户名是否已经被占用
+     * 存在返回false，
+     * 不存在返回true
+     *
+     * @param username nameString
+     * @return bool
+     */
+    @Override
+    public Boolean userNameVerify(String username) {
+        return !userRepository.existsByName(username);
+    }
+
 
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {

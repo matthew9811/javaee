@@ -1,9 +1,15 @@
 package com.shengxi.carblog.controller.main;
 
+import cn.hutool.core.util.BooleanUtil;
 import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.pojo.weak.SessionMsgPojo;
 import com.shengxi.carblog.service.admin.IUserService;
 import com.shengxi.compent.utils.ResponseStatus;
+import java.time.LocalDateTime;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -84,12 +90,14 @@ public class MainController {
      * @return
      */
     @PostMapping("/login")
-    public String login(User loginUser, ModelMap modelMap) {
+    public String login(User loginUser, ModelMap modelMap, HttpServletRequest request) {
         ResponsePojo responsePojo = userService.loginVerify(loginUser);
         if (ResponseStatus.FAIL.equals(responsePojo.getStatus())) {
             modelMap.put("msg", "登录信息不正确!");
             return prefix + "/blog/blog_login";
         }
+
+        saveToSession(request, loginUser);
         modelMap.put("msg", "欢迎登录博客家!");
 
         return prefix + "/index";
@@ -108,11 +116,27 @@ public class MainController {
     @GetMapping("/checkUserName/{username}")
     @ResponseBody
     public void checkUserName(@PathVariable(name = "username") String username) {
-        System.out.println(username);
+        Boolean nameVerify = userService.userNameVerify(username);
+        if (BooleanUtil.isFalse(nameVerify)) {
+
+        } else {
+
+        }
     }
 
     @Autowired
     public void setIUserService(IUserService userService) {
         this.userService = userService;
+    }
+
+    /**
+     * 将用户名保存在session中
+     *
+     * @param request   请求
+     * @param loginUser 登录用户
+     */
+    private void saveToSession(HttpServletRequest request, User loginUser) {
+        HttpSession session = request.getSession();
+        session.setAttribute(loginUser.getName(), new SessionMsgPojo(LocalDateTime.now(), loginUser.getName()));
     }
 }
