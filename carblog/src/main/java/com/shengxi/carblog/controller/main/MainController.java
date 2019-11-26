@@ -9,7 +9,6 @@ import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -87,7 +86,7 @@ public class MainController {
      * 成功返回首页。
      * 进入首页时进行一个欢迎提示，
      *
-     * @return
+     * @return url
      */
     @PostMapping("/login")
     public String login(User loginUser, ModelMap modelMap, HttpServletRequest request) {

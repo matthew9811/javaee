@@ -7,7 +7,7 @@ import model.Dlb;
 public class DlDaoImp implements DlDao {
 	public Dlb validate(String xh, String kl) {
 		try{
-			Session session=org.util.HibernateSessionFactory.getSession();
+			Session session=util.HibernateSessionFactory.getSession();
 			Transaction ts=session.beginTransaction();
 			Query query=session.createQuery("from Dlb where xh=? and kl=?");
 			query.setParameter(0, xh);

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="org.model.Kcb" table="KCB" schema="dbo" catalog="XSCJ">
+    <class name="model.Kcb" table="KCB" schema="dbo" catalog="XSCJ">
         <id name="kch" type="java.lang.String">
             <column name="KCH" length="4" />
             <generator class="assigned" />
@@ -21,7 +21,7 @@
         </property>
         <set name="xss" table="XS_KCB" lazy="false">
         	<key column="KCH"></key>
-        	<many-to-many class="org.model.Xsb" column="XH"></many-to-many>
+        	<many-to-many class="model.Xsb" column="XH"></many-to-many>
         </set>
     </class>
 </hibernate-mapping>

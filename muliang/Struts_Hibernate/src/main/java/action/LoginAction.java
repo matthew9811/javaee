@@ -15,6 +15,7 @@ public class LoginAction extends ActionSupport{
 	public void setDlb(Dlb dlb) {
 		this.dlb = dlb;
 	}
+	@Override
 	public String execute() throws Exception {
 		DlDao dlDao=new DlDaoImp();
 		Dlb user=dlDao.validate(dlb.getXh(), dlb.getKl());

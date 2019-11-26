@@ -2,12 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="org.model.Xsb" table="XSB" schema="dbo" catalog="XSCJ">
+    <class name="model.Xsb" table="XSB" schema="dbo" catalog="XSCJ">
         <id name="xh" type="java.lang.String">
             <column name="XH" length="6" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="zyb" class="org.model.Zyb" fetch="select" cascade="all" lazy="false">
+        <many-to-one name="zyb" class="model.Zyb" fetch="select" cascade="all" lazy="false">
             <column name="ZY_ID" />
         </many-to-one>
         <property name="xm" type="java.lang.String">
@@ -30,7 +30,7 @@
         </property>
         <set name="kcs" table="XS_KCB" lazy="false" cascade="save-update">
         	<key column="XH"></key>
-        	<many-to-many class="org.model.Kcb" column="KCH"></many-to-many>
+        	<many-to-many class="model.Kcb" column="KCH"></many-to-many>
         </set>
     </class>
 </hibernate-mapping>
