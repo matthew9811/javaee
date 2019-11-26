@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Xsb" table="XSB" schema="dbo" catalog="XSCJ">
+        <id name="xh" type="java.lang.String">
+            <column name="XH" length="6" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="zyb" class="model.Zyb" fetch="select" cascade="all" lazy="false">
+            <column name="ZY_ID" />
+        </many-to-one>
+        <property name="xm" type="java.lang.String">
+            <column name="XM" length="50" />
+        </property>
+        <property name="xb" type="java.lang.Byte">
+            <column name="XB" />
+        </property>
+        <property name="cssj" type="java.util.Date">
+            <column name="CSSJ" length="23" />
+        </property>
+        <property name="zxf" type="java.lang.Integer">
+            <column name="ZXF" />
+        </property>
+        <property name="bz" type="java.lang.String">
+            <column name="BZ" length="500" />
+        </property>
+        <property name="zp">
+            <column name="ZP" />
+        </property>
+        <set name="kcs" table="XS_KCB" lazy="false" cascade="save-update">
+        	<key column="XH"></key>
+        	<many-to-many class="model.Kcb" column="KCH"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
+
