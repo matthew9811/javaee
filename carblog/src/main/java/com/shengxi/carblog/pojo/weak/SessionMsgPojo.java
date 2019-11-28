@@ -1,5 +1,6 @@
 package com.shengxi.carblog.pojo.weak;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class SessionMsgPojo {
+public class SessionMsgPojo implements Serializable {
     private LocalDateTime localDateTime;
     private String msg;
 }

@@ -1,5 +1,6 @@
 package com.shengxi.carblog.controller.blog;
 
+import com.shengxi.compent.utils.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,5 +12,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/blog")
-public class BlogController {
+public class BlogController extends BaseController {
 }

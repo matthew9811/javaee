@@ -21,9 +21,9 @@
 		<tr><td>总学分：</td><td><s:property value="#xs.zxf"/> </td> </tr>
 		<tr><td>备注：</td><td><s:property value="#xs.bz"/> </td> </tr>
 		<tr><td>照片：</td>
-<%--		<td>--%>
-<%--			<img src="getImage.action?xs.xh=<s:property value="#xs.xh"/>" width="150">--%>
-<%--		</td>--%>
+		<td>
+			<img src="getImage.action?xs.xh=<s:property value="#xs.xh"/>" width="150">
+		</td>
 		</tr>			
    	</table>
   </body>

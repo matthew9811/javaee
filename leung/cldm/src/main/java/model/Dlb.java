@@ -1,11 +1,12 @@
 package model;
 
+import javax.persistence.Table;
+
 /**
  * Dlb entity.
  * 
  * @author MyEclipse Persistence Tools
  */
-
 public class Dlb implements java.io.Serializable {
 
 	// Fields

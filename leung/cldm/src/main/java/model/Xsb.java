@@ -12,7 +12,6 @@ public class Xsb implements java.io.Serializable {
 	private String bz;
 	private byte[] zp;
 	private Set kcs=new HashSet();
-	// ʡ���������Ե�get��set����
 	public String getXh() {
 		return xh;
 	}

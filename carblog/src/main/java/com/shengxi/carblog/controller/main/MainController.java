@@ -1,13 +1,17 @@
 package com.shengxi.carblog.controller.main;
 
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.SessionMsgPojo;
 import com.shengxi.carblog.service.admin.IUserService;
+import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @description: 系统基础功能控制器
  */
 @Controller
-public class MainController {
+public class MainController extends BaseController {
 
     private IUserService userService;
     private String prefix = "";
@@ -89,14 +93,15 @@ public class MainController {
      * @return url
      */
     @PostMapping("/login")
-    public String login(User loginUser, ModelMap modelMap, HttpServletRequest request) {
+    public String login(User loginUser, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         ResponsePojo responsePojo = userService.loginVerify(loginUser);
         if (ResponseStatus.FAIL.equals(responsePojo.getStatus())) {
             modelMap.put("msg", "登录信息不正确!");
             return prefix + "/blog/blog_login";
         }
-
-        saveToSession(request, loginUser);
+        /**保存登录验证*/
+        Cookie cookie = saveToSessionAndCookies(request, loginUser);
+        response.addCookie(cookie);
         modelMap.put("msg", "欢迎登录博客家!");
 
         return prefix + "/index";
@@ -112,15 +117,25 @@ public class MainController {
         return prefix + "/admin/admin_login";
     }
 
+    /**
+     * 注册用户验证（尚未完成）
+     *
+     * @param username name
+     * @return ResponsePojo 返回消息实体
+     */
     @GetMapping("/checkUserName/{username}")
     @ResponseBody
-    public void checkUserName(@PathVariable(name = "username") String username) {
+    public ResponsePojo checkUserName(@PathVariable(name = "username") String username) {
         Boolean nameVerify = userService.userNameVerify(username);
+        /*存在的时候返回false*/
         if (BooleanUtil.isFalse(nameVerify)) {
-
+            responsePojo.setStatus(ResponseStatus.FAIL);
+            responsePojo.setMsg("用户名已被占用！");
         } else {
-
+            responsePojo.setStatus(ResponseStatus.SUCCESS);
+            responsePojo.setMsg("用户名有效!");
         }
+        return responsePojo;
     }
 
     @Autowired
@@ -134,8 +149,12 @@ public class MainController {
      * @param request   请求
      * @param loginUser 登录用户
      */
-    private void saveToSession(HttpServletRequest request, User loginUser) {
+    private Cookie saveToSessionAndCookies(HttpServletRequest request, User loginUser) {
+        /* 将信息保存在session中，避免登录有效被篡改和私密信息被截取。 */
+        String sha1 = SecureUtil.sha1(loginUser.getName());
         HttpSession session = request.getSession();
-        session.setAttribute(loginUser.getName(), new SessionMsgPojo(LocalDateTime.now(), loginUser.getName()));
+        session.setAttribute(sha1, new SessionMsgPojo(LocalDateTime.now(), loginUser.getName()));
+        /*cookies只保留用户名的sha1值*/
+        return new Cookie("user", sha1);
     }
 }

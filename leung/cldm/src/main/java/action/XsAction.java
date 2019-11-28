@@ -2,6 +2,7 @@ package action;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -62,10 +63,19 @@ public class XsAction extends ActionSupport {
 
     @Override
 	public String execute() throws Exception {
-        Map session = (Map) ActionContext.getContext().getSession();
-        Dlb user = (Dlb) session.get("user");
-        xsDao = new XsDaoImp();
-        Xsb xs = xsDao.getOneXs(user.getXh());
+//        Map session = (Map) ActionContext.getContext().getSession();
+//        Dlb user = (Dlb) session.get("user");
+//        xsDao = new XsDaoImp();
+//        Xsb xs = xsDao.getOneXs(user.getXh());
+        Xsb xs = new Xsb();
+        xs.setXh("17210320331");
+        xs.setXm("楚苓大妈");
+        xs.setXb((byte) 1);
+        xs.setZyb(new Zyb(1,"计算机系"));
+        xs.setCssj(new Date(2000, 07, 04));
+        xs.setZxf(74);
+        xs.setBz("I am chuling dama !");
+        xs.setZp(null);
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("xs", xs);
         return SUCCESS;
