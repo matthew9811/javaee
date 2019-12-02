@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 自动更新登录有效期
- * @author yan
+ * @author matthew
  * @version 1.0.0
  * @date 2019-11-27 23:47:09
  * @see javax.servlet.Filter
@@ -38,7 +38,6 @@ public class LoginTimeFilter implements Filter {
                 attribute.setLocalDateTime(LocalDateTime.now());
             }
         }
-
 
         chain.doFilter(req, resp);
     }

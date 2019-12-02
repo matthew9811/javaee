@@ -2,6 +2,7 @@ package com.shengxi.compent.aop;
 
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.shengxi.compent.aop.annotation.LoginStatus;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -42,20 +44,22 @@ public class LoginStatusAspect {
      */
     @Around("@annotation(com.shengxi.compent.aop.annotation.LoginStatus)")
     public Object aroundManager(ProceedingJoinPoint joinPoint) throws Throwable {
-        boolean flag =false;
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        Cookie[] cookies = request.getCookies();
-        HttpSession session = request.getSession();
-        if (ObjectUtil.isNotEmpty(cookies) && ObjectUtil.isNotEmpty(session)) {
-
-            for (Cookie cookie : cookies) {
-                if (ObjectUtil.isNotEmpty(session.getAttribute(cookie.getValue()))) {
-                    flag = !flag;
+        LoginStatus annotation = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(LoginStatus.class);
+        if (annotation.value()){
+            boolean flag =false;
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            Cookie[] cookies = request.getCookies();
+            HttpSession session = request.getSession();
+            if (ObjectUtil.isNotEmpty(cookies) && ObjectUtil.isNotEmpty(session)) {
+                for (Cookie cookie : cookies) {
+                    if (ObjectUtil.isNotEmpty(session.getAttribute(cookie.getValue()))) {
+                        flag = !flag;
+                    }
                 }
             }
-        }
-        if (BooleanUtil.isFalse(flag)){
-            return new ModelAndView("/login");
+            if (BooleanUtil.isFalse(flag)){
+                return new ModelAndView("/login");
+            }
         }
         return joinPoint.proceed();
     }

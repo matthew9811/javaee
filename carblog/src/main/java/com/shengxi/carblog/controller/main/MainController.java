@@ -117,6 +117,12 @@ public class MainController extends BaseController {
         return prefix + "/admin/admin_login";
     }
 
+    @GetMapping("/logout")
+    public String logout(ModelMap modelMap, HttpServletRequest request) {
+        this.deleteSession(request);
+        return prefix + "/index";
+    }
+
     /**
      * 注册用户验证（尚未完成）
      *
@@ -156,5 +162,14 @@ public class MainController extends BaseController {
         session.setAttribute(sha1, new SessionMsgPojo(LocalDateTime.now(), loginUser.getName()));
         /*cookies只保留用户名的sha1值*/
         return new Cookie("user", sha1);
+    }
+
+    /**
+     * 删除session中对应登录记录值
+     *
+     * @param request
+     */
+    private void deleteSession(HttpServletRequest request) {
+
     }
 }
