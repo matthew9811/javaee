@@ -43,6 +43,5 @@
             <result name="error">/selectKc_fail.jsp</result>
         </action>
 
-
     </package>
 </struts>

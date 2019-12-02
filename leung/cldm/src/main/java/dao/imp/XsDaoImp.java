@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import model.Xsb;
 
 public class XsDaoImp implements XsDao {
+    @Override
     public Xsb getOneXs(String xh) {
         try {
             Session session = util.HibernateSessionFactory.getSession();
@@ -24,6 +25,7 @@ public class XsDaoImp implements XsDao {
         }
     }
 
+    @Override
     public void update(Xsb xs) {
         try {
             Session session = util.HibernateSessionFactory.getSession();

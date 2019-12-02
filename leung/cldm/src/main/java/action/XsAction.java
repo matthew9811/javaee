@@ -68,13 +68,13 @@ public class XsAction extends ActionSupport {
 //        xsDao = new XsDaoImp();
 //        Xsb xs = xsDao.getOneXs(user.getXh());
         Xsb xs = new Xsb();
-        xs.setXh("17210320331");
-        xs.setXm("楚苓大妈");
+        xs.setXh("17210320317");
+        xs.setXm("梁焰豪");
         xs.setXb((byte) 1);
         xs.setZyb(new Zyb(1,"计算机系"));
-        xs.setCssj(new Date(2000, 07, 04));
-        xs.setZxf(74);
-        xs.setBz("I am chuling dama !");
+        xs.setCssj(new Date(99, 10, 23));
+        xs.setZxf(97);
+        xs.setBz("I am leung!");
         xs.setZp(null);
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("xs", xs);
