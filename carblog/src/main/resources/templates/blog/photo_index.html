@@ -18,13 +18,13 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
-    <script th:src="@{js/jquery.min.js}"></script>
-    <script th:src="@{js/popper.min.js}"></script>
-    <script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{js/jquery.easing.min.js}"></script>
-    <script th:src="@{js/jquery.migrate.js}"></script>
-    <script th:src="@{js/slick.js}"></script>
-    <script th:src="@{js/custom.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.easing.min.js}"></script>
+    <script th:src="@{/js/jquery.migrate.js}"></script>
+    <script th:src="@{/js/slick.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 <header class="blog-header">
     <nav class="navbar navbar-expand-lg site-navigation ">
         <div class="container">
-            <a class="navbar-brand" href="#"><img th:src="@{images/logo.png}" alt="logo" class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.png}" alt="logo" class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
@@ -81,7 +81,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
-                            <img th:src="@{images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
+                            <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                     </li>
 
@@ -113,7 +113,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -133,7 +133,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -153,7 +153,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -172,7 +172,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -225,7 +225,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>High Fashion Black and White Photoshoot Art</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -235,7 +235,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -245,7 +245,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Beauty you lIfe with natural</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -255,7 +255,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -271,15 +271,15 @@
                     <h4 class="sidebar-title">最新图片</h4>
 
                     <div class="instgram-posts">
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                        <a href="#"><img th:src="@{/images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
                     </div>
                 </div>
             </div>

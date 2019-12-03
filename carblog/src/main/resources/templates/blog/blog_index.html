@@ -13,12 +13,12 @@
     <meta name="format-detection" content="telephone=no">
     <title>摄影家</title>
 
-    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
-    <link th:href="@{css/icofont.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/font-awesome.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/style.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/blog.css}" rel="stylesheet" media="all">
-    <link th:href="@{css/responsive.css}" rel="stylesheet" media="all">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 <header class="blog-header">
     <nav class="navbar navbar-expand-lg site-navigation ">
         <div class="container">
-            <a class="navbar-brand" href="#"><img th:src="@{images/logo.png}" alt="logo" class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.png}" alt="logo" class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
@@ -75,7 +75,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
-                            <img th:src="@{images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
+                            <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                     </li>
 
@@ -106,14 +106,14 @@
             <!--带大图片的博客1篇-->
             <div class="blog-post">
                 <div class="blog-block-img">
-                    <img th:src="@{images/blog/inner-5.jpg}" alt="" class="img-fluid">
+                    <img th:src="@{/images/blog/inner-5.jpg}" alt="" class="img-fluid">
                 </div>
                 <p class="blog-post-cat">Lifestyle</p>
                 <a href="#">
                     <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
+                <p class="blog-post-meta"><img th:src="@{/images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
                     1, 2014 by <a href="#">Mark</a></p>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
                     bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
@@ -129,7 +129,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -148,7 +148,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -167,7 +167,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -186,7 +186,7 @@
                     <div class="blog-post ">
                         <div class="row">
                             <div class="blog-post-thumbnail-zone">
-                                <img th:src="@{images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
                             </div>
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
@@ -243,7 +243,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>High Fashion Black and White Photoshoot Art</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -253,7 +253,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -263,7 +263,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Beauty you lIfe with natural</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -273,7 +273,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -283,7 +283,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -293,7 +293,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -303,7 +303,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -321,7 +321,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-4.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>High Fashion Black and White Photoshoot Art</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -331,7 +331,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-2.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018 </p>
@@ -341,7 +341,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-3.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Beauty you lIfe with natural</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -351,7 +351,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -361,7 +361,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -371,7 +371,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -381,7 +381,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>
@@ -391,7 +391,7 @@
                         <li>
                             <a href="#">
                                 <div class="rpost-img">
-                                    <img src="assets/images/blog/widget-1.jpg" alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5>Spanish Women are the Epitome of Beautiful</h5>
                                 <p class="text-muted">20 June 2018</p>

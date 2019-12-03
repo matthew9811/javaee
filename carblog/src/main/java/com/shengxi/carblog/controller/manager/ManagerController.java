@@ -46,4 +46,9 @@ public class ManagerController extends BaseController {
     public String log() {
         return prefix + "/login_log";
     }
+
+    @GetMapping("/add")
+    public String add() {
+        return prefix + "/add_article";
+    }
 }
