@@ -18,7 +18,32 @@ public class ManagerController extends BaseController {
     private String prefix = "/admin";
 
     @GetMapping("/index")
-    public String index(){
+    public String index() {
         return prefix + "/index";
+    }
+
+    @GetMapping("/article")
+    public String article() {
+        return prefix + "/article";
+    }
+
+    @GetMapping("/notice")
+    public String notice() {
+        return prefix + "/notice";
+    }
+
+    @GetMapping("/comment")
+    public String comment() {
+        return prefix + "/comment";
+    }
+
+    @GetMapping("/manage")
+    public String manage() {
+        return prefix + "/manage_user";
+    }
+
+    @GetMapping("/log")
+    public String log() {
+        return prefix + "/login_log";
     }
 }

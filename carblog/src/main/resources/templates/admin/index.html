@@ -12,7 +12,7 @@
     <meta name="X-Frame-Options" content="SAMEORIGIN">
     <meta name="format-detection" content="telephone=no">
     <title>摄影家后台</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/bootstrapthree.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin-style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}">
     <script th:src="@{/js/jquery.min.js}"></script>
@@ -59,21 +59,16 @@
         <!--左侧菜单-->
         <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="index.html">报告</a></li>
+                <li class="active"><a th:href="@{/manager/index}">报告</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="article.html">文章</a></li>
-                <li><a href="notice.html">公告</a></li>
-                <li><a href="comment.html">评论</a></li>
+                <li><a th:href="@{/manager/article}">文章</a></li>
+                <li><a th:href="@{/manager/notice}">公告</a></li>
+                <li><a th:href="@{/manager/comment}">评论</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">用户</a>
-                    <ul class="dropdown-menu" aria-labelledby="userMenu">
-                        <li><a href="manage-user.html">管理用户</a></li>
-                        <li><a href="loginlog.html">管理登录日志</a></li>
-                    </ul>
-                </li>
+                <li><a th:href="@{/manager/manage}">管理用户</a></li>
+                <li><a th:href="@{/manager/log}">管理登录日志</a></li>
             </ul>
         </aside>
         <!--右侧内容-->
@@ -298,6 +293,6 @@
     </div>
 </div>
 <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/admin-scripts.js}"></script>
+<script th:src="@{/js/admin_scripts.js}"></script>
 </body>
 </html>

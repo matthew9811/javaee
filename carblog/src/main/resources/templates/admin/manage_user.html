@@ -1,15 +1,20 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--管理用户登录页-->
+<!--管理用户页-->
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="format-detection" content="telephone=no">
     <title>摄影家后台</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{css/admin-style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{css/font-awesome.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/bootstrapthree.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin-style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}">
     <script th:src="@{/js/jquery.min.js}"></script>
 </head>
 
@@ -53,21 +58,16 @@
     <div class="row">
         <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="index.html">报告</a></li>
+                <li class="active"><a th:href="@{/manager/index}">报告</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="article.html">文章</a></li>
-                <li><a href="notice.html">公告</a></li>
-                <li><a href="comment.html">评论</a></li>
+                <li><a th:href="@{/manager/article}">文章</a></li>
+                <li><a th:href="@{/manager/notice}">公告</a></li>
+                <li><a th:href="@{/manager/comment}">评论</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li class="active"><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
-                                      aria-expanded="false">用户</a>
-                    <ul class="dropdown-menu" aria-labelledby="userMenu">
-                        <li><a href="manage-user.html">管理用户</a></li>
-                        <li><a href="loginlog.html">管理登录日志</a></li>
-                    </ul>
-                </li>
+                <li><a th:href="@{/manager/manage}">管理用户</a></li>
+                <li><a th:href="@{/manager/log}">管理登录日志</a></li>
             </ul>
         </aside>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
@@ -77,95 +77,100 @@
                     <thead>
                     <tr>
                         <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">ID</span></th>
-                        <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户</span></th>
-                        <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">时间</span></th>
-                        <th><span class="glyphicon glyphicon-adjust"></span> <span class="visible-lg">IP</span></th>
-                        <th><span class="glyphicon glyphicon-remove"></span> <span class="visible-lg">删除</span></th>
+                        <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户名</span></th>
+                        <th><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">文章</span></th>
+                        <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">上次登录时间</span></th>
+                        <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="1">删除</a></td>
+                        <td>edit</td>
+                        <td>4</td>
+                        <td>2015-12-03 15:14:27</td>
+                        <td><a rel="1" name="delete">删除</a> <a
+                                href="/User/checked/id/1/action/n">禁用</a></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="2">删除</a></td>
-                    </tr>
-                    <tr>
+                        <td>test</td>
                         <td>3</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="3">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="4">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="5">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="7">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="8">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td class="article-title">admin</td>
-                        <td>2016-1-11 15:09:11</td>
-                        <td>192.168.1.1:1245</td>
-                        <td><a rel="9">删除</a></td>
+                        <td>2015-12-03 15:14:27</td>
+                        <td><a rel="2" name="delete">删除</a> <a
+                                href="/User/checked/id/2/action/y">启用</a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <footer class="message_footer">
-                <nav>
-                    <ul class="pagination pagenav">
-                        <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a></li>
-                        <li class="active"><a>1</a></li>
-                        <li class="disabled"><a aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a></li>
-                    </ul>
-                </nav>
-            </footer>
         </div>
     </div>
 </section>
+<!--用户信息模态框-->
+<div class="modal fade" id="seeUser" tabindex="-1" role="dialog" aria-labelledby="seeUserModalLabel">
+    <div class="modal-dialog" role="document" style="max-width:450px;">
+        <form action="/User/update" method="post" autocomplete="off" draggable="false">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改用户</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="margin-bottom:0px;">
+                        <thead>
+                        <tr></tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td wdith="20%">姓名:</td>
+                            <td width="80%"><input type="text" value="" class="form-control" id="truename"
+                                                   name="truename" maxlength="10" autocomplete="off"/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">用户名:</td>
+                            <td width="80%"><input type="text" value="" class="form-control" id="username"
+                                                   name="username" maxlength="10" autocomplete="off"/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">电话:</td>
+                            <td width="80%"><input type="text" value="" class="form-control" id="usertel" name="usertel"
+                                                   maxlength="13" autocomplete="off"/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">旧密码:</td>
+                            <td width="80%"><input type="password" class="form-control" name="old_password"
+                                                   maxlength="18" autocomplete="off"/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">新密码:</td>
+                            <td width="80%"><input type="password" class="form-control" name="password" maxlength="18"
+                                                   autocomplete="off"/></td>
+                        </tr>
+                        <tr>
+                            <td wdith="20%">确认密码:</td>
+                            <td width="80%"><input type="password" class="form-control" name="new_password"
+                                                   maxlength="18" autocomplete="off"/></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr></tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="userid" value=""/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <!--个人信息模态框-->
 <div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <form action="" method="post">
+        <form action="" method="post" autocomplete="off" draggable="false">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -279,49 +284,33 @@
         </div>
     </div>
 </div>
-<!--提示模态框-->
-<div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog"
-     aria-labelledby="areDevelopingModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
-            </div>
-            <div class="modal-body"><img src="images/baoman/baoman_01.gif" alt="深思熟虑"/>
-                <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">
-                    很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">朕已阅</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--右键菜单列表-->
-<div id="rightClickMenu">
-    <ul class="list-group rightClickMenuList">
-        <li class="list-group-item disabled">欢迎访问异清轩博客</li>
-        <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
-        <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
-        <li class="list-group-item"><span>系统：</span>Windows10</li>
-        <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
-    </ul>
-</div>
-<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{js/admin-scripts.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/admin_scripts.js}"></script>
 <script>
-    //是否确认删除
     $(function () {
         $("#main table tbody tr td a").click(function () {
             var name = $(this);
             var id = name.attr("rel"); //对应id
-            if (event.srcElement.outerText === "删除") {
+            if (name.attr("name") === "see") {
+                $.ajax({
+                    type: "POST",
+                    url: "/User/see",
+                    data: "id=" + id,
+                    cache: false, //不缓存此页面
+                    success: function (data) {
+                        var data = JSON.parse(data);
+                        $('#truename').val(data.truename);
+                        $('#username').val(data.username);
+                        $('#usertel').val(data.usertel);
+                        $('#userid').val(data.userid);
+                        $('#seeUser').modal('show');
+                    }
+                });
+            } else if (name.attr("name") === "delete") {
                 if (window.confirm("此操作不可逆，是否确认？")) {
                     $.ajax({
                         type: "POST",
-                        url: "/Loginlog/delete/action/one",
+                        url: "/User/delete",
                         data: "id=" + id,
                         cache: false, //不缓存此页面
                         success: function (data) {
