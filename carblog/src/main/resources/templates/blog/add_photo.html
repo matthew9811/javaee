@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--新增博客页-->
+<!--新增相册页-->
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
@@ -19,10 +19,12 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/add_photo.css}" rel="stylesheet" media="all">
     <script type="application/x-javascript" th:src="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/custom.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/img_fileupload.js}"></script>
 </head>
 
 <body>
@@ -94,8 +96,8 @@
     <div class="container">
         <div class="col-md-6 px-0 mx-auto ">
             <div class="text-center page-banner-coontent">
-                <h2>写博客</h2>
-                <p>在这里，你可以分享有关自己的摄影经验及摄影技巧</p>
+                <h2>发作品</h2>
+                <p>在这里，你可以分享自己的摄影作品</p>
             </div>
         </div>
     </div>
@@ -106,8 +108,8 @@
         <div class="row">
             <div class="col-lg-6 mx-auto">
                 <div class="post-header border-bottom text-center">
-                    <h3 class="">写博客</h3>
-                    <p>写下自己的博客</p>
+                    <h3 class="">上传图片</h3>
+                    <p>上传自己的摄影作品</p>
                 </div>
             </div>
         </div>
@@ -117,17 +119,12 @@
                     <label for="article-title" class="sr-only">标题</label>
                     <input type="text" id="article-title" name="title" class="form-control" placeholder="在此处输入标题" required autofocus autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <label for="article-content" class="sr-only">内容</label>
-                    <textarea id="article-content" name="content" class="form-control"></textarea>
+                <div class="box">
                 </div>
-                <div class="add-article-box">
-                    <h2 class="add-article-box-title"><span>关键字</span></h2>
-                    <div class="add-article-box-content">
-                        <input type="text" class="form-control" placeholder="请输入关键字" name="keywords" autocomplete="off">
-                        <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
-                    </div>
-                </div>
+
+                <!--<div class="box2" style="width:700px;margin:50px auto"></div>-->
+                <!--<div class="box3" style="width: 800px;margin:50px auto"></div>-->
+                <!--<div class="box4" style="width: 900px;margin:50px auto"></div>-->
             </div>
         </div>
     </div>
@@ -150,18 +147,20 @@
     </p>
 </footer>
 
-<!--summernote富文本编辑器-->
-<link rel="stylesheet" type="text/css" th:href="@{/summernote/summernote-bs4.css}">
-<script th:src="@{/summernote/summernote-bs4.js}"></script>
-<script th:src="@{/summernote/lang/summernote-zh-CN.js}"></script>
-<script>
-    $('#article-content').summernote({
-        lang: 'zh-CN',
-        height: 700
+
+<script type="text/javascript">
+    var imgFile = new ImgUploadeFiles('.box',function(e){
+        this.init({
+            MAX : 8, //限制个数
+            // MH : 5800, //像素限制高度
+            // MW : 5900, //像素限制宽度
+            callback : function(arr){
+                console.log(arr)
+            }
+        });
     });
 
-    // 获取值
-    // alert($('#article-content').summernote('code'));
+
 </script>
 </body>
 

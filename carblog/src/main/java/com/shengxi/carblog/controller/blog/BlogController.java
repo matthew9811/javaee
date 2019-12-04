@@ -17,8 +17,18 @@ public class BlogController extends BaseController {
 
     private String prefix = "/blog";
 
-    @GetMapping("/add")
-    public String add() {
+    @GetMapping("/addBlog")
+    public String addBlog() {
         return prefix + "/add_blog";
+    }
+
+    @GetMapping("/addPhoto")
+    public String addPhoto() {
+        return prefix + "/add_photo";
+    }
+
+    @GetMapping("/photo")
+    public String photo() {
+        return prefix + "/photo_index";
     }
 }
