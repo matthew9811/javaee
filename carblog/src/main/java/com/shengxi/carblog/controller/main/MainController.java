@@ -9,6 +9,9 @@ import com.shengxi.carblog.service.admin.IUserService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -170,6 +173,8 @@ public class MainController extends BaseController {
      * @param request
      */
     private void deleteSession(HttpServletRequest request) {
-
+        String user = Arrays.asList(request.getCookies()).stream().
+                collect(Collectors.toMap(Cookie::getName, Cookie::getName)).get("user");
+        request.getSession().removeAttribute(user);
     }
 }
