@@ -34,4 +34,6 @@ public interface IUserService {
      * @return bool
      */
     Boolean userNameVerify(String username);
+
+    Boolean loginManagerVerify(User loginUser);
 }

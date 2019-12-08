@@ -122,6 +122,7 @@ public class MainController extends BaseController {
 
     @PostMapping("/adminLogin")
     public String adminLogin(User loginUser, ModelMap map){
+        userService.loginManagerVerify(loginUser);
         return prefix + "/admin/index";
     }
 

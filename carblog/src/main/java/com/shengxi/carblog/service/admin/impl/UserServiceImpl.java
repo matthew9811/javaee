@@ -1,8 +1,10 @@
 package com.shengxi.carblog.service.admin.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.shengxi.carblog.pojo.Manager;
 import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.repository.IManagerRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.admin.IUserService;
 import com.shengxi.compent.constant.StatusConstant;
@@ -23,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements IUserService {
 
     private IUserRepository userRepository;
+
+    private IManagerRepository managerRepository;
 
     /**
      * @param loginUser userBean
@@ -72,10 +76,21 @@ public class UserServiceImpl implements IUserService {
         return !userRepository.existsByName(username);
     }
 
+    @Override
+    public Boolean loginManagerVerify(User loginUser) {
+//        Manager managerByUser = managerRepository.findManagerByUser(loginUser);
+//        System.out.println(managerByUser);
+        return true;
+    }
+
 
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    @Autowired
+    public void setManagerRepository(IManagerRepository managerRepository) {
+        this.managerRepository = managerRepository;
+    }
 }

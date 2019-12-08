@@ -22,7 +22,7 @@ public class IManagerRepositoryTest {
         User user = new User();
         user.setName("admin");
         user.setPwd("admin");
-        Manager managerByUser = managerRepository.findManagerByUser(user);
-        System.out.println(managerByUser);
+//        Manager managerByUser = managerRepository.findManagerByUser(user);
+//        System.out.println(managerByUser);
     }
 }
