@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  * @date 2019-12-04 16:32:56
  */
+@Async
 @Component
+@Configuration
 public class TaskWork {
 
     private final Long TIME_DIFFERENCE = 2L;
@@ -52,4 +56,8 @@ public class TaskWork {
         }
     }
 
+    @Scheduled(fixedRate = 2000)
+    public void taskTest() {
+        System.out.println( LocalDateTime.now() );
+    }
 }

@@ -23,5 +23,10 @@ spring:
     static-path-pattern: /**
     favicon:
       enabled: false
+  task:
+    scheduling:
+      enable: true
+      pool:
+        size: 3
 logging:
   config: classpath:config/log4j2.xml
