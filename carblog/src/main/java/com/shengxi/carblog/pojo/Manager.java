@@ -1,5 +1,7 @@
 package com.shengxi.carblog.pojo;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 
 /**
@@ -9,14 +11,12 @@ import javax.persistence.*;
  * 管理员实体
  */
 @Entity
+@ToString
 @Table(name = "manager")
 public class Manager {
     @Id
     @Column(name = "id")
     private Integer id;
-
-    @Column(name = "user_id")
-    private Integer userId;
 
     @Column(name = "status")
     private char status;
@@ -24,6 +24,9 @@ public class Manager {
     @Column(name = "make_up")
     private Integer makeUp;
 
+    @JoinColumn(name = "user_id",table = "User", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
     public Integer getId() {
         return this.id;
@@ -31,14 +34,6 @@ public class Manager {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public char getStatus() {
@@ -56,4 +51,5 @@ public class Manager {
     public void setMakeUp(Integer makeUp) {
         this.makeUp = makeUp;
     }
+
 }

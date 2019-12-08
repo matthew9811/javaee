@@ -120,6 +120,11 @@ public class MainController extends BaseController {
         return prefix + "/admin/admin_login";
     }
 
+    @PostMapping("/adminLogin")
+    public String adminLogin(User loginUser, ModelMap map){
+        return prefix + "/admin/index";
+    }
+
     @GetMapping("/logout")
     public String logout(ModelMap modelMap, HttpServletRequest request) {
         this.deleteSession(request);
