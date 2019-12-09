@@ -41,6 +41,7 @@
 </div>
 <script th:inline="javascript">
     var prefix = [[@{/}]];
+    var nameData;
     $(function () {
     });
     /**
@@ -54,8 +55,8 @@
             context: {name: name},
             method: 'get',
             success: function (data) {
-               console.log(data);
-               console.log("======");
+               nameData = data;
+               isName(nameData);
             }
         })
     });
@@ -83,6 +84,17 @@
         if (pwd != againPwd) {
             $('#tips').html("密码不一致");
             return false;
+        }
+    }
+
+    function isName(data) {
+        if (data.status == 'FAIL') {
+            $('#tips').html(data.msg);
+            $("#signInSubmit").attr('disabled','disabled');
+        }
+        else {
+            $('#tips').html('');
+            $("#signInSubmit").removeAttr("disabled");
         }
     }
 </script>
