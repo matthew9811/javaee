@@ -1,7 +1,6 @@
 package com.shengxi.carblog.repository;
 
 import com.shengxi.carblog.pojo.Manager;
-import com.shengxi.carblog.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IManagerRepository extends JpaRepository<Manager, Integer> {
 
+//    Manager getManagerByU(Integer integer);
 }

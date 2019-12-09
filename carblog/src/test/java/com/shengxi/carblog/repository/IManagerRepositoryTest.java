@@ -24,5 +24,6 @@ public class IManagerRepositoryTest {
         user.setPwd("admin");
 //        Manager managerByUser = managerRepository.findManagerByUser(user);
 //        System.out.println(managerByUser);
+        System.out.println(managerRepository.findAll());
     }
 }

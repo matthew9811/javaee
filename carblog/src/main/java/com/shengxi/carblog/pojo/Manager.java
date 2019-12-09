@@ -28,13 +28,15 @@ public class Manager {
     @Column(name = "status")
     private char status;
 
-    @Column(name = "make_up")
-    private Integer makeUp;
+//    @Column(name = "make_up")
+//    private Integer makeUp;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @JoinColumn(name = "make_up", referencedColumnName = "id")
+    private User makeUp;
 
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id", table = "User", referencedColumnName = "id")
-//    private User user;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     public Integer getId() {
         return this.id;
@@ -52,12 +54,19 @@ public class Manager {
         this.status = status;
     }
 
-    public Integer getMakeUp() {
-        return this.makeUp;
+    public User getMakeUp() {
+        return makeUp;
     }
 
-    public void setMakeUp(Integer makeUp) {
+    public void setMakeUp(User makeUp) {
         this.makeUp = makeUp;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -35,5 +35,12 @@ public interface IUserService {
      */
     Boolean userNameVerify(String username);
 
+    /**
+     * 查看管理员信息是否存在，存在返回true
+     * 否则返回false
+     *
+     * @param loginUser user
+     * @return bool
+     */
     Boolean loginManagerVerify(User loginUser);
 }

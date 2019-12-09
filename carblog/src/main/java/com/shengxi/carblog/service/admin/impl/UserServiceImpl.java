@@ -78,8 +78,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Boolean loginManagerVerify(User loginUser) {
-//        Manager managerByUser = managerRepository.findManagerByUser(loginUser);
-//        System.out.println(managerByUser);
+//        managerRepository
         return true;
     }
 
