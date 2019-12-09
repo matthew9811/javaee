@@ -9,20 +9,10 @@ import com.shengxi.carblog.pojo.weak.ResponsePojo;
  * 公用基础控制器模块
  */
 public class BaseController {
-    protected ResponsePojo responsePojo;
 
-    public BaseController() {
-    }
 
-    public BaseController(ResponsePojo responsePojo) {
-        this.responsePojo = responsePojo;
-    }
-
-    public ResponsePojo getResponsePojo() {
-        return responsePojo;
-    }
-
-    public void setResponsePojo(ResponsePojo responsePojo) {
-        this.responsePojo = responsePojo;
+    public ResponsePojo getResponsePojo(ResponseStatus status, String msg) {
+        ResponsePojo pojo = new ResponsePojo(status, msg);
+        return pojo;
     }
 }

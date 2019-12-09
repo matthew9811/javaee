@@ -78,7 +78,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Boolean loginManagerVerify(User loginUser) {
-//        managerRepository
         return true;
     }
 

@@ -121,7 +121,7 @@ public class MainController extends BaseController {
     }
 
     @PostMapping("/adminLogin")
-    public String adminLogin(User loginUser, ModelMap map){
+    public String adminLogin(User loginUser, ModelMap map) {
         userService.loginManagerVerify(loginUser);
         return prefix + "/admin/index";
     }
@@ -142,15 +142,17 @@ public class MainController extends BaseController {
     @ResponseBody
     public ResponsePojo checkUserName(@PathVariable(name = "username") String username) {
         Boolean nameVerify = userService.userNameVerify(username);
+        String msg;
+        ResponseStatus status;
         /*存在的时候返回false*/
         if (BooleanUtil.isFalse(nameVerify)) {
-            responsePojo.setStatus(ResponseStatus.FAIL);
-            responsePojo.setMsg("用户名已被占用！");
+            status = ResponseStatus.FAIL;
+            msg = "用户名已被占用";
         } else {
-            responsePojo.setStatus(ResponseStatus.SUCCESS);
-            responsePojo.setMsg("用户名有效!");
+            status = ResponseStatus.SUCCESS;
+            msg = "用户名有效";
         }
-        return responsePojo;
+        return getResponsePojo(status, msg);
     }
 
     @Autowired
