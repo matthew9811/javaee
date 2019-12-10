@@ -1,6 +1,7 @@
 package com.shengxi.carblog.pojo;
 
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author yan
@@ -12,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "blog")
 public class Blog {
     @Id
+    @GeneratedValue(generator = "system_uuid")
+    @GenericGenerator(name = "system_uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 

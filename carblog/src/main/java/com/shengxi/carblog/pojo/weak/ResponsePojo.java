@@ -1,6 +1,8 @@
 package com.shengxi.carblog.pojo.weak;
 
 import com.shengxi.compent.utils.ResponseStatus;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 响应实体
@@ -8,7 +10,7 @@ import com.shengxi.compent.utils.ResponseStatus;
  * @author yan
  * @date 2019-11-14 23:06:10
  */
-public class ResponsePojo {
+public class ResponsePojo extends HashMap<String, Object>{
     /**
      * 状态
      */
@@ -19,6 +21,11 @@ public class ResponsePojo {
     private String msg;
 
     public ResponsePojo() {
+    }
+
+    public ResponsePojo(Map<? extends String, ?> m, ResponseStatus status) {
+        super(m);
+        this.status = status;
     }
 
     public ResponsePojo(ResponseStatus status, String msg) {

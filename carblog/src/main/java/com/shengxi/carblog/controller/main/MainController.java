@@ -122,8 +122,12 @@ public class MainController extends BaseController {
 
     @PostMapping("/adminLogin")
     public String adminLogin(User loginUser, ModelMap map) {
-        userService.loginManagerVerify(loginUser);
-        return prefix + "/admin/index";
+        Boolean aBoolean = userService.loginManagerVerify(loginUser);
+        if (aBoolean) {
+            return prefix + "/admin/index";
+        }
+        map.addAttribute("msg", "口令不准确！");
+        return prefix + "/admin/admin_login";
     }
 
     @GetMapping("/logout")

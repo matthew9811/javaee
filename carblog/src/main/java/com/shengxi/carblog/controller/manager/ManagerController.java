@@ -1,9 +1,15 @@
 package com.shengxi.carblog.controller.manager;
 
+import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.service.admin.IManagerService;
 import com.shengxi.compent.utils.BaseController;
+import com.shengxi.compent.utils.ResponseStatus;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 后台控制器
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManagerController extends BaseController {
 
     private String prefix = "/admin";
+
+    private IManagerService managerService;
 
     @GetMapping("/index")
     public String index() {
@@ -50,5 +58,19 @@ public class ManagerController extends BaseController {
     @GetMapping("/add")
     public String add() {
         return prefix + "/add_article";
+    }
+
+    @GetMapping("/initData")
+    @ResponseBody
+    public ResponsePojo initData(){
+        return getResponsePojo(managerService.initManagerPageData());
+    }
+
+
+
+
+    @Autowired
+    public void setManagerService(IManagerService managerService) {
+        this.managerService = managerService;
     }
 }

@@ -40,8 +40,8 @@
     </form>
 </div>
 <script th:inline="javascript">
-    var prefix = [[@{/}]];
-    var nameData;
+    let prefix = [[@{/}]];
+    let nameData;
     $(function () {
     });
     /**
@@ -55,8 +55,8 @@
             context: {name: name},
             method: 'get',
             success: function (data) {
-               nameData = data;
-               isName(nameData);
+                nameData = data;
+                isName(nameData);
             }
         })
     });
@@ -78,7 +78,6 @@
     });
 
     function againPwdTips() {
-
         let pwd = $('input[name = "pwd"]').val();
         let againPwd = $('input[name = "againPwd"] ').val();
         if (pwd != againPwd) {
@@ -88,12 +87,10 @@
     }
 
     function isName(data) {
+        $('#tips').html(data.msg);
         if (data.status == 'FAIL') {
-            $('#tips').html(data.msg);
-            $("#signInSubmit").attr('disabled','disabled');
-        }
-        else {
-            $('#tips').html('');
+            $("#signInSubmit").attr('disabled', 'disabled');
+        } else {
             $("#signInSubmit").removeAttr("disabled");
         }
     }

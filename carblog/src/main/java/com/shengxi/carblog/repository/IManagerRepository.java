@@ -12,5 +12,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IManagerRepository extends JpaRepository<Manager, Integer> {
 
-//    Manager getManagerByU(Integer integer);
 }

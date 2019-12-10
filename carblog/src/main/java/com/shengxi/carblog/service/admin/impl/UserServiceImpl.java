@@ -11,6 +11,8 @@ import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.constant.UserConstant;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,7 +80,20 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Boolean loginManagerVerify(User loginUser) {
-        return true;
+        boolean flag = false;
+        /* 获取所有的管理员 */
+        List<Manager> all = managerRepository.findAll();
+        /* 查找是否有对应的数据 */
+        for (Manager value : all) {
+            //            对比用户名
+            if (value.getUser().getName().equals(loginUser.getName())) {
+                if (!value.getUser().getPwd().equals(loginUser.getPwd())) {
+                    continue;
+                }
+                flag = true;
+            }
+        }
+        return flag;
     }
 
 
