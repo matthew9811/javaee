@@ -17,6 +17,11 @@ public class BlogController extends BaseController {
 
     private String prefix = "/blog";
 
+    @GetMapping("/about")
+    public String about() {
+        return prefix + "/about";
+    }
+
     @GetMapping("/addBlog")
     public String addBlog() {
         return prefix + "/add_blog";
@@ -27,8 +32,29 @@ public class BlogController extends BaseController {
         return prefix + "/add_photo";
     }
 
-    @GetMapping("/photo")
+    @GetMapping("/blog")
+    public String blog() {
+        return prefix + "/blog";
+    }
+
+    @GetMapping("/blogIndex")
+    public String blogIndex() {
+        return prefix + "/blog_index";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return prefix + "/contact";
+    }
+
+    @GetMapping("/person")
+    public String person() {
+        return prefix + "/person";
+    }
+
+    @GetMapping("/photoIndex")
     public String photo() {
         return prefix + "/photo_index";
     }
+
 }
