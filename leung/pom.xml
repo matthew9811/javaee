@@ -16,6 +16,7 @@
         <module>hibernate</module>
         <module>spring</module>
         <module>cldm</module>
+        <module>ssh-sum</module>
     </modules>
     <dependencies>
 

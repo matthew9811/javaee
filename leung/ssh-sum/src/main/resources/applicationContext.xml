@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!-- 注入连接池，包含了数据库用户名，密码等等信息 -->
+        <property name="dataSource" ref="myDataSource"></property>
+        <property name="hibernateProperties">
+            <props>
+                <!-- 数据库的方言 -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!-- 是否显示打印sql语句-->
+                <prop key="hibernate.show_sql">true</prop>
+                <!-- 是否格式化显示sql语句-->
+                <prop key="hibernate.format_sql">true</prop>
+                <!-- 是否自动提交-->
+                <prop key="hibernate.connection.autocommit">false</prop>
+                <!-- 没表帮你创建表，有表就更新表信息 -->
+                <prop key="hibernate.hbm2ddl">update</prop>
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <!-- 映射文件路径(实体类) -->
+                <value></value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 定义druid数据池 -->
+    <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!-- 数据库的驱动 -->
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <!-- 数据库的路径 -->
+        <property name="url" value="jdbc:mysql://106.54.117.2:3306/dama"/>
+        <!-- 数据库的用户名 -->
+        <property name="username" value="root"/>
+        <!-- 数据库的密码 -->
+        <property name="password" value="chulingdama"/>
+    </bean>
+
+</beans>
