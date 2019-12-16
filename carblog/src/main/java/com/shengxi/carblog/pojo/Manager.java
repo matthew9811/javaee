@@ -28,8 +28,7 @@ public class Manager {
     @Column(name = "status")
     private char status;
 
-//    @Column(name = "make_up")
-//    private Integer makeUp;
+
     @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "make_up", referencedColumnName = "id")
     private User makeUp;

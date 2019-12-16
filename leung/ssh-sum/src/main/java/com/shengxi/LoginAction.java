@@ -1,6 +1,7 @@
 package com.shengxi;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.shengxi.sql.UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.ui.ModelMap;
 
 public class LoginAction extends ActionSupport {
 
-    @Autowired
     private UserService userService;
 
     /**
@@ -35,5 +35,13 @@ public class LoginAction extends ActionSupport {
             return "error";
         }
         return "success";
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

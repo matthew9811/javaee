@@ -1,5 +1,6 @@
-package com.shengxi;
+package com.shengxi.sql;
 
+import com.shengxi.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class UserDao {
 
     //    @Resource(name="hibernateTemplate")
-    @Autowired
+//    @Autowired
     private HibernateTemplate hibernate;
 
     public boolean checkUser(String name, String pwd) {
@@ -34,5 +35,13 @@ public class UserDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public HibernateTemplate getHibernate() {
+        return hibernate;
+    }
+
+    public void setHibernate(HibernateTemplate hibernate) {
+        this.hibernate = hibernate;
     }
 }

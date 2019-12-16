@@ -1,5 +1,6 @@
-package com.shengxi;
+package com.shengxi.sql;
 
+import com.shengxi.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +10,8 @@ import org.springframework.stereotype.Service;
  * @author yan
  * @date 2019-12-15 01:24:43
  */
-@Service("userService")
 public class UserService {
 
-    @Autowired
     private UserDao userDao;
 
     /**
@@ -37,5 +36,13 @@ public class UserService {
      */
     public int addUser(User user){
         return userDao.addUser(user);
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }

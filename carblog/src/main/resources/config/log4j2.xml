@@ -126,6 +126,11 @@
 
         </logger>
 
+        <Logger name="org.hibernate.SQL" level="DEBUG"></Logger>
+
+        <Logger name="org.hibernate.type" level="TRACE"></Logger>
+        <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+        <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
         <root level="all">
 
             <appender-ref ref="Console"/>

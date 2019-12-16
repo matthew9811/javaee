@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 /**
  * @author yan
- * @version 1.0.0
+ * @version 1.1.0
  * @date 2019-11-13 23:33:40
- * 相册类
+ * 照片类
  */
 @Entity
 @Table(name = "draw")

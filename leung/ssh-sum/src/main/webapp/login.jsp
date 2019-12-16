@@ -12,10 +12,10 @@
 </head>
 <body>
 <h2>Login</h2>
-<form action="" method="post">
+<form action="login.action" method="post">
     <h2>
         用户名:<input type="text" name="name"><br>
-        密码:<input type="password"><br>
+        密码:<input type="password" name="password"><br>
         <input type="submit" value="登录">
     </h2>
 </form>

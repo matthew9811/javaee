@@ -1,6 +1,7 @@
 package com.shengxi.carblog.service.admin.impl;
 
 import com.shengxi.carblog.repository.IBlogRepository;
+import com.shengxi.carblog.repository.ICommentRepository;
 import com.shengxi.carblog.repository.IManagerRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
@@ -21,12 +22,15 @@ public class ManagerServiceImpl implements IManagerService {
 
     private IBlogRepository blogRepository;
 
+    private ICommentRepository commentRepository;
+
 
     @Override
     public Map<String, Object> initManagerPageData() {
         Map<String, Object> map = new HashMap(4);
         map.put("userNum", userRepository.count());
         map.put("blogNum", blogRepository.count());
+        map.put("commentNum", commentRepository.count());
         return map;
     }
 
@@ -43,5 +47,10 @@ public class ManagerServiceImpl implements IManagerService {
     @Autowired
     public void setBlogRepository(IBlogRepository blogRepository) {
         this.blogRepository = blogRepository;
+    }
+
+    @Autowired
+    public void setCommentRepository(ICommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
     }
 }
