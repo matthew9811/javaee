@@ -70,6 +70,7 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/manager/manage}">管理用户</a></li>
+                <li><a th:href="@{/manager/manageAdmin}">管理员管理</a></li>
                 <li><a th:href="@{/manager/log}">管理登录日志</a></li>
             </ul>
         </aside>
@@ -91,7 +92,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <h4>相册</h4>
-                    <span id="albumNum" class="text-muted"></span>
+                    <span id="drawTitleNum" class="text-muted"></span>
                 </div>
             </div>
             <h1 class="page-header">状态</h1>
@@ -308,7 +309,7 @@
                 $('#userNum').html(data.userNum + '个');
                 $('#blogNum').html(data.blogNum + '篇');
                 $('#commentNum').html(data.commentNum + '条');
-                $('#albumNum').html(data.albumNum + '个');
+                $('#drawTitleNum').html(data.drawTitleNum + '个');
             }
         });
     }

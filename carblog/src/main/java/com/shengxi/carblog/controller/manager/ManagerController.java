@@ -50,6 +50,11 @@ public class ManagerController extends BaseController {
         return prefix + "/manage_user";
     }
 
+    @GetMapping("/manageAdmin")
+    public String manageAdmin() {
+        return prefix + "/manage_admin";
+    }
+
     @GetMapping("/log")
     public String log() {
         return prefix + "/login_log";
