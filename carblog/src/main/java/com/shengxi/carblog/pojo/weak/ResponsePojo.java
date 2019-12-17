@@ -1,8 +1,10 @@
 package com.shengxi.carblog.pojo.weak;
 
 import com.shengxi.compent.utils.ResponseStatus;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.ToString;
 
 /**
  * 响应实体
@@ -10,7 +12,8 @@ import java.util.Map;
  * @author yan
  * @date 2019-11-14 23:06:10
  */
-public class ResponsePojo extends HashMap<String, Object>{
+@ToString
+public class ResponsePojo extends HashMap<String, Object> implements Serializable {
     /**
      * 状态
      */

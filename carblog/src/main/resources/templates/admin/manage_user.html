@@ -16,6 +16,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin-style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}">
     <script th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/admin_scripts.js}"></script>
 </head>
 
 <body class="user-select">
@@ -58,7 +61,7 @@
     <div class="row">
         <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a th:href="@{/manager/index}">报告</a></li>
+                <li><a th:href="@{/manager/index}">报告</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/manager/article}">文章</a></li>
@@ -66,7 +69,7 @@
                 <li><a th:href="@{/manager/comment}">评论</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a th:href="@{/manager/manage}">管理用户</a></li>
+                <li class="active"><a th:href="@{/manager/manage}">管理用户</a></li>
                 <li><a th:href="@{/manager/manageAdmin}">管理员管理</a></li>
                 <li><a th:href="@{/manager/log}">管理登录日志</a></li>
             </ul>
@@ -85,21 +88,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>edit</td>
-                        <td>4</td>
+                    <tr th:each="user: ${list}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.blogCount}">4</td>
                         <td>2015-12-03 15:14:27</td>
                         <td><a rel="1" name="delete">删除</a> <a
                                 href="/User/checked/id/1/action/n">禁用</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>test</td>
-                        <td>3</td>
-                        <td>2015-12-03 15:14:27</td>
-                        <td><a rel="2" name="delete">删除</a> <a
-                                href="/User/checked/id/2/action/y">启用</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -285,10 +280,16 @@
         </div>
     </div>
 </div>
-<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/admin_scripts.js}"></script>
-<script>
+
+<script th:inline="javascript">
+    var ctx = [[@{/}]];
+    let prefix = ctx + "manager";
     $(function () {
+    });
+
+
+
+    function deplay() {
         $("#main table tbody tr td a").click(function () {
             var name = $(this);
             var id = name.attr("rel"); //对应id
@@ -319,11 +320,10 @@
                         }
                     });
                 }
-                ;
             }
             ;
         });
-    });
+    }
 </script>
 </body>
 </html>

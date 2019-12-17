@@ -4,15 +4,18 @@ import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.admin.IManagerService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
+import java.util.Collections;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 后台控制器
+ *
  * @author yan
  * @version 1.0.1
  * @date 2019-11-20 11:26:21
@@ -46,7 +49,8 @@ public class ManagerController extends BaseController {
     }
 
     @GetMapping("/manage")
-    public String manage() {
+    public String manage(ModelMap modelMap) {
+        modelMap.addAttribute("list", managerService.findAllUser());
         return prefix + "/manage_user";
     }
 
@@ -67,10 +71,9 @@ public class ManagerController extends BaseController {
 
     @GetMapping("/initData")
     @ResponseBody
-    public ResponsePojo initData(){
+    public ResponsePojo initData() {
         return getResponsePojo(managerService.initManagerPageData());
     }
-
 
 
 

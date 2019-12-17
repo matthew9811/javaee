@@ -1,12 +1,15 @@
 package com.shengxi.carblog.service.admin.impl;
 
+import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.ICommentRepository;
 import com.shengxi.carblog.repository.IDrawTitleRepository;
 import com.shengxi.carblog.repository.IManagerRepository;
+import com.shengxi.carblog.repository.IUserBlogLogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,8 @@ public class ManagerServiceImpl implements IManagerService {
 
     private IDrawTitleRepository drawTitleRepository;
 
+    private IUserBlogLogRepository userBlogLogRepository;
+
 
     @Override
     public Map<String, Object> initManagerPageData() {
@@ -36,6 +41,12 @@ public class ManagerServiceImpl implements IManagerService {
         map.put("commentNum", commentRepository.count());
         map.put("drawTitleNum", drawTitleRepository.count());
         return map;
+    }
+
+
+    @Override
+    public List<UserBlogLog> findAllUser() {
+        return userBlogLogRepository.selectAllUserBlogLog();
     }
 
     @Autowired
@@ -61,5 +72,10 @@ public class ManagerServiceImpl implements IManagerService {
     @Autowired
     public void setDrawTitleRepository(IDrawTitleRepository drawTitleRepository) {
         this.drawTitleRepository = drawTitleRepository;
+    }
+
+    @Autowired
+    public void setUserBlogLogRepository(IUserBlogLogRepository userBlogLogRepository) {
+        this.userBlogLogRepository = userBlogLogRepository;
     }
 }

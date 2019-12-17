@@ -1,5 +1,7 @@
 package com.shengxi.carblog.service.admin;
 
+import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +20,7 @@ public interface IManagerService {
      * @return pojo
      */
     Map<String, Object> initManagerPageData();
+
+
+    List<UserBlogLog> findAllUser();
 }

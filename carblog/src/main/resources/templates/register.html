@@ -49,14 +49,12 @@
      * */
     $('#name').on('blur', function () {
         let name = $('input[name = "name"]').val();
-        console.log(name);
         $.ajax({
             url: prefix + 'checkUserName/' + name,
             context: {name: name},
             method: 'get',
             success: function (data) {
-                nameData = data;
-                isName(nameData);
+                isName(data);
             }
         })
     });
