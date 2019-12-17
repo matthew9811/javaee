@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author yan
@@ -47,6 +48,16 @@ public class ManagerServiceImpl implements IManagerService {
     @Override
     public List<UserBlogLog> findAllUser() {
         return userBlogLogRepository.selectAllUserBlogLog();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, readOnly = false)
+    public boolean editUser(Integer id) {
+        int i = userRepository.updateStatus("1", id);
+        if (1 == i){
+            return true;
+        }
+        return false;
     }
 
     @Autowired

@@ -22,5 +22,16 @@ public interface IManagerService {
     Map<String, Object> initManagerPageData();
 
 
+    /**
+     * 获取所以用户管理需要的信息
+     *
+     * @return list
+     */
     List<UserBlogLog> findAllUser();
+
+    /**
+     * @param id
+     * @return 禁用用户
+     */
+    boolean editUser(Integer id);
 }

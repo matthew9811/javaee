@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -75,7 +76,15 @@ public class ManagerController extends BaseController {
         return getResponsePojo(managerService.initManagerPageData());
     }
 
-
+    @GetMapping("/editUser/{id}")
+    @ResponseBody
+    public ResponsePojo editUser(@PathVariable("id") Integer id) {
+        boolean b = managerService.editUser(id);
+        if (true == b) {
+            getResponsePojo(ResponseStatus.SUCCESS, "修改成功");
+        }
+        return getResponsePojo(ResponseStatus.FAIL, "修改失败");
+    }
 
     @Autowired
     public void setManagerService(IManagerService managerService) {

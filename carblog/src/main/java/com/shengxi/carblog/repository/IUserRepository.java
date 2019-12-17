@@ -2,6 +2,8 @@ package com.shengxi.carblog.repository;
 
 import com.shengxi.carblog.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +32,14 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     Boolean existsByName(@Param("name") String name);
 
+    /**
+     * 根据id修改状态
+     *
+     * @param id     要修改的id
+     * @param status 要修改的状态值
+     * @return 修改的条数
+     */
+    @Modifying
+    @Query(value = "UPDATE `user` SET `status` = :status WHERE id = :id", nativeQuery = true)
+    int updateStatus(@Param("status") String status, @Param("id") Integer id);
 }

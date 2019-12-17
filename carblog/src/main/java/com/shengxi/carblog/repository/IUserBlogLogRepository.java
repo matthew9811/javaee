@@ -31,6 +31,6 @@ public interface IUserBlogLogRepository extends JpaRepository<UserBlogLog, Integ
             "count( b.id ) AS blog_count " +
             "FROM " +
             "`user` AS u " +
-            "LEFT JOIN blog AS b ON u.id = b.user_id; ", nativeQuery = true)
+            "LEFT JOIN blog AS b ON u.id = b.user_id GROUP BY u.id;", nativeQuery = true)
     List<UserBlogLog> selectAllUserBlogLog();
 }
