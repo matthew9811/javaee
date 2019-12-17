@@ -12,6 +12,7 @@
         <module>struts2</module>
         <module>hi</module>
         <module>Struts_Hibernate</module>
+        <module>ssh74</module>
     </modules>
 
 </project>

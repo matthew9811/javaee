@@ -49,14 +49,19 @@
      * */
     $('#name').on('blur', function () {
         let name = $('input[name = "name"]').val();
-        $.ajax({
-            url: prefix + 'checkUserName/' + name,
-            context: {name: name},
-            method: 'get',
-            success: function (data) {
-                isName(data);
-            }
-        })
+        if(isChar() === false) {
+            return false;
+        }
+        else {
+            $.ajax({
+                url: prefix + 'checkUserName/' + name,
+                context: {name: name},
+                method: 'get',
+                success: function (data) {
+                    isName(data);
+                }
+            })
+        }
     });
 
     /**
@@ -90,6 +95,20 @@
             $("#signInSubmit").attr('disabled', 'disabled');
         } else {
             $("#signInSubmit").removeAttr("disabled");
+        }
+    }
+
+    function isChar() {
+        var myReg = /^[a-zA-Z0-9_]{0,}$/;
+        var name = $('input[name = "name"]').val();
+        if (!myReg.test(name)) {
+            $('#tips').html("名字不能含有中文或特殊字符");
+            $("#signInSubmit").attr('disabled', 'disabled');
+            return false;
+        } else {
+            $('#tips').html("");
+            $("#signInSubmit").removeAttr("disabled");
+            return true;
         }
     }
 </script>

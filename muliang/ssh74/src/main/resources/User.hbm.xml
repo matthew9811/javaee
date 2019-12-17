@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <!-- name是实体类的具体路径，table是定义创建表的名字 -->
+    <class name="com.shengxi.User" table="user">
+        <!-- 定义主键的名称 -->
+        <id name="id" column="id">
+            <!-- 定义主键为自动增长 -->
+            <generator class="native"></generator>
+        </id>
+        <!-- 定义数据库的其他的字段 的具体描述-->
+        <property name="name" type="string" length="32" column="name" not-null="true"></property>
+        <property name="password" type="java.lang.String" length="32" column="password" not-null="true"/>
+
+    </class>
+</hibernate-mapping>
