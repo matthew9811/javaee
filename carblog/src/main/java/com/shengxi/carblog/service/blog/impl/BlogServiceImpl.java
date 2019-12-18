@@ -33,14 +33,12 @@ public class BlogServiceImpl implements IBlogService {
     private IUserRepository userRepository;
 
     @Override
-    @Transactional(rollbackFor = Exception.class, readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public ResponseBody addBlog(Map data, HttpServletRequest request) throws FileNotFoundException {
         Blog blog = new Blog();
         blog.setId(UUID.randomUUID(true).toString());
-        String dirPath = new File(ResourceUtils.getURL("classpath:static").getPath().
-                replace("%20"," ").replace('/', '\\')).getAbsolutePath();
-        System.out.println(dirPath);
-        System.out.println(request.getServletContext().getContextPath());
+        System.out.println(System.getProperty("user.dir") + "/carblog/uploads");
+        System.out.println(ResourceUtils.getURL("classpath:").getPath());
         return null;
     }
 

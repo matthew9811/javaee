@@ -48,6 +48,9 @@ public class ServletInitializer extends SpringBootServletInitializer implements 
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/")
                 .addResourceLocations("classpath:/resources/");
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations(System.getProperty("user.dir") + "/carblog/uploads");
+        logger.info("自定义静态资源目录、此处功能用于文件映射");
     }
 
 
