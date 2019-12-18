@@ -1,6 +1,8 @@
 package com.shengxi.carblog.service.blog;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalTime;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +17,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public interface IBlogService {
 
-
-    ResponseBody addBlog(Map data, HttpServletRequest request) throws FileNotFoundException;
+    ResponseBody addBlog(Map data, HttpServletRequest request) throws IOException;
 }

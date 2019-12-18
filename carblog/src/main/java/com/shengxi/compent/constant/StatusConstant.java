@@ -17,5 +17,18 @@ public abstract class StatusConstant {
      */
     public static final String USER_DISABLE_STATUS = "1";
 
+    /**
+     * 博客初始化状态
+     */
+    public static final String BLOG_CONFIG_STATUS = "0";
+    /**
+     * 博客通过状态
+     */
+    public static final String BLOG_PASS_STATUS = "1";
+    /**
+     * 博客不通过状态
+     */
+    public static final String BLOG_REFUSE_STATUS = "2";
+
 
 }

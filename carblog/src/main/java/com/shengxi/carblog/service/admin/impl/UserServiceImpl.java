@@ -11,6 +11,7 @@ import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.constant.UserConstant;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class UserServiceImpl implements IUserService {
         ResponsePojo response = new ResponsePojo();
         register.setContent(UserConstant.DEFAULT_CONTENT);
         register.setAvatarUrl(UserConstant.DEFAULT_AVATAR_URL);
-        register.setCreateTime(LocalDateTime.now());
+        register.setCreateTime(LocalDateTime.now(ZoneId.of("Asia/Shanghai")).withNano(0));
         register.setStatus(StatusConstant.USER_CONFIG_STATUS);
         register = userRepository.save(register);
         if (ObjectUtil.isNotNull(register)) {

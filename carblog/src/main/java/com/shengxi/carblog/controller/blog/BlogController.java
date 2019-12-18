@@ -3,8 +3,10 @@ package com.shengxi.carblog.controller.blog;
 import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.blog.IBlogService;
+import com.shengxi.compent.aop.annotation.LoginStatus;
 import com.shengxi.compent.utils.BaseController;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +74,13 @@ public class BlogController extends BaseController {
 
     /**
      * 新增博客
-     * @param data
+     * @param data 博客参数
      * @return
      */
+    @LoginStatus(value = true)
     @PostMapping("/addBlog")
     @ResponseBody
-    public ResponsePojo addBlog(@RequestBody Map data, HttpServletRequest request) throws FileNotFoundException {
+    public ResponsePojo addBlog(@RequestBody Map data, HttpServletRequest request) throws IOException {
         blogService.addBlog(data, request);
         return null;
     }

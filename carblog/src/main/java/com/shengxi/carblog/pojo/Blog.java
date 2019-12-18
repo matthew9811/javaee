@@ -25,7 +25,7 @@ public class Blog {
     private String blogUrl;
 
     @Column(name = "status")
-    private char status;
+    private String status;
 
     @Column(name = "reviewer")
     private Integer reviewer;
@@ -58,11 +58,11 @@ public class Blog {
         this.blogUrl = blogUrl;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
