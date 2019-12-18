@@ -1,15 +1,19 @@
 package com.shengxi.carblog.controller.blog;
 
-import cn.hutool.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.utils.BaseController;
-import java.util.List;
+import java.io.FileNotFoundException;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -23,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BlogController extends BaseController {
 
     private String prefix = "/blog";
+
+    private IBlogService blogService;
 
     @GetMapping("/about")
     public String about() {
@@ -64,10 +70,20 @@ public class BlogController extends BaseController {
         return prefix + "/photo_index";
     }
 
+    /**
+     * 新增博客
+     * @param data
+     * @return
+     */
     @PostMapping("/addBlog")
-    public ResponsePojo addBlog(@RequestBody JSONObject data) {
-        System.out.println(data.toString());
+    @ResponseBody
+    public ResponsePojo addBlog(@RequestBody Map data, HttpServletRequest request) throws FileNotFoundException {
+        blogService.addBlog(data, request);
         return null;
     }
 
+    @Autowired
+    public void setBlogService(IBlogService blogService) {
+        this.blogService = blogService;
+    }
 }
