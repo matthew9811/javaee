@@ -1,11 +1,8 @@
 package com.shengxi.carblog.service.blog;
 
-import java.io.FileNotFoundException;
+import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 博客模块服务层
@@ -17,5 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public interface IBlogService {
 
-    ResponseBody addBlog(Map data, HttpServletRequest request) throws IOException;
+    /**
+     *
+     * @param data map
+     * @return statu :enum and msg :String
+     * @throws IOException
+     */
+    ResponsePojo addBlog(Map data) throws IOException;
 }

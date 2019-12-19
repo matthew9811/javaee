@@ -42,4 +42,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query(value = "UPDATE `user` SET `status` = :status WHERE id = :id", nativeQuery = true)
     int updateStatus(@Param("status") String status, @Param("id") Integer id);
+
+    /**
+     * 通过名字获取对应的用户
+     * @param userName name :String
+     * @return User :Obj
+     */
+    User findByName(String userName);
 }

@@ -45,8 +45,8 @@ public class LoginStatusAspect {
     @Around("@annotation(com.shengxi.compent.aop.annotation.LoginStatus)")
     public Object aroundManager(ProceedingJoinPoint joinPoint) throws Throwable {
         LoginStatus annotation = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(LoginStatus.class);
-        if (annotation.value()){
-            boolean flag =false;
+        if (annotation.value()) {
+            boolean flag = false;
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             Cookie[] cookies = request.getCookies();
             HttpSession session = request.getSession();
@@ -57,7 +57,7 @@ public class LoginStatusAspect {
                     }
                 }
             }
-            if (BooleanUtil.isFalse(flag)){
+            if (BooleanUtil.isFalse(flag)) {
                 return new ModelAndView("/login");
             }
         }

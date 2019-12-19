@@ -74,15 +74,15 @@ public class BlogController extends BaseController {
 
     /**
      * 新增博客
+     *
      * @param data 博客参数
-     * @return
+     * @return 响应tips
      */
     @LoginStatus(value = true)
     @PostMapping("/addBlog")
     @ResponseBody
-    public ResponsePojo addBlog(@RequestBody Map data, HttpServletRequest request) throws IOException {
-        blogService.addBlog(data, request);
-        return null;
+    public ResponsePojo addBlog(@RequestBody Map data) throws IOException {
+        return blogService.addBlog(data);
     }
 
     @Autowired
