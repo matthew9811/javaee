@@ -67,6 +67,8 @@ public class BlogServiceImpl implements IBlogService {
         blog.setBlogUrl(SQL_PATH_PREFIX + this.saveFile(fileName, data).concat("/") + fileName);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setUserId(userId);
+        /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
+        blog.setRemark(data.get("content").toString().substring(0,74).replace("<p>", ""));
         Blog save = blogRepository.save(blog);
         if (ObjectUtil.isNotEmpty(save)) {
             return new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
