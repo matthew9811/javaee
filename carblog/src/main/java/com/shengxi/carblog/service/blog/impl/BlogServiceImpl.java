@@ -60,13 +60,14 @@ public class BlogServiceImpl implements IBlogService {
     @Transactional(rollbackFor = Exception.class)
     public ResponsePojo addBlog(Map data) throws IOException {
         Blog blog = new Blog();
-        blog.setId(UUID.randomUUID(true).toString());
+//        blog.setId(UUID.randomUUID(true).toString());
         String fileName = UUID.randomUUID(true).toString().replace("-", "").concat(SUFFIX);
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
         blog.setReviewer(userId);
         blog.setBlogUrl(SQL_PATH_PREFIX + this.saveFile(fileName, data).concat("/") + fileName);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setUserId(userId);
+        blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
         blog.setRemark(data.get("content").toString().substring(0,74).replace("<p>", ""));
         Blog save = blogRepository.save(blog);

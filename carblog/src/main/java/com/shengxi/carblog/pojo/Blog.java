@@ -1,6 +1,10 @@
 package com.shengxi.carblog.pojo;
 
+import java.io.Serializable;
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -10,8 +14,11 @@ import org.hibernate.annotations.GenericGenerator;
  * 博客类
  */
 @Entity
+@Getter
+@Setter
 @Table(name = "blog")
-public class Blog {
+@AllArgsConstructor
+public class Blog implements Serializable {
     @Id
     @GeneratedValue(generator = "system_uuid")
     @GenericGenerator(name = "system_uuid", strategy = "uuid")
@@ -32,55 +39,22 @@ public class Blog {
 
     @Column(name = "remark")
     private String remark;
+    @Column(name = "title")
+    private String title;
 
-
-    public String getId() {
-        return this.id;
+    public Blog() {
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Integer userId) {
+    public Blog(Integer userId, String blogUrl, String status, Integer reviewer, String remark, String title) {
         this.userId = userId;
-    }
-
-    public String getBlogUrl() {
-        return this.blogUrl;
-    }
-
-    public void setBlogUrl(String blogUrl) {
         this.blogUrl = blogUrl;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Integer getReviewer() {
-        return this.reviewer;
-    }
-
-    public void setReviewer(Integer reviewer) {
         this.reviewer = reviewer;
-    }
-
-    public String getRemark() {
-        return this.remark;
-    }
-
-    public void setRemark(String remark) {
         this.remark = remark;
+        this.title = title;
     }
+
+
 
     @Override
     public String toString() {
