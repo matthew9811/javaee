@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,23 +61,30 @@ public class BlogServiceImpl implements IBlogService {
     @Transactional(rollbackFor = Exception.class)
     public ResponsePojo addBlog(Map data) throws IOException {
         Blog blog = new Blog();
-//        blog.setId(UUID.randomUUID(true).toString());
         String fileName = UUID.randomUUID(true).toString().replace("-", "").concat(SUFFIX);
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
         blog.setReviewer(userId);
-        blog.setBlogUrl(SQL_PATH_PREFIX + this.saveFile(fileName, data).concat("/") + fileName);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setUserId(userId);
+        blog.setCreateTime(LocalDateTime.now());
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
-        blog.setRemark(data.get("content").toString().substring(0,74).replace("<p>", ""));
+        blog.setRemark(data.get("content").toString().substring(0, 74).replace("<p>", ""));
+        blog.setBlogUrl(SQL_PATH_PREFIX + this.saveFile(fileName, data).concat("/") + fileName);
         Blog save = blogRepository.save(blog);
         if (ObjectUtil.isNotEmpty(save)) {
-            return new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
+            ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
+            pojo.put("id", save.getId());
+            return pojo;
         }
         return new ResponsePojo(ResponseStatus.FAIL, "服务器错误，请稍后再试!");
     }
 
+
+    @Override
+    public Blog findBlogById(String id) {
+        return null;
+    }
 
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {

@@ -1,6 +1,7 @@
 package com.shengxi.carblog.pojo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,19 +43,22 @@ public class Blog implements Serializable {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "create_time")
+    private LocalDateTime createTime;
+
     public Blog() {
     }
 
-    public Blog(Integer userId, String blogUrl, String status, Integer reviewer, String remark, String title) {
+    public Blog(Integer userId, String blogUrl, String status, Integer reviewer,
+                String remark, String title, LocalDateTime createTime) {
         this.userId = userId;
         this.blogUrl = blogUrl;
         this.status = status;
         this.reviewer = reviewer;
         this.remark = remark;
         this.title = title;
+        this.createTime = createTime;
     }
-
-
 
     @Override
     public String toString() {
