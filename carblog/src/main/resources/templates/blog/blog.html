@@ -20,6 +20,9 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
     <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
+    <script type="application/x-javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body>
@@ -112,6 +115,7 @@
                 <p class="blog-post-cat">分类</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
+                    <input name="id" th:field="${blog.id}"hidden>
                 </a>
 
                 <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${blog.createTime}"> by <a href="#" th:text="${blog.user.name}"></a></p>
@@ -259,5 +263,9 @@
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
+<script th:inline="javascript">
+    $(function () {
 
+    })
+</script>
 </html>
