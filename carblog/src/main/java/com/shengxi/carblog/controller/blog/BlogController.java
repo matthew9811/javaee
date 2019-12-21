@@ -57,7 +57,7 @@ public class BlogController extends BaseController {
      */
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable("id") String id, Model model) {
-        model.addAttribute("blog", blogService.findBlogById(id));
+        model.addAttribute("blogMsg", blogService.findBlogById(id));
         return prefix + "/blog";
     }
 

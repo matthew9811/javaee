@@ -240,7 +240,7 @@
         </aside>
     </div>
 </main>
-
+<!--底部-->
 <footer class="blog-footer">
 
     <div class="footer-social">
@@ -265,7 +265,8 @@
 </body>
 <script th:inline="javascript">
     $(function () {
-
+        let val = $('input[name = "id"]').val;
+        console.log(val);
     })
 </script>
 </html>

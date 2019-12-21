@@ -4,7 +4,6 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.Blog;
-import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
@@ -18,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,10 +84,11 @@ public class BlogServiceImpl implements IBlogService {
 
 
     @Override
-    public Blog findBlogById(String id) {
+    public HashMap<String, Object> findBlogById(String id) {
+        HashMap<String, Object> data = new HashMap<>();
         Blog blog = blogRepository.findBlogById(id);
-
-        return
+        data.put("blog", blog);
+        return data;
     }
 
     @Override
