@@ -29,11 +29,11 @@ public class Manager {
     private char status;
 
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @OneToOne( targetEntity = User.class)
     @JoinColumn(name = "make_up", referencedColumnName = "id")
     private User makeUp;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @OneToOne( targetEntity = User.class)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

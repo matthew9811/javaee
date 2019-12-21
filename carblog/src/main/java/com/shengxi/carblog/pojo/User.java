@@ -50,6 +50,15 @@ public class User implements Serializable {
     @Column(name = "status")
     private String status;
 
+    public User(String name, String pwd, LocalDateTime createTime) {
+        this.name = name;
+        this.pwd = pwd;
+        this.createTime = createTime;
+    }
+
+    public User(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return this.id;

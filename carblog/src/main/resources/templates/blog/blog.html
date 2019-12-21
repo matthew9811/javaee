@@ -111,23 +111,11 @@
                 </div>
                 <p class="blog-post-cat">分类</p>
                 <a href="#">
-                    <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
+                    <h2 class="blog-post-title" th:text="${blog.title}"></h2>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
-                    1, 2014 by <a href="#">Mark</a></p>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
-                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
-                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                    risus.</p>
-
-                <blockquote class="post-quote">
-                    <i class="icofont icofont-quote-left"></i> Viral dreamcatcher keytar typewriter, aesthetic offal
-                    umami. Aesthetic polaroid pug pitchfork post-ironic.
-                </blockquote>
-                <p>This story is part of the Bloggin Guide to Finally Getting a Good Night’s Sleep. Click here to read
-                    the whole guide—then get those things.Aspernatur quam natus neque laboriosam eaque sed corporis
-                    ullam doloribus consectetur! corporis ullam doloribus consectetur!</p>
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="blog.createTime"> by <a href="#" th:text="${blog.user.name}"></a></p>
+<!--                <p th:text="${content}"></p>-->
 
             </div>
             <div class="clearfix"></div>

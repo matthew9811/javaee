@@ -25,11 +25,11 @@ public class Blog implements Serializable {
     @GenericGenerator(name = "system_uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
-
+//
 //    @Column(name = "user_id")
 //    private Integer userId;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
@@ -63,7 +63,6 @@ public class Blog implements Serializable {
 
     public Blog( String blogUrl, String status, Integer reviewer,
                 String remark, String title, LocalDateTime createTime) {
-//        this.userId = userId;
         this.blogUrl = blogUrl;
         this.status = status;
         this.reviewer = reviewer;

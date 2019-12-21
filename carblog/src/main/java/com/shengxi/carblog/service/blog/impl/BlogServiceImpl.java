@@ -4,6 +4,7 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.Blog;
+import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
@@ -66,7 +67,7 @@ public class BlogServiceImpl implements IBlogService {
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
         blog.setReviewer(userId);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
-//        blog.setUserId(userId);
+        blog.setUser(userRepository.findById(userId).get());
         blog.setCreateTime(LocalDateTime.now());
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/

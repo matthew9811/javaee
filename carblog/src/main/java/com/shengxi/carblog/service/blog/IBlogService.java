@@ -17,6 +17,8 @@ import java.util.Map;
 public interface IBlogService {
 
     /**
+     * 保存一点博客数据
+     *
      * @param data map
      * @return statu :enum and msg :String
      * @throws IOException
