@@ -26,8 +26,12 @@ public class Blog implements Serializable {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "user_id")
-    private Integer userId;
+//    @Column(name = "user_id")
+//    private Integer userId;
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(name = "blog_url")
     private String blogUrl;
@@ -49,9 +53,17 @@ public class Blog implements Serializable {
     public Blog() {
     }
 
-    public Blog(Integer userId, String blogUrl, String status, Integer reviewer,
+    public Blog(User user, String blogUrl, String remark, String title, LocalDateTime createTime) {
+        this.user = user;
+        this.blogUrl = blogUrl;
+        this.remark = remark;
+        this.title = title;
+        this.createTime = createTime;
+    }
+
+    public Blog( String blogUrl, String status, Integer reviewer,
                 String remark, String title, LocalDateTime createTime) {
-        this.userId = userId;
+//        this.userId = userId;
         this.blogUrl = blogUrl;
         this.status = status;
         this.reviewer = reviewer;
@@ -64,7 +76,7 @@ public class Blog implements Serializable {
     public String toString() {
         return "Blog{" +
                 "id='" + id + '\'' +
-                ", userId=" + userId +
+//                ", userId=" + userId +
                 ", blogUrl='" + blogUrl + '\'' +
                 ", status=" + status +
                 ", reviewer=" + reviewer +

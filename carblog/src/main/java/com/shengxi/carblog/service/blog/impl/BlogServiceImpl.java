@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -65,7 +66,7 @@ public class BlogServiceImpl implements IBlogService {
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
         blog.setReviewer(userId);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
-        blog.setUserId(userId);
+//        blog.setUserId(userId);
         blog.setCreateTime(LocalDateTime.now());
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
@@ -83,7 +84,12 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public Blog findBlogById(String id) {
-        return null;
+        return blogRepository.findBlogById(id);
+    }
+
+    @Override
+    public List<Blog> findPassBlogAll() {
+        return blogRepository.findAll();
     }
 
     @Autowired

@@ -3,6 +3,7 @@ package com.shengxi.carblog.service.blog;
 import com.shengxi.carblog.pojo.Blog;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +30,11 @@ public interface IBlogService {
      * @return blog :Obj
      */
     Blog findBlogById(String id);
+
+    /**
+     * 查找所有通过审核的文章
+     *
+     * @return list: List<Blog>
+     */
+    List<Blog> findPassBlogAll();
 }
