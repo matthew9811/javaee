@@ -11,9 +11,14 @@ import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -40,6 +45,10 @@ public class BlogServiceImpl implements IBlogService {
      * 保存时使用的路径前缀，系统目录下对应模块的uploads文件夹
      */
     private final String UPLOAD_PATH_PREFIX = System.getProperty("user.dir") + "/carblog/uploads/";
+    /**
+     * 模块路径
+     */
+    private final String SYSTEM_PATH = System.getProperty("user.dir") + "/carblog";
 
     /**
      * 项目内相对路径
@@ -85,8 +94,19 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public HashMap<String, Object> findBlogById(String id) {
-        HashMap<String, Object> data = new HashMap<>();
         Blog blog = blogRepository.findBlogById(id);
+        if(ObjectUtil.isEmpty(blog)){
+            return null;
+        }
+        HashMap<String, Object> data = new HashMap<>();
+        File file = new File(SYSTEM_PATH + blog.getBlogUrl());
+        try {
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            blog.setContent(bufferedReader);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         data.put("blog", blog);
         return data;
     }

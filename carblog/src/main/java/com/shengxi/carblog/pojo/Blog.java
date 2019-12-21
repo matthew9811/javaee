@@ -50,10 +50,6 @@ public class Blog implements Serializable {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    /**
-     * 真实内容
-     */
-    private StringBuffer content;
 
     public Blog() {
     }
