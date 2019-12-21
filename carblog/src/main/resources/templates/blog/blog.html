@@ -119,7 +119,7 @@
                 </a>
 
                 <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${blog.createTime}"> by <a href="#" th:text="${blog.user.name}"></a></p>
-<!--                <p th:text="${content}"></p>-->
+                <p th:utext="${content}"></p>
 
             </div>
             <div class="clearfix"></div>

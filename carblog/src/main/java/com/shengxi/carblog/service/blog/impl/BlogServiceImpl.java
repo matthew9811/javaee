@@ -74,6 +74,7 @@ public class BlogServiceImpl implements IBlogService {
         Blog blog = new Blog();
         String fileName = UUID.randomUUID(true).toString().replace("-", "").concat(SUFFIX);
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
+        /* 初始化审核人为自己 */
         blog.setReviewer(userId);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setUser(userRepository.findById(userId).get());
@@ -95,19 +96,12 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public HashMap<String, Object> findBlogById(String id) {
         Blog blog = blogRepository.findBlogById(id);
-        if(ObjectUtil.isEmpty(blog)){
+        if (ObjectUtil.isEmpty(blog)) {
             return null;
         }
-        HashMap<String, Object> data = new HashMap<>();
-        File file = new File(SYSTEM_PATH + blog.getBlogUrl());
-        try {
-            InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            blog.setContent(bufferedReader);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        HashMap<String, Object> data = new HashMap<>(3);
         data.put("blog", blog);
+        data.put("content", this.readHtml(blog.getBlogUrl()));
         return data;
     }
 
@@ -116,17 +110,13 @@ public class BlogServiceImpl implements IBlogService {
         return blogRepository.findAll();
     }
 
-    @Autowired
-    public void setUserRepository(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
-    @Autowired
-    public void setBlogRepository(IBlogRepository blogRepository) {
-        this.blogRepository = blogRepository;
-    }
-
-
+    /**
+     * @param fileName
+     * @param data
+     * @return
+     * @throws IOException
+     */
     private String saveFile(String fileName, Map data) throws IOException {
         String tmpPath = LocalDate.now(ZoneId.of("Asia/Shanghai")).toString().replace("-", "");
         File dirFile = new File(UPLOAD_PATH_PREFIX + tmpPath);
@@ -150,5 +140,59 @@ public class BlogServiceImpl implements IBlogService {
         outputStream.write(String.valueOf(data.get("content")).getBytes("utf-8"));
         outputStream.close();
         return tmpPath;
+    }
+
+
+    /**
+     * 根据路径读取对应的html
+     * @param url 相对路径
+     * @return concent :StringBuffer
+     */
+    private StringBuffer readHtml(String url) {
+        StringBuffer content = new StringBuffer();
+        String line = "";
+        InputStreamReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        /*
+         * 根据路径读取数据
+         */
+        File file = new File(SYSTEM_PATH + url);
+        try {
+            reader = new InputStreamReader(new FileInputStream(file));
+            bufferedReader = new BufferedReader(reader);
+            line = bufferedReader.readLine();
+            while (line != null) {
+                content.append(line);
+                line = bufferedReader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return content;
+    }
+
+    @Autowired
+    public void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setBlogRepository(IBlogRepository blogRepository) {
+        this.blogRepository = blogRepository;
     }
 }
