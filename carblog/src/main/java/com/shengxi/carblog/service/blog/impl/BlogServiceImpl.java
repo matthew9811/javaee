@@ -85,7 +85,9 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public Blog findBlogById(String id) {
-        return blogRepository.findBlogById(id);
+        Blog blog = blogRepository.findBlogById(id);
+
+        return
     }
 
     @Override

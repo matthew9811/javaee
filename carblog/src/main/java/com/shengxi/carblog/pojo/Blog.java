@@ -50,6 +50,11 @@ public class Blog implements Serializable {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
+    /**
+     * 真实内容
+     */
+    private StringBuffer content;
+
     public Blog() {
     }
 
@@ -61,7 +66,7 @@ public class Blog implements Serializable {
         this.createTime = createTime;
     }
 
-    public Blog( String blogUrl, String status, Integer reviewer,
+    public Blog(String blogUrl, String status, Integer reviewer,
                 String remark, String title, LocalDateTime createTime) {
         this.blogUrl = blogUrl;
         this.status = status;
@@ -75,7 +80,6 @@ public class Blog implements Serializable {
     public String toString() {
         return "Blog{" +
                 "id='" + id + '\'' +
-//                ", userId=" + userId +
                 ", blogUrl='" + blogUrl + '\'' +
                 ", status=" + status +
                 ", reviewer=" + reviewer +

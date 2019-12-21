@@ -107,14 +107,14 @@
         <div class="col-md-8 blog-main col-sm-7">
             <div class="blog-post text-center blog-post-single">
                 <div class="blog-block-img">
-                    <img th:src="@{images/blog/inner-5.jpg}" alt="" class="img-fluid">
+                    <img th:src="@{blog.user.avatarUrl}" alt="" class="img-fluid">
                 </div>
                 <p class="blog-post-cat">分类</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="blog.createTime"> by <a href="#" th:text="${blog.user.name}"></a></p>
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${blog.createTime}"> by <a href="#" th:text="${blog.user.name}"></a></p>
 <!--                <p th:text="${content}"></p>-->
 
             </div>
