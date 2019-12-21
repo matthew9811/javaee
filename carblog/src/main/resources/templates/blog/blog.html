@@ -108,7 +108,7 @@
 <main class="container">
     <div class="row">
         <div class="col-md-8 blog-main col-sm-7">
-            <div class="blog-post text-center blog-post-single">
+            <div class="blog-post text-center blog-post-single" th:object="${blog}">
                 <div class="blog-block-img">
                     <img th:src="@{blog.user.avatarUrl}" alt="" class="img-fluid">
                 </div>
@@ -118,7 +118,7 @@
                     <input name="id" th:field="${blog.id}"hidden>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${blog.createTime}"> by <a href="#" th:text="${blog.user.name}"></a></p>
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${#temporals.format(blog.createTime, 'yyyy-MM-dd HH:mm')}"> by <a href="#" th:text="${blog.user.name}"></a></p>
                 <p th:utext="${content}"></p>
 
             </div>
@@ -134,25 +134,13 @@
 
                 <div class="author-info">
                     <h4 class="upper">
-                        <a href="#">作者名</a>
+                        <a href="#" th:text="${blog.user.name}"></a>
                     </h4>
-                    <p>作者个性签名.</p>
+                    <p th:text="${blog.user.content}"></p>
                     <!--邮箱等-->
                     <div class="author-social-link">
                         <a href="#" target="_blank" title="Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a href="#" target="_blank" title="Facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                        <a href="#" target="_blank" title="Instagram">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" title="Pinterest">
-                            <i class="fa fa-pinterest"></i>
-                        </a>
-                        <a href="#" target="_blank" title="Youtube">
-                            <i class="fa fa-youtube"></i>
+                            <i class="fa fa-twitter" ></i>
                         </a>
                     </div>
                 </div>
@@ -265,7 +253,7 @@
 </body>
 <script th:inline="javascript">
     $(function () {
-        let val = $('input[name = "id"]').val;
+        let val = $('input[name = "id"]').val();
         console.log(val);
     })
 </script>
