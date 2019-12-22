@@ -2,6 +2,7 @@ package com.shengxi.carblog.service.blog.impl;
 
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.blog.IPhotoService;
+import java.util.ArrayList;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 public class PhotoServiceImpl implements IPhotoService {
     @Override
     public ResponsePojo addPhoto(Map data) {
-        System.out.println(data);
+        String title = (String) data.get("title");
+        ArrayList<String> photoArr = (ArrayList) data.get("photoArr");
+        photoArr.forEach(v-> System.out.println(v.toString()));
         return null;
     }
 }
