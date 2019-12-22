@@ -3,7 +3,6 @@ package com.shengxi.carblog.service.admin.impl;
 import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.ICommentRepository;
-import com.shengxi.carblog.repository.IDrawTitleRepository;
 import com.shengxi.carblog.repository.IManagerRepository;
 import com.shengxi.carblog.repository.IUserBlogLogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
@@ -29,8 +28,6 @@ public class ManagerServiceImpl implements IManagerService {
 
     private ICommentRepository commentRepository;
 
-    private IDrawTitleRepository drawTitleRepository;
-
     private IUserBlogLogRepository userBlogLogRepository;
 
 
@@ -40,7 +37,7 @@ public class ManagerServiceImpl implements IManagerService {
         map.put("userNum", userRepository.count());
         map.put("blogNum", blogRepository.count());
         map.put("commentNum", commentRepository.count());
-        map.put("drawTitleNum", drawTitleRepository.count());
+//        map.put("drawTitleNum", drawTitleRepository.count());
         return map;
     }
 
@@ -78,11 +75,6 @@ public class ManagerServiceImpl implements IManagerService {
     @Autowired
     public void setCommentRepository(ICommentRepository commentRepository) {
         this.commentRepository = commentRepository;
-    }
-
-    @Autowired
-    public void setDrawTitleRepository(IDrawTitleRepository drawTitleRepository) {
-        this.drawTitleRepository = drawTitleRepository;
     }
 
     @Autowired
