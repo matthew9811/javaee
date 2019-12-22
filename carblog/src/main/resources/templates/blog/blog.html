@@ -79,9 +79,11 @@
                             <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <p th:switch="${#httpSession.valueNames != null}">
-                                <a th:case="false" class="dropdown-item" th:href="@{/login}" style="background: #fff">登录</a>
-                                <a th:case="true" class="dropdown-item" th:href="@{/blog/person}" style="background: #fff">个人中心</a>
+                            <p th:switch="${T(com.shengxi.compent.utils.UserUtil).getUserName() != null}">
+                                <a th:case="false" class="dropdown-item" th:href="@{/login}"
+                                   style="background: #fff">登录</a>
+                                <a th:case="true" class="dropdown-item" th:href="@{/blog/person}"
+                                   style="background: #fff">个人中心</a>
                             </p>
                             <a class="dropdown-item" th:href="@{/logout}" style="background: #fff">退出</a>
                         </div>
@@ -115,10 +117,13 @@
                 <p class="blog-post-cat">分类</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
-                    <input name="id" th:field="${blog.id}"hidden>
+                    <input name="id" th:field="${blog.id}" hidden>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small" th:text="${#temporals.format(blog.createTime, 'yyyy-MM-dd HH:mm')}"> by <a href="#" th:text="${blog.user.name}"></a></p>
+                <p class="blog-post-meta">
+                    <img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small"
+                         th:text="${#temporals.format(blog.createTime, 'yyyy-MM-dd HH:mm')}"> by
+                    <a href="#" th:text="${blog.user.name}"></a></p>
                 <p th:utext="${content}"></p>
 
             </div>
@@ -140,7 +145,7 @@
                     <!--邮箱等-->
                     <div class="author-social-link">
                         <a href="#" target="_blank" title="Twitter">
-                            <i class="fa fa-twitter" ></i>
+                            <i class="fa fa-twitter"></i>
                         </a>
                     </div>
                 </div>
@@ -186,39 +191,12 @@
                     <!--最新文章 7篇-->
                     <ol class="list-unstyled">
                         <li>
-                            <a href="#">
+                            <a th:href="@{'/blog/blog/' + ${articles.id}">
                                 <div class="rpost-img">
                                     <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
-                                <h5>High Fashion Black and White Photoshoot Art</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Beauty you lIfe with natural</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
+                                <h5 th:text="${articles.title}"></h5>
+                                <p class="text-muted" th:text="${#temporals.format(articles.createTime, 'yyyy-MM-dd HH:mm')}""></p>
                             </a>
                         </li>
                     </ol>

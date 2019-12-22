@@ -54,6 +54,12 @@ public class Blog implements Serializable {
     public Blog() {
     }
 
+    public Blog(String id, String title, LocalDateTime createTime) {
+        this.id = id;
+        this.title = title;
+        this.createTime = createTime;
+    }
+
     public Blog(User user, String blogUrl, String remark, String title, LocalDateTime createTime) {
         this.user = user;
         this.blogUrl = blogUrl;

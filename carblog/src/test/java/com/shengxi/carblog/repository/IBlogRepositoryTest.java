@@ -20,4 +20,9 @@ public class IBlogRepositoryTest {
     public void findBlogById() {
         System.out.println(blogRepository.findBlogById("4028e4816f2262e0016f227ff30f0000"));
     }
+
+    @Test
+    public void findBlogLatestFour() {
+        System.out.println(blogRepository.findBlogLatestFour(1));
+    }
 }

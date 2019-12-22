@@ -14,7 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 用户
  * @author yan
  */
-@Service(value = "userUtil")
+@Service("userUtil")
 public class UserUtil {
 
     /**
@@ -35,11 +35,6 @@ public class UserUtil {
                     return pojo.getMsg();
                 }
             }
-        }
-        try {
-            servletRequestAttributes.getResponse().sendRedirect("/login");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return null;
     }

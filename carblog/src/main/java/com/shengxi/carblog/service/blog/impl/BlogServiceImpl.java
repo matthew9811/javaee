@@ -102,6 +102,7 @@ public class BlogServiceImpl implements IBlogService {
         HashMap<String, Object> data = new HashMap<>(3);
         data.put("blog", blog);
         data.put("content", this.readHtml(blog.getBlogUrl()));
+        data.put("latestList", blogRepository.findBlogLatestFour(blog.getUser().getId()));
         return data;
     }
 

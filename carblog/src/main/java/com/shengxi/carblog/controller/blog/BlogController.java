@@ -1,10 +1,12 @@
 package com.shengxi.carblog.controller.blog;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.aop.annotation.LoginStatus;
 import com.shengxi.compent.utils.BaseController;
+import com.shengxi.compent.utils.UserUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
@@ -41,11 +43,17 @@ public class BlogController extends BaseController {
 
     @GetMapping("/addBlog")
     public String addBlog() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())){
+            return "/blog/blog_login";
+        }
         return prefix + "/add_blog";
     }
 
     @GetMapping("/addPhoto")
     public String addPhoto() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())){
+            return "/blog/blog_login";
+        }
         return prefix + "/add_photo";
     }
 
