@@ -80,7 +80,12 @@
                             <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <a class="dropdown-item" th:href="@{/login}" style="background: #fff">登录</a>
+                            <p th:switch="${T(com.shengxi.compent.utils.UserUtil).getUserName() != null}">
+                                <a th:case="false" class="dropdown-item" th:href="@{/login}"
+                                   style="background: #fff">登录/注册</a>
+                                <a th:case="true" class="dropdown-item" th:href="@{/blog/person}"
+                                   style="background: #fff">个人中心</a>
+                            </p>
                             <a class="dropdown-item" th:href="@{/logout}" style="background: #fff">退出</a>
                         </div>
                     </li>
@@ -99,8 +104,6 @@
                 <h1 class="display-4 text-white">摄影</h1>
                 <h1 class="display-4 text-white">小能手</h1>
                 <p class="my-3">在这里，你可以根据他人的分享学习摄影的一些小技巧，也可以把自己的摄影作品分享给他人</p>
-                <a href="/login" class="btn btn-danger mt-4 btn-rounded">login</a>
-                <a href="/register" class="btn btn-danger mt-4 btn-rounded">register</a>
             </div>
         </div>
     </div>

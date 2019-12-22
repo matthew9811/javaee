@@ -70,6 +70,11 @@ public class ManagerController extends BaseController {
         return prefix + "/add_article";
     }
 
+    @GetMapping("/tips")
+    public String tips() {
+        return prefix + "/tips";
+    }
+
     @GetMapping("/initData")
     @ResponseBody
     public ResponsePojo initData() {

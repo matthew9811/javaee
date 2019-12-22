@@ -136,6 +136,12 @@ public class MainController extends BaseController {
         return prefix + "/index";
     }
 
+    @GetMapping("/adminOut")
+    public String adminOut(ModelMap modelMap, HttpServletRequest request) {
+        this.deleteSession(request);
+        return prefix + "/admin/admin_login";
+    }
+
     /**
      * 注册用户验证（尚未完成）
      *

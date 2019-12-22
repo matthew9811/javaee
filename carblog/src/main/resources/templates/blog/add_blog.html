@@ -23,6 +23,10 @@
     <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+    <!--summernote富文本编辑器-->
+    <link rel="stylesheet" type="text/css" th:href="@{/summernote/summernote-bs4.css}">
+    <script th:src="@{/summernote/summernote-bs4.js}"></script>
+    <script th:src="@{/summernote/lang/summernote-zh-CN.js}"></script>
 </head>
 
 <body>
@@ -80,7 +84,12 @@
                             <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <a class="dropdown-item" th:href="@{/login}" style="background: #fff">登录</a>
+                            <p th:switch="${T(com.shengxi.compent.utils.UserUtil).getUserName() != null}">
+                                <a th:case="false" class="dropdown-item" th:href="@{/login}"
+                                   style="background: #fff">登录/注册</a>
+                                <a th:case="true" class="dropdown-item" th:href="@{/blog/person}"
+                                   style="background: #fff">个人中心</a>
+                            </p>
                             <a class="dropdown-item" th:href="@{/logout}" style="background: #fff">退出</a>
                         </div>
                     </li>
@@ -156,11 +165,6 @@
         <a href="#">Back to top</a>
     </p>
 </footer>
-
-<!--summernote富文本编辑器-->
-<link rel="stylesheet" type="text/css" th:href="@{/summernote/summernote-bs4.css}">
-<script th:src="@{/summernote/summernote-bs4.js}"></script>
-<script th:src="@{/summernote/lang/summernote-zh-CN.js}"></script>
 <script th:inline="javascript">
     let ctx = [[@{/}]];
     let prefix = ctx + "blog";

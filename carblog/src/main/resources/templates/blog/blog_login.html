@@ -35,7 +35,8 @@
         <button class="btn btn-lg btn-block btn-color" type="submit" id="signInSubmit">登录</button>
     </form>
     <div class="footer">
-        <p><a href="/adminLogin" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">后台登录 →</a></p>
+        <p style="float: right"><a th:href="@{/register}" data-toggle="tooltip" data-placement="left" title="没有账号去注册">注册 >></a></p>
+        <p style="float: left"><a th:href="@{/adminLogin}" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">后台登录 <<</a></p>
     </div>
 </div>
 <script th:inline="javascript">
