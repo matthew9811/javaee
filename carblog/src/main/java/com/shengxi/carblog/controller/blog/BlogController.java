@@ -74,7 +74,8 @@ public class BlogController extends BaseController {
     }
 
     @GetMapping("/blogIndex")
-    public String blogIndex() {
+    public String blogIndex(Model model) {
+        model.addAllAttributes(blogService.findNewBlog());
         return prefix + "/blog_index";
     }
 
@@ -89,7 +90,8 @@ public class BlogController extends BaseController {
     }
 
     @GetMapping("/photoIndex")
-    public String photo() {
+    public String photo(Model model) {
+        model.addAllAttributes(blogService.findNewBlog());
         return prefix + "/photo_index";
     }
 
