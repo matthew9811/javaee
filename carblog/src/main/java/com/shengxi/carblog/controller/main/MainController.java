@@ -6,6 +6,7 @@ import com.shengxi.carblog.pojo.User;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.SessionMsgPojo;
 import com.shengxi.carblog.service.admin.IUserService;
+import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +38,7 @@ public class MainController extends BaseController {
 
     private IUserService userService;
     private String prefix = "";
+    private IBlogService blogService;
 
     /**
      * 进入注册页面
@@ -82,7 +85,8 @@ public class MainController extends BaseController {
      * @return url
      */
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAllAttributes(blogService.findNewBlog());
         return prefix + "/index";
     }
 
@@ -107,6 +111,7 @@ public class MainController extends BaseController {
         response.addCookie(cookie);
         modelMap.put("msg", "欢迎登录博客家!");
 
+        modelMap.addAllAttributes(blogService.findNewBlog());
         return prefix + "/index";
     }
 
@@ -133,6 +138,7 @@ public class MainController extends BaseController {
     @GetMapping("/logout")
     public String logout(ModelMap modelMap, HttpServletRequest request) {
         this.deleteSession(request);
+        modelMap.addAllAttributes(blogService.findNewBlog());
         return prefix + "/index";
     }
 
@@ -168,6 +174,11 @@ public class MainController extends BaseController {
     @Autowired
     public void setIUserService(IUserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setBlogService(IBlogService blogService) {
+        this.blogService = blogService;
     }
 
     /**

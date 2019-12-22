@@ -251,73 +251,14 @@
                 <div class="sidebar-block latest-post">
                     <h4 class="sidebar-title">最新文章</h4>
                     <ol class="list-unstyled">
-                        <li>
-                            <a href="#">
+                        <li th:each="articles: ${latestList}">
+                            <a th:href="@{/blog/blog/ } + ${articles.id}">
                                 <div class="rpost-img">
                                     <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
-                                <h5>High Fashion Black and White Photoshoot Art</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018 </p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Beauty you lIfe with natural</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="rpost-img">
-                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
-                                </div>
-                                <h5>Spanish Women are the Epitome of Beautiful</h5>
-                                <p class="text-muted">20 June 2018</p>
+                                <h5 th:text="${articles.title}"></h5>
+                                <p class="text-muted"
+                                   th:text="${#temporals.format(articles.createTime, 'yyyy-MM-dd HH:mm')}"></p>
                             </a>
                         </li>
                     </ol>

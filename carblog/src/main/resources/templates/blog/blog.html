@@ -112,17 +112,14 @@
     <div class="row">
         <div class="col-md-8 blog-main col-sm-7">
             <div class="blog-post text-center blog-post-single" th:object="${blog}">
-                <div class="blog-block-img">
-                    <img th:src="@{blog.user.avatarUrl}" alt="" class="img-fluid">
-                </div>
-                <p class="blog-post-cat">分类</p>
+                <p class="blog-post-cat">关键字</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
                     <input name="id" th:field="${blog.id}" hidden>
                 </a>
 
                 <p class="blog-post-meta">
-                    <img th:src="@{images/blog/widget-2.jpg}" alt="" class="img-fluid small"
+                    <img th:src="@{blog.user.avatarUrl}" alt="" class="img-fluid small"
                          th:text="${#temporals.format(blog.createTime, 'yyyy-MM-dd HH:mm')}"> by
                     <a href="#" th:text="${blog.user.name}"></a></p>
                 <p th:utext="${content}"></p>
@@ -134,7 +131,7 @@
             <div class="author-area">
                 <div class="author-img">
                     <a href="#">
-                        <span class=""><img alt="" th:src="@{images/blog/author.jpeg.jpg}"></span>
+                        <span class=""><img alt="" th:src="@{/images/blog/author.jpeg.jpg}"></span>
                     </a>
                 </div>
 
@@ -143,12 +140,6 @@
                         <a href="#" th:text="${blog.user.name}"></a>
                     </h4>
                     <p th:text="${blog.user.content}"></p>
-                    <!--邮箱等-->
-                    <div class="author-social-link">
-                        <a href="#" target="_blank" title="Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
 

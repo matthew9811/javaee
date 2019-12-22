@@ -34,6 +34,9 @@ public interface IBlogService {
      */
     HashMap<String, Object> findBlogById(String id);
 
+
+    HashMap<String, Object> findNewBlog();
+
     /**
      * 查找所有通过审核的文章
      *
