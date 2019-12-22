@@ -28,13 +28,10 @@ public interface IBlogRepository extends JpaRepository<Blog, String> {
     Blog findBlogById(@Param("id") String id);
 
     /**
-     * 获取最新的四条数据
-     *
-     * @param id userId:int
-     * @return list<Blog> :List->Blog
+     * 获取最新的7条数据
      */
     @Query(value = "select id, title, create_time AS createTime from " +
-            "blog where user_id = :id  order by createTime desc limit 0, 7", nativeQuery = true)
-    List<Object> findBlogLatestSeven(@Param("id") Integer id);
+            "blog  order by createTime desc limit 0, 7", nativeQuery = true)
+    List<Object> findBlogLatestSeven();
 
 }

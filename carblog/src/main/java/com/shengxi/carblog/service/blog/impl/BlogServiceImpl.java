@@ -104,7 +104,7 @@ public class BlogServiceImpl implements IBlogService {
 
         data.put("blog", blog);
         data.put("content", this.readHtml(blog.getBlogUrl()));
-        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven(blog.getUser().getId());
+        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven();
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
