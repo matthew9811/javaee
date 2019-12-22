@@ -6,6 +6,7 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -17,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "blog")
 @AllArgsConstructor
 public class Blog implements Serializable {
@@ -78,14 +80,4 @@ public class Blog implements Serializable {
         this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "id='" + id + '\'' +
-                ", blogUrl='" + blogUrl + '\'' +
-                ", status=" + status +
-                ", reviewer=" + reviewer +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 }

@@ -2,6 +2,8 @@ package com.shengxi.carblog.repository;
 
 import com.shengxi.carblog.pojo.Blog;
 import java.util.List;
+import java.util.Map;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,16 +33,8 @@ public interface IBlogRepository extends JpaRepository<Blog, String> {
      * @param id userId:int
      * @return list<Blog> :List->Blog
      */
-    @Query(value = "SELECT " +
-            "  b.id as id, " +
-            "  b.title as title, " +
-            "  b.create_time  as create_time " +
-            "FROM " +
-            "  blog AS b " +
-            "  LEFT JOIN `user` AS u ON u.id = b.user_id  " +
-            "WHERE " +
-            "  u.id = 1  " +
-            "  LIMIT 0, " +
-            "  7", nativeQuery = true)
-    List<Blog> findBlogLatestFour(@Param("id") Integer id);
+    @Query(value = "select id, title, create_time AS createTime from " +
+            "blog where user_id = :id  order by createTime desc limit 0, 7", nativeQuery = true)
+    List<Object> findBlogLatestSeven(@Param("id") Integer id);
+
 }

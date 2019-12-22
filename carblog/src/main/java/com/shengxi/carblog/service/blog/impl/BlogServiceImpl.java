@@ -11,7 +11,6 @@ import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,9 +18,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,9 +101,16 @@ public class BlogServiceImpl implements IBlogService {
             return null;
         }
         HashMap<String, Object> data = new HashMap<>(3);
+
         data.put("blog", blog);
         data.put("content", this.readHtml(blog.getBlogUrl()));
-        data.put("latestList", blogRepository.findBlogLatestFour(blog.getUser().getId()));
+        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven(blog.getUser().getId());
+        List<Blog> blogList = new ArrayList<>();
+        for (int i = 0; i < blogLatestSeven.size(); i++) {
+            Object[] obj = (Object[]) blogLatestSeven.get(i);
+            blogList.add(new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp)obj[2]).toLocalDateTime()));
+        }
+        data.put("latestList", blogList);
         return data;
     }
 

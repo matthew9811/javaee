@@ -23,6 +23,7 @@
     <script type="application/x-javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </head>
 
 <body>
@@ -190,13 +191,14 @@
                     <h4 class="sidebar-title">最新文章</h4>
                     <!--最新文章 7篇-->
                     <ol class="list-unstyled">
-                        <li>
-                            <a th:href="@{'/blog/blog/' + ${articles.id}">
+                        <li th:each="articles: ${latestList}">
+                            <a th:href="@{/blog/blog/ } + ${articles.id}">
                                 <div class="rpost-img">
                                     <img th:src="@{images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5 th:text="${articles.title}"></h5>
-                                <p class="text-muted" th:text="${#temporals.format(articles.createTime, 'yyyy-MM-dd HH:mm')}""></p>
+                                <p class="text-muted"
+                                   th:text="${#temporals.format(articles.createTime, 'yyyy-MM-dd HH:mm')}"></p>
                             </a>
                         </li>
                     </ol>
@@ -224,15 +226,7 @@
     </p>
 </footer>
 
-<script type="application/x-javascript" th:src="@{/js/jquery.slim.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
 <script th:inline="javascript">
-    $(function () {
-        let val = $('input[name = "id"]').val();
-        console.log(val);
-    })
 </script>
 </html>
