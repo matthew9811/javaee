@@ -39,7 +39,7 @@ public class IBlogRepositoryTest {
     @Test
     public void findBlogLatestFour() {
         Pageable pageable = PageRequest.of(0, 7, Sort.by(Sort.Direction.DESC, "createTime"));
-        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven(1);
+        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven();
         JSONArray jsonObject = (JSONArray) JSONObject.toJSON(blogLatestSeven);
         System.out.println(jsonObject);
     }
@@ -48,7 +48,7 @@ public class IBlogRepositoryTest {
     @Test
     public void findBlogLatestSeven() {
         Pageable pageable = PageRequest.of(0, 7, Sort.by(Sort.Direction.DESC, "createTime"));
-        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven(1);
+        List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven();
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
