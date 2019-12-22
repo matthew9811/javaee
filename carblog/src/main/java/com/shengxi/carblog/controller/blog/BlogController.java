@@ -3,8 +3,8 @@ package com.shengxi.carblog.controller.blog;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.service.admin.IManagerService;
 import com.shengxi.carblog.service.blog.IBlogService;
-import com.shengxi.carblog.service.blog.IPhotoService;
 import com.shengxi.compent.aop.annotation.LoginStatus;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.UserUtil;
@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+
+import com.shengxi.compent.utils.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +38,7 @@ public class BlogController extends BaseController {
     private String prefix = "/blog";
 
     private IBlogService blogService;
-
-    private IPhotoService photoService;
+    private IManagerService managerService;
 
     @GetMapping("/about")
     public String about() {
@@ -46,38 +47,18 @@ public class BlogController extends BaseController {
 
     @GetMapping("/addBlog")
     public String addBlog() {
-        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())){
             return "/blog/blog_login";
         }
         return prefix + "/add_blog";
     }
 
-    /**
-     * 新增博客
-     *
-     * @param data 博客参数
-     * @return 响应tips
-     */
-    @LoginStatus(value = true)
-    @PostMapping("/addBlog")
-    @ResponseBody
-    public ResponsePojo addBlog(@RequestBody Map data) throws IOException {
-        return blogService.addBlog(data);
-    }
-
-
     @GetMapping("/addPhoto")
     public String addPhoto() {
-        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())){
             return "/blog/blog_login";
         }
         return prefix + "/add_photo";
-    }
-
-    @PostMapping("/addPhoto")
-    @ResponseBody
-    public ResponsePojo addPhoto(@RequestBody Map data) throws IOException {
-        return photoService.addPhoto(data);
     }
 
     /**
@@ -112,14 +93,36 @@ public class BlogController extends BaseController {
         return prefix + "/photo_index";
     }
 
+    /**
+     * 新增博客
+     *
+     * @param data 博客参数
+     * @return 响应tips
+     */
+    @LoginStatus(value = true)
+    @PostMapping("/addBlog")
+    @ResponseBody
+    public ResponsePojo addBlog(@RequestBody Map data) throws IOException {
+        return blogService.addBlog(data);
+    }
 
     @Autowired
     public void setBlogService(IBlogService blogService) {
         this.blogService = blogService;
     }
 
+    @GetMapping("/editUser/{id}")
+    @ResponseBody
+    public ResponsePojo editUser(@PathVariable("id") Integer id) {
+        boolean b = managerService.editUser(id);
+        if (true == b) {
+            getResponsePojo(ResponseStatus.SUCCESS, "修改成功");
+        }
+        return getResponsePojo(ResponseStatus.FAIL, "修改失败");
+    }
+
     @Autowired
-    public void setPhotoService(IPhotoService photoService) {
-        this.photoService = photoService;
+    public void setManagerService(IManagerService managerService) {
+        this.managerService = managerService;
     }
 }

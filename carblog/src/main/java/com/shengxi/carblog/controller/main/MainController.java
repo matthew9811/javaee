@@ -133,7 +133,7 @@ public class MainController extends BaseController {
     @GetMapping("/logout")
     public String logout(ModelMap modelMap, HttpServletRequest request) {
         this.deleteSession(request);
-        return prefix + "/index";
+        return prefix + "/blog/blog_login";
     }
 
     @GetMapping("/adminOut")

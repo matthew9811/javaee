@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @see javax.servlet.Filter
  */
 @WebFilter(filterName = "LoginTimeFilter")
-public class LoginTimeFilter implements Filter {
+public abstract class LoginTimeFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
