@@ -8,6 +8,7 @@ import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.blog.IBlogService;
+import com.shengxi.compent.constant.RegularConstant;
 import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.constant.UploadConstant;
 import com.shengxi.compent.utils.FileUtils;
@@ -26,8 +27,12 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -86,10 +91,10 @@ public class BlogServiceImpl implements IBlogService {
             return null;
         }
         HashMap<String, Object> data = new HashMap<>(3);
-
+        StringBuffer stringBuffer = FileUtils.readHtml(blog.getBlogUrl());
         data.put("blog", blog);
-        data.put("content", FileUtils.readHtml(blog.getBlogUrl()));
-
+        data.put("content", stringBuffer);
+        data.put("imageUrl", getImgUrl(stringBuffer));
         data.putAll(findNewBlog());
         return data;
     }
@@ -102,7 +107,7 @@ public class BlogServiceImpl implements IBlogService {
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
-            blogList.add(new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp)obj[2]).toLocalDateTime()));
+            blogList.add(new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp) obj[2]).toLocalDateTime()));
         }
         data.put("latestList", blogList);
         return data;
@@ -112,8 +117,6 @@ public class BlogServiceImpl implements IBlogService {
     public List<Blog> findPassBlogAll() {
         return blogRepository.findAll();
     }
-
-
 
 
     @Autowired
