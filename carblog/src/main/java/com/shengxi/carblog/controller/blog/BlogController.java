@@ -5,9 +5,11 @@ import cn.hutool.db.Page;
 import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.blog.IBlogService;
+import com.shengxi.carblog.service.blog.ICommentService;
 import com.shengxi.carblog.service.blog.IPhotoService;
 import com.shengxi.compent.aop.annotation.LoginStatus;
 import com.shengxi.compent.utils.BaseController;
+import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -40,6 +42,8 @@ public class BlogController extends BaseController {
     private IBlogService blogService;
 
     private IPhotoService photoService;
+
+    private ICommentService commentService;
 
     @GetMapping("/about")
     public String about() {
@@ -116,6 +120,13 @@ public class BlogController extends BaseController {
         return prefix + "/photo_index";
     }
 
+    @PostMapping("/addComment")
+    @ResponseBody
+    public ResponsePojo addComment(@RequestBody Map params) {
+        ResponsePojo pojo = commentService.addNewComment(params);
+        return ObjectUtil.isNull(pojo) ? new ResponsePojo(ResponseStatus.FAIL, "评论失败，请稍后再试!") : pojo;
+    }
+
 
     @Autowired
     public void setBlogService(IBlogService blogService) {
@@ -125,5 +136,10 @@ public class BlogController extends BaseController {
     @Autowired
     public void setPhotoService(IPhotoService photoService) {
         this.photoService = photoService;
+    }
+
+    @Autowired
+    public void setCommentService(ICommentService commentService) {
+        this.commentService = commentService;
     }
 }

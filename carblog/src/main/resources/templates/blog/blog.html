@@ -115,7 +115,7 @@
                 <p class="blog-post-cat">关键字</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
-                    <input name="id" th:field="${blog.id}" hidden>
+                    <input id="blogId" name="id" th:field="${blog.id}" hidden>
                 </a>
 
                 <p class="blog-post-meta">
@@ -136,6 +136,7 @@
                 </div>
 
                 <div class="author-info">
+                    <input id="userId" name="id" th:field="${blog.user.id}" hidden>
                     <h4 class="upper">
                         <a href="#" th:text="${blog.user.name}"></a>
                     </h4>
@@ -157,7 +158,7 @@
                         <textarea id="comment" name="comment" cols="90" rows="8" required="required"></textarea>
                     </p>
                     <p class="form-submit">
-                        <a href="#" class="btn btn-sm btn-dark">发送</a>
+                        <a id="commentSubimt" href="#" class="btn btn-sm btn-dark">发送</a>
                     </p>
                 </form>
             </div>
@@ -206,5 +207,30 @@
 
 </body>
 <script th:inline="javascript">
+    let ctx = [[@{/}]];
+        let prefix = ctx + "blog";
+    $('#commentSubimt').on('click', function () {
+        let data = JSON.stringify({
+            content: $('#comment').val(),
+            userId: $('#userId').val(),
+            blogId: $('#blogId').val()
+        });
+        $.ajax({
+            url: prefix + '/addComment',
+            method: 'post',
+            contentType: 'application/json;charset=utf-8',
+            data: data,
+            success: function (data) {
+                if (data.status == 'SUCCESS') {
+                    alert(data.msg);
+                    $('#comment').val("");
+                    location.reload();
+                } else {
+                    console.error(data.msg);
+                }
+            }
+        })
+    })
+
 </script>
 </html>
