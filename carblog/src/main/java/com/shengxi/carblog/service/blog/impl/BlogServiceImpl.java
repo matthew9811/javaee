@@ -1,40 +1,30 @@
 package com.shengxi.carblog.service.blog.impl;
 
 import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.Blog;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.blog.IBlogService;
-import com.shengxi.compent.constant.RegularConstant;
 import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.constant.UploadConstant;
 import com.shengxi.compent.utils.FileUtils;
+import com.shengxi.compent.utils.PageUtil;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,6 +94,20 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
+    public Page<Blog> findAllByPage(Map<String, Object> params) {
+        Pageable pageable = PageUtil.listPageable(params, "createTime");
+        Page<Blog> all = blogRepository.findAll(pageable);
+        Iterator<Blog> iterator = all.iterator();
+        while (iterator.hasNext()) {
+            Blog next = iterator.next();
+            if (ObjectUtil.notEqual(StatusConstant.BLOG_CONFIG_STATUS, next.getStatus())) {
+                iterator.remove();
+            }
+        }
+        return all;
+    }
+
+    @Override
     public HashMap<String, Object> findNewBlog() {
         HashMap<String, Object> data = new HashMap<>(1);
 
@@ -111,13 +115,14 @@ public class BlogServiceImpl implements IBlogService {
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
-            Blog blog = new Blog(obj[0].toString(), obj[1].toString(),obj[2].toString(), ((Timestamp) obj[3]).toLocalDateTime());
+            Blog blog = new Blog(obj[0].toString(), obj[1].toString(), obj[2].toString(), ((Timestamp) obj[3]).toLocalDateTime());
             blog.setImgUrl(FileUtils.getImgUrl(FileUtils.readHtml(blog.getBlogUrl())));
             blogList.add(blog);
         }
         data.put("latestList", blogList);
         return data;
     }
+
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {
         this.userRepository = userRepository;

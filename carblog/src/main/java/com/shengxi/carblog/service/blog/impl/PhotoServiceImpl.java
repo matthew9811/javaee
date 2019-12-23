@@ -72,8 +72,7 @@ public class PhotoServiceImpl implements IPhotoService {
 
     @Override
     public List<? extends Object> findDrawOfPagination(PageRequest pagination) {
-        List<Object> objectDrawList = drawRepository.findDrawOfPagination(pagination);
-
+        //获取数据
         return null;
     }
 }

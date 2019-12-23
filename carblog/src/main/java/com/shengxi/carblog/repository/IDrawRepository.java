@@ -4,6 +4,7 @@ import com.shengxi.carblog.pojo.Draw;
 import java.util.List;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,11 +18,4 @@ import org.springframework.stereotype.Repository;
 public interface IDrawRepository extends JpaRepository<Draw, Integer> {
 
 
-    /**
-     * 分页查找对应的数据
-     *
-     * @param pagination :Pageable
-     * @returnv list->Obj 获取出来的数据
-     */
-    List<Object> findDrawOfPagination(PageRequest pagination);
 }
