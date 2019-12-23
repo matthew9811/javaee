@@ -56,6 +56,7 @@ public class PhotoServiceImpl implements IPhotoService {
         /* 初始化审核人为自己 */
         draw.setReviewer(byName.getId());
         draw.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
+        draw.setRecommend(StatusConstant.BLOG_CONFIG_STATUS);
         draw.setUploadTime(LocalDateTime.now());
         draw.setTitle((String) data.get("title"));
         photoArr.forEach(v -> text.append(v));
