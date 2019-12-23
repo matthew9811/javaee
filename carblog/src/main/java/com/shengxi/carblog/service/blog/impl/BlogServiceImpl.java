@@ -94,7 +94,7 @@ public class BlogServiceImpl implements IBlogService {
         StringBuffer stringBuffer = FileUtils.readHtml(blog.getBlogUrl());
         data.put("blog", blog);
         data.put("content", stringBuffer);
-        data.put("imageUrl", getImgUrl(stringBuffer));
+        data.put("imageUrl", FileUtils.getImgUrl(stringBuffer));
         data.putAll(findNewBlog());
         return data;
     }
