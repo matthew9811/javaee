@@ -57,7 +57,7 @@ public class FileUtils {
             }
         }
         FileOutputStream outputStream = new FileOutputStream(saveFile, true);
-//        outputStream.write(String.valueOf(data.get("content")).getBytes("utf-8"));
+        outputStream.write(data.getBytes("utf-8"));
         outputStream.close();
         return tmpPath;
     }
