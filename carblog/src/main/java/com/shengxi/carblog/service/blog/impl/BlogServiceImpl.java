@@ -59,6 +59,7 @@ public class BlogServiceImpl implements IBlogService {
         blog.setReviewer(userId);
         blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setUser(userRepository.findById(userId).get());
+        blog.setRecommend(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setCreateTime(LocalDateTime.now());
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
