@@ -16,8 +16,11 @@ import com.shengxi.compent.utils.UserUtil;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -64,6 +67,13 @@ public class PhotoServiceImpl implements IPhotoService {
             pojo.put("id", save.getId());
             return pojo;
         }
+        return null;
+    }
+
+    @Override
+    public List<? extends Object> findDrawOfPagination(PageRequest pagination) {
+        List<Object> objectDrawList = drawRepository.findDrawOfPagination(pagination);
+
         return null;
     }
 }
