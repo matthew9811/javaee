@@ -30,7 +30,7 @@ public interface IBlogRepository extends JpaRepository<Blog, String> {
     /**
      * 获取最新的7条数据
      */
-    @Query(value = "select id, title, create_time AS createTime from " +
+    @Query(value = "select id,  blog_url AS blogUrl, title, create_time AS createTime from " +
             "blog  order by createTime desc limit 0, 7", nativeQuery = true)
     List<Object> findBlogLatestSeven();
 

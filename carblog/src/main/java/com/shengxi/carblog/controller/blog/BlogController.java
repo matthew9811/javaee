@@ -88,12 +88,13 @@ public class BlogController extends BaseController {
     public String person() {
         return prefix + "/person";
     }
-
-    @GetMapping("/photoIndex")
-    public String photo(Model model) {
-        model.addAllAttributes(blogService.findNewBlog());
-        return prefix + "/photo_index";
-    }
+//
+//    @GetMapping("/photoIndex")
+//    public String photo(Pagination pagination,Model model) {
+//        model.addAllAttributes(blogService.findNewBlog());
+//        model.addAttribute(photoService.findDrawOfPagination())
+//        return prefix + "/photo_index";
+//    }
 
     /**
      * 新增博客
