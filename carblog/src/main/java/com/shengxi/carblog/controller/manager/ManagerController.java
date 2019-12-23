@@ -1,9 +1,11 @@
 package com.shengxi.carblog.controller.manager;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.admin.IManagerService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
+import com.shengxi.compent.utils.UserUtil;
 import java.util.Collections;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,16 @@ public class ManagerController extends BaseController {
 
     private IManagerService managerService;
 
+    /**
+     * 进入主页
+     *
+     * @return url
+     */
     @GetMapping("/index")
     public String index() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/index";
     }
 

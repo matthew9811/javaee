@@ -111,9 +111,8 @@ public class BlogController extends BaseController {
     }
 
     @GetMapping("/photoIndex")
-    public String photo(PageRequest pagination, Model model) {
+    public String photo(Model model) {
         model.addAllAttributes(blogService.findNewBlog());
-        model.addAttribute(photoService.findDrawOfPagination(pagination));
         return prefix + "/photo_index";
     }
 

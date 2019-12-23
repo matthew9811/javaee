@@ -46,4 +46,10 @@ public class Draw implements Serializable {
 
     @Column(name = "title")
     private String title;
+
+    public Draw(String contentUrl, LocalDateTime uploadTime, String title) {
+        this.contentUrl = contentUrl;
+        this.uploadTime = uploadTime;
+        this.title = title;
+    }
 }
