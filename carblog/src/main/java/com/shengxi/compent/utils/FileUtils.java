@@ -113,7 +113,7 @@ public class FileUtils {
      * @param text 需要使用的字符串
      * @return imgUrl :String对应的图片的url
      */
-    public String getImgUrl(StringBuffer text) {
+    public static String getImgUrl(StringBuffer text) {
         List<String> pics = new ArrayList<>();
         Pattern p_image = Pattern.compile
                 (RegularConstant.IMG_REGULAR, Pattern.CASE_INSENSITIVE);
