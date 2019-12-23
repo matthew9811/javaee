@@ -42,9 +42,11 @@ public class PhotoServiceImpl implements IPhotoService {
 
     @Autowired
     private IDrawRepository drawRepository;
+
     @Override
     public ResponsePojo addPhoto(Map data) throws IOException {
         Draw draw = new Draw();
+        StringBuffer text = new StringBuffer();
         ArrayList<String> photoArr = (ArrayList) data.get("photoArr");
         User byName = userRepository.findByName(UserUtil.getUserName());
         String fileName = UUID.randomUUID(true).toString().replace("-", "").concat(SUFFIX);
@@ -53,10 +55,11 @@ public class PhotoServiceImpl implements IPhotoService {
         draw.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
         draw.setUploadTime(LocalDateTime.now());
         draw.setTitle((String) data.get("title"));
-        draw.setContentUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, data).concat("/") + fileName);
+        photoArr.forEach(v -> text.append(v));
+        draw.setContentUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, text.toString()).concat("/") + fileName);
         draw.setUser(byName);
         Draw save = drawRepository.save(draw);
-        if (ObjectUtil.isNotEmpty(save)){
+        if (ObjectUtil.isNotEmpty(save)) {
             ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
             pojo.put("id", save.getId());
             return pojo;

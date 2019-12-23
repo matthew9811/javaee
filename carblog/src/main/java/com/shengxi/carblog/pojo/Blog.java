@@ -51,7 +51,7 @@ public class Blog implements Serializable {
 
     @Column(name = "create_time")
     private LocalDateTime createTime;
-
+    @Transient
     private String imgUrl;
     public Blog() {
     }

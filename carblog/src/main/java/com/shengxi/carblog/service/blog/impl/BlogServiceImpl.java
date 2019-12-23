@@ -73,7 +73,7 @@ public class BlogServiceImpl implements IBlogService {
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
         blog.setRemark(data.get("content").toString().substring(0, 74).replace("<p>", ""));
-        blog.setBlogUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, data).concat("/") + fileName);
+        blog.setBlogUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, data.get("content").toString()).concat("/") + fileName);
         Blog save = blogRepository.save(blog);
         if (ObjectUtil.isNotEmpty(save)) {
             ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
@@ -107,7 +107,9 @@ public class BlogServiceImpl implements IBlogService {
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
-            blogList.add(new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp) obj[2]).toLocalDateTime()));
+            Blog blog = new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp) obj[2]).toLocalDateTime());
+            blog.setImgUrl(FileUtils.getImgUrl(FileUtils.readHtml(blog.getBlogUrl())));
+            blogList.add(blog);
         }
         data.put("latestList", blogList);
         return data;
