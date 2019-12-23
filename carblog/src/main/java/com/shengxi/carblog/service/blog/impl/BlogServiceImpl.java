@@ -128,19 +128,4 @@ public class BlogServiceImpl implements IBlogService {
     public void setBlogRepository(IBlogRepository blogRepository) {
         this.blogRepository = blogRepository;
     }
-
-    public String getImgUrl(StringBuffer text){
-        List<String> pics = new ArrayList<>();
-        Pattern p_image = Pattern.compile
-                (RegularConstant.IMG_REGULAR, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = p_image.matcher(text);
-        while (matcher.find()) {
-            String img = matcher.group();
-            Matcher resultMatcher = Pattern.compile(RegularConstant.SRC_REGULAR).matcher(img);
-            while (resultMatcher.find()) {
-                pics.add(resultMatcher.group(1));
-            }
-        }
-        return pics.get(1)
-    }
 }
