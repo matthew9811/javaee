@@ -34,5 +34,4 @@ public interface IBlogRepository extends JpaRepository<Blog, String>, JpaSpecifi
     @Query(value = "select id,  blog_url AS blogUrl, title, create_time AS createTime from " +
             "blog where status = '0' order by createTime desc limit 0, 7", nativeQuery = true)
     List<Object> findBlogLatestSeven();
-
 }

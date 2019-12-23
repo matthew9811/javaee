@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.data.domain.Page;
 
 /**
  * 博客模块服务层
@@ -43,4 +44,12 @@ public interface IBlogService {
      * @return list: List<Blog>
      */
     List<Blog> findPassBlogAll();
+
+    /**
+     * 通过分页查询获取数据
+     *
+     * @param params 分页查询
+     * @return list Blog
+     */
+    Page<Blog> findAllByPage(Map<String, Object> params);
 }

@@ -2,7 +2,9 @@ package com.shengxi.carblog.controller.manager;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
+import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
+import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -31,6 +35,8 @@ public class ManagerController extends BaseController {
 
     private IManagerService managerService;
 
+    private IBlogService blogService;
+
     /**
      * 进入主页
      *
@@ -44,44 +50,75 @@ public class ManagerController extends BaseController {
         return prefix + "/index";
     }
 
+    /**
+     * 进入文章
+     *
+     * @return url
+     */
     @GetMapping("/article")
-    public String article() {
+    public String article(@RequestParam Map<String, Object> params, ModelMap modelMap) {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
+        params.put("page", Integer.valueOf((String) params.get("offset")) / Integer.valueOf((String) params.get("limit")) + 1);
+        modelMap.addAttribute("pageList", blogService.findAllByPage(params).getContent());
         return prefix + "/article";
     }
 
     @GetMapping("/notice")
     public String notice() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/notice";
     }
 
     @GetMapping("/comment")
     public String comment() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/comment";
     }
 
     @GetMapping("/manage")
     public String manage(ModelMap modelMap) {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         modelMap.addAttribute("list", managerService.findAllUser());
         return prefix + "/manage_user";
     }
 
     @GetMapping("/manageAdmin")
     public String manageAdmin() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/manage_admin";
     }
 
     @GetMapping("/log")
     public String log() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/login_log";
     }
 
     @GetMapping("/add")
     public String add() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/add_article";
     }
 
     @GetMapping("/tips")
     public String tips() {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
         return prefix + "/tips";
     }
 
@@ -101,8 +138,19 @@ public class ManagerController extends BaseController {
         return getResponsePojo(ResponseStatus.FAIL, "修改失败");
     }
 
+    @PostMapping("/blogPass")
+    public ResponsePojo blogPass(String blogId){
+        System.out.println(blogId);
+        return null;
+    }
+
     @Autowired
     public void setManagerService(IManagerService managerService) {
         this.managerService = managerService;
+    }
+
+    @Autowired
+    public void setBlogService(IBlogService blogService) {
+        this.blogService = blogService;
     }
 }

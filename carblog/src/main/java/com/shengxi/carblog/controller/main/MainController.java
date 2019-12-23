@@ -126,7 +126,9 @@ public class MainController extends BaseController {
     }
 
     @PostMapping("/adminLogin")
-    public String adminLogin(User loginUser, ModelMap map) {
+    public String adminLogin(User loginUser, ModelMap map, HttpServletRequest request, HttpServletResponse response) {
+        Cookie cookie = saveToSessionAndCookies(request, loginUser);
+        response.addCookie(cookie);
         Boolean aBoolean = userService.loginManagerVerify(loginUser);
         if (aBoolean) {
             return prefix + "/admin/index";
