@@ -29,11 +29,14 @@ public class ResponsePojo extends HashMap<String, Object> implements Serializabl
     public ResponsePojo(Map<? extends String, ?> m, ResponseStatus status) {
         super(m);
         this.status = status;
+        this.put("status", status);
     }
 
     public ResponsePojo(ResponseStatus status, String msg) {
         this.status = status;
         this.msg = msg;
+        this.put("status", status);
+        this.put("msg", msg);
     }
 
     public ResponseStatus getStatus() {
@@ -55,6 +58,8 @@ public class ResponsePojo extends HashMap<String, Object> implements Serializabl
     public void setInstance(ResponseStatus status, String msg) {
         this.status = status;
         this.msg = msg;
+        this.put("status", status);
+        this.put("msg", msg);
     }
 
     @Override
