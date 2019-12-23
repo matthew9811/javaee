@@ -37,7 +37,7 @@ public class ManagerServiceImpl implements IManagerService {
         map.put("userNum", userRepository.count());
         map.put("blogNum", blogRepository.count());
         map.put("commentNum", commentRepository.count());
-//        map.put("drawTitleNum", drawTitleRepository.count());
+        map.put("drawTitleNum", 0);
         return map;
     }
 

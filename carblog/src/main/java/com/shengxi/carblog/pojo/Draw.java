@@ -1,6 +1,7 @@
 package com.shengxi.carblog.pojo;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,11 +33,17 @@ public class Draw implements Serializable {
     private User user;
 
     @Column(name = "status")
-    private char status;
+    private String status;
 
     @Column(name = "content_url")
     private String contentUrl;
 
     @Column(name = "reviewer")
     private Integer reviewer;
+
+    @Column(name = "upload_time")
+    private LocalDateTime uploadTime;
+
+    @Column(name = "title")
+    private String title;
 }

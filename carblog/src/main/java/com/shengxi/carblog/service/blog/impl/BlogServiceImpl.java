@@ -9,6 +9,8 @@ import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.constant.StatusConstant;
+import com.shengxi.compent.constant.UploadConstant;
+import com.shengxi.compent.utils.FileUtils;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
 import java.io.BufferedReader;
@@ -42,24 +44,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BlogServiceImpl implements IBlogService {
 
-    /**
-     * 保存时使用的路径前缀，系统目录下对应模块的uploads文件夹
-     */
-    private final String UPLOAD_PATH_PREFIX = System.getProperty("user.dir") + "/carblog/uploads/";
-    /**
-     * 模块路径
-     */
-    private final String SYSTEM_PATH = System.getProperty("user.dir") + "/carblog";
 
-    /**
-     * 项目内相对路径
-     */
-    private final String MODULE_PATH = "/carblog/uploads/";
-
-    /**
-     * 相对路径前缀
-     */
-    private final String SQL_PATH_PREFIX = "/uploads/";
     /**
      * 后缀
      */
@@ -83,7 +68,7 @@ public class BlogServiceImpl implements IBlogService {
         blog.setTitle((String) data.get("title"));
         /*自动获取74个文字作为摘要，同时删除对应的<p>标签*/
         blog.setRemark(data.get("content").toString().substring(0, 74).replace("<p>", ""));
-        blog.setBlogUrl(SQL_PATH_PREFIX + this.saveFile(fileName, data).concat("/") + fileName);
+        blog.setBlogUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, data).concat("/") + fileName);
         Blog save = blogRepository.save(blog);
         if (ObjectUtil.isNotEmpty(save)) {
             ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
@@ -103,7 +88,7 @@ public class BlogServiceImpl implements IBlogService {
         HashMap<String, Object> data = new HashMap<>(3);
 
         data.put("blog", blog);
-        data.put("content", this.readHtml(blog.getBlogUrl()));
+        data.put("content", FileUtils.readHtml(blog.getBlogUrl()));
 
         data.putAll(findNewBlog());
         return data;
@@ -129,80 +114,7 @@ public class BlogServiceImpl implements IBlogService {
     }
 
 
-    /**
-     * @param fileName
-     * @param data
-     * @return
-     * @throws IOException
-     */
-    private String saveFile(String fileName, Map data) throws IOException {
-        String tmpPath = LocalDate.now(ZoneId.of("Asia/Shanghai")).toString().replace("-", "");
-        File dirFile = new File(UPLOAD_PATH_PREFIX + tmpPath);
-        /* 单例模式双重校验锁 */
-        if (BooleanUtil.isFalse(dirFile.exists())) {
-            synchronized (dirFile) {
-                if (BooleanUtil.isFalse(dirFile.exists())) {
-                    dirFile.mkdirs();
-                }
-            }
-        }
-        File saveFile = new File(dirFile.getAbsolutePath(), fileName);
-        if (BooleanUtil.isFalse(saveFile.exists())) {
-            synchronized (saveFile) {
-                if (BooleanUtil.isFalse(saveFile.exists())) {
-                    saveFile.createNewFile();
-                }
-            }
-        }
-        FileOutputStream outputStream = new FileOutputStream(saveFile, true);
-        outputStream.write(String.valueOf(data.get("content")).getBytes("utf-8"));
-        outputStream.close();
-        return tmpPath;
-    }
 
-
-    /**
-     * 根据路径读取对应的html
-     * @param url 相对路径
-     * @return concent :StringBuffer
-     */
-    private StringBuffer readHtml(String url) {
-        StringBuffer content = new StringBuffer();
-        String line = "";
-        InputStreamReader reader = null;
-        BufferedReader bufferedReader = null;
-
-        /*
-         * 根据路径读取数据
-         */
-        File file = new File(SYSTEM_PATH + url);
-        try {
-            reader = new InputStreamReader(new FileInputStream(file));
-            bufferedReader = new BufferedReader(reader);
-            line = bufferedReader.readLine();
-            while (line != null) {
-                content.append(line);
-                line = bufferedReader.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-                if (bufferedReader != null) {
-                    bufferedReader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return content;
-    }
 
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {
