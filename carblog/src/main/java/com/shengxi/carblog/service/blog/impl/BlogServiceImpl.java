@@ -99,6 +99,11 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
+    public List<Blog> findPassBlogAll() {
+        return blogRepository.findAll();
+    }
+
+    @Override
     public HashMap<String, Object> findNewBlog() {
         HashMap<String, Object> data = new HashMap<>(1);
 
@@ -113,13 +118,6 @@ public class BlogServiceImpl implements IBlogService {
         data.put("latestList", blogList);
         return data;
     }
-
-    @Override
-    public List<Blog> findPassBlogAll() {
-        return blogRepository.findAll();
-    }
-
-
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {
         this.userRepository = userRepository;

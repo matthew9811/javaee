@@ -1,6 +1,7 @@
 package com.shengxi.carblog.controller.blog;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.db.Page;
 import com.alibaba.fastjson.JSONObject;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.service.blog.IBlogService;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -107,13 +109,13 @@ public class BlogController extends BaseController {
     public String person() {
         return prefix + "/person";
     }
-//
-//    @GetMapping("/photoIndex")
-//    public String photo(Pagination pagination,Model model) {
-//        model.addAllAttributes(blogService.findNewBlog());
-//        model.addAttribute(photoService.findDrawOfPagination())
-//        return prefix + "/photo_index";
-//    }
+
+    @GetMapping("/photoIndex")
+    public String photo(PageRequest pagination, Model model) {
+        model.addAllAttributes(blogService.findNewBlog());
+        model.addAttribute(photoService.findDrawOfPagination(pagination));
+        return prefix + "/photo_index";
+    }
 
 
     @Autowired
