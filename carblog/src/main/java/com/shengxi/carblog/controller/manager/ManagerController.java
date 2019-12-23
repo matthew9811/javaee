@@ -65,6 +65,16 @@ public class ManagerController extends BaseController {
         return prefix + "/article";
     }
 
+    @GetMapping("/recommend")
+    public String recommend(@RequestParam Map<String, Object> params, ModelMap modelMap) {
+        if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
+            return "/admin/admin_login";
+        }
+        params.put("page", Integer.valueOf((String) params.get("offset")) / Integer.valueOf((String) params.get("limit")) + 1);
+        modelMap.addAttribute("pageList", blogService.findAllByPage(params).getContent());
+        return prefix + "/recommend";
+    }
+
     @GetMapping("/notice")
     public String notice() {
         if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
