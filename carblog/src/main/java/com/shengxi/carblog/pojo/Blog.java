@@ -52,6 +52,9 @@ public class Blog implements Serializable {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
+    @Column(name = "recommend")
+    private String recommend;
+
     @Transient
     private String imgUrl;
 

@@ -44,6 +44,9 @@ public class Draw implements Serializable {
     @Column(name = "upload_time")
     private LocalDateTime uploadTime;
 
+    @Column(name = "recommend")
+    private String recommend;
+
     @Column(name = "title")
     private String title;
 
