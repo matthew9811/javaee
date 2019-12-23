@@ -106,7 +106,7 @@ public class BlogServiceImpl implements IBlogService {
         List<Blog> blogList = new ArrayList<>();
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
-            Blog blog = new Blog(obj[0].toString(), obj[1].toString(), ((Timestamp) obj[2]).toLocalDateTime());
+            Blog blog = new Blog(obj[0].toString(), obj[1].toString(),obj[2].toString(), ((Timestamp) obj[3]).toLocalDateTime());
             blog.setImgUrl(FileUtils.getImgUrl(FileUtils.readHtml(blog.getBlogUrl())));
             blogList.add(blog);
         }
