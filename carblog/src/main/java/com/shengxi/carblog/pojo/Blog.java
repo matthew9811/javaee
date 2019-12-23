@@ -52,7 +52,7 @@ public class Blog implements Serializable {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-
+    private String imgUrl;
     public Blog() {
     }
 
@@ -60,6 +60,14 @@ public class Blog implements Serializable {
         this.id = id;
         this.title = title;
         this.createTime = createTime;
+    }
+
+    public Blog(String id, String blogUrl, String title, LocalDateTime createTime, String imgUrl) {
+        this.id = id;
+        this.blogUrl = blogUrl;
+        this.title = title;
+        this.createTime = createTime;
+        this.imgUrl = imgUrl;
     }
 
     public Blog(User user, String blogUrl, String remark, String title, LocalDateTime createTime) {
