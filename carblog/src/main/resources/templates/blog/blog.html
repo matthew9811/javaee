@@ -4,7 +4,9 @@
 <!--博客详情页-->
 <head>
     <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
+    <!--<meta name="renderer" content="webkit">-->
+    <meta name="referrer" content="never">
+    <!--<meta name="referrer" content="no-referrer">-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -174,7 +176,7 @@
                         <li th:each="articles: ${latestList}">
                             <a th:href="@{/blog/blog/ } + ${articles.id}">
                                 <div class="rpost-img">
-                                    <img th:src="@{''} + ${imageUrl} " alt="" class="img-fluid">
+                                    <img th:id="'img'+${articles.id}"  th:src="@{''} + ${articles.imgUrl} " alt="" class="img-fluid" data-loaded="0">
                                 </div>
                                 <h5 th:text="${articles.title}"></h5>
                                 <p class="text-muted"
@@ -206,5 +208,15 @@
 
 </body>
 <script th:inline="javascript">
+    $(function () {
+        console.log([[${latestList}]]);
+        var artList = [[${latestList}]];
+        // for (var i in artList) {
+        //     var imgUrl = artList[i].imgUrl;
+        //     $("#img" + artList[i].id).attr('src',imgUrl);
+        //     console.log(imgUrl);
+        //     console.log($("#img" + artList[i].id))
+        // }
+    })
 </script>
 </html>
