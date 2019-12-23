@@ -4,9 +4,7 @@
 <!--博客详情页-->
 <head>
     <meta charset="utf-8">
-    <!--<meta name="renderer" content="webkit">-->
-    <meta name="referrer" content="never">
-    <!--<meta name="referrer" content="no-referrer">-->
+    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -117,7 +115,7 @@
                 <p class="blog-post-cat">关键字</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
-                    <input name="id" th:field="${blog.id}" hidden>
+                    <input id="blogId" name="id" th:field="${blog.id}" hidden>
                 </a>
 
                 <p class="blog-post-meta">
@@ -138,6 +136,7 @@
                 </div>
 
                 <div class="author-info">
+                    <input id="userId" name="id" th:field="${blog.user.id}" hidden>
                     <h4 class="upper">
                         <a href="#" th:text="${blog.user.name}"></a>
                     </h4>
@@ -159,7 +158,7 @@
                         <textarea id="comment" name="comment" cols="90" rows="8" required="required"></textarea>
                     </p>
                     <p class="form-submit">
-                        <a href="#" class="btn btn-sm btn-dark">发送</a>
+                        <a id="commentSubimt" href="#" class="btn btn-sm btn-dark">发送</a>
                     </p>
                 </form>
             </div>
@@ -176,7 +175,7 @@
                         <li th:each="articles: ${latestList}">
                             <a th:href="@{/blog/blog/ } + ${articles.id}">
                                 <div class="rpost-img">
-                                    <img th:id="'img'+${articles.id}"  th:src="@{''} + ${articles.imgUrl} " alt="" class="img-fluid" data-loaded="0">
+                                    <img th:src="@{''} + ${imageUrl} " alt="" class="img-fluid">
                                 </div>
                                 <h5 th:text="${articles.title}"></h5>
                                 <p class="text-muted"
@@ -208,15 +207,30 @@
 
 </body>
 <script th:inline="javascript">
-    $(function () {
-        console.log([[${latestList}]]);
-        var artList = [[${latestList}]];
-        // for (var i in artList) {
-        //     var imgUrl = artList[i].imgUrl;
-        //     $("#img" + artList[i].id).attr('src',imgUrl);
-        //     console.log(imgUrl);
-        //     console.log($("#img" + artList[i].id))
-        // }
+    let ctx = [[@{/}]];
+        let prefix = ctx + "blog";
+    $('#commentSubimt').on('click', function () {
+        let data = JSON.stringify({
+            content: $('#comment').val(),
+            userId: $('#userId').val(),
+            blogId: $('#blogId').val()
+        });
+        $.ajax({
+            url: prefix + '/addComment',
+            method: 'post',
+            contentType: 'application/json;charset=utf-8',
+            data: data,
+            success: function (data) {
+                if (data.status == 'SUCCESS') {
+                    alert(data.msg);
+                    $('#comment').val("");
+                    location.reload();
+                } else {
+                    console.error(data.msg);
+                }
+            }
+        })
     })
+
 </script>
 </html>
