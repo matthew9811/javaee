@@ -125,7 +125,7 @@ public class BlogServiceImpl implements IBlogService {
                 continue;
             }
             //推荐后不显示
-            if (ObjectUtil.notEqual(StatusConstant.RECOMMEND_STATUS, next.getRecommend())) {
+            if (ObjectUtil.equal(StatusConstant.RECOMMEND_STATUS, next.getRecommend())) {
                 iterator.remove();
                 continue;
             }
