@@ -71,7 +71,7 @@ public class ManagerController extends BaseController {
             return "/admin/admin_login";
         }
         params.put("page", Integer.valueOf((String) params.get("offset")) / Integer.valueOf((String) params.get("limit")) + 1);
-        modelMap.addAttribute("pageList", blogService.findAllByPage(params).getContent());
+        modelMap.addAttribute("pageList", blogService.findPassByPage(params).getContent());
         return prefix + "/recommend";
     }
 

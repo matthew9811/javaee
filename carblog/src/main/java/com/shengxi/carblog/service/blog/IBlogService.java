@@ -52,4 +52,6 @@ public interface IBlogService {
      * @return list Blog
      */
     Page<Blog> findAllByPage(Map<String, Object> params);
+
+    Page<Blog> findPassByPage(Map<String, Object> params);
 }

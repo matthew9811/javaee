@@ -109,6 +109,20 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
+    public Page<Blog> findPassByPage(Map<String, Object> params) {
+        Pageable pageable = PageUtil.listPageable(params, "createTime");
+        Page<Blog> all = blogRepository.findAll(pageable);
+        Iterator<Blog> iterator = all.iterator();
+        while (iterator.hasNext()) {
+            Blog next = iterator.next();
+            if (ObjectUtil.notEqual(StatusConstant.BLOG_PASS_STATUS, next.getStatus())) {
+                iterator.remove();
+            }
+        }
+        return all;
+    }
+
+    @Override
     public HashMap<String, Object> findNewBlog() {
         HashMap<String, Object> data = new HashMap<>(1);
 
