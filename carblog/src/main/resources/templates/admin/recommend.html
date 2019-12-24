@@ -65,7 +65,7 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/manager/article?limit=10&offset=1}">文章</a></li>
-                <li><a th:href="@{/manager/notice}">公告</a></li>
+                <li><a th:href="@{/manager/recommend?limit=10&offset=1}">推荐文章</a></li>
                 <li><a th:href="@{/manager/comment}">评论</a></li>
             </ul>
             <ul class="nav nav-sidebar">
@@ -86,7 +86,7 @@
                             </th>
                             <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
                             <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
-                            <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">审核</span></th>
+                            <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">是否推荐</span></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -157,6 +157,13 @@ public class ManagerController extends BaseController {
         return managerService.updateStatus(blogId, StatusConstant.BLOG_PASS_STATUS);
     }
 
+    @PostMapping("/blogDelete")
+    @ResponseBody
+    public ResponsePojo blogDelete(@RequestBody String blogId){
+        blogId = blogId.replace("id=", "");
+        return managerService.updateStatus(blogId, StatusConstant.BLOG_REFUSE_STATUS);
+    }
+
     @Autowired
     public void setManagerService(IManagerService managerService) {
         this.managerService = managerService;
