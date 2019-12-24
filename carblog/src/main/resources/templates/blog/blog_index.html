@@ -145,12 +145,11 @@
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
                                 <a href="#">
-                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                    <h3 id="title-1">  </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p id="content-1"></p>
 
-                                <a href="#" class="read-more">Continue Reading</a>
+                                <a  id="blogUrl-1" th:href="@{''}" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
@@ -165,12 +164,11 @@
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
                                 <a href="#">
-                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                    <h3 id="title-2">  </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p id="content-2"></p>
 
-                                <a href="#" class="read-more">Continue Reading</a>
+                                <a id="blogUrl-2" th:href="@{''}" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
@@ -185,12 +183,11 @@
                             <div class="blog-post-content py-3">
                                 <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
                                 <a href="#">
-                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                    <h3 id="title-3"> </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p id="content-3"></p>
 
-                                <a href="#" class="read-more">Continue Reading</a>
+                                <a id="blogUrl-3" th:href="@{''}" class="read-more">Continue Reading</a>
                             </div>
                         </div>
                     </div>
@@ -371,11 +368,23 @@
         let blogs = [[${recommendList}]];
         console.log(blogs);
         let blog1 = blogs[0];
+        let blog2 = blogs[1];
+        let blog3 = blogs[2];
+        let blog4 = blogs[3];
         $('#bigTitle').html(blog1.title);
         $('#bigTime').text(blog1.createTime);
         $('#bigAuthor').html(blog1.user.name);
         $('#bigRemark').html(blog1.blogContent.substr(0, 740));
         $('#bigBlogUrl').attr('href', '/blog/blog/' + blog1.id);
+        $('#title-1').html(blog2.title);
+        $('#content-1').html(blog2.blogContent.substr(0, 200));
+        $('#blogUrl-1').attr('href', '/blog/blog/' + blog2.id);
+        $('#title-2').html(blog3.title);
+        $('#content-2').html(blog3.blogContent.substr(0, 200));
+        $('#blogUrl-2').attr('href', '/blog/blog/' + blog3.id);
+        $('#title-3').html(blog4.title);
+        $('#content-3').html(blog4.blogContent.substr(0, 200));
+        $('#blogUrl-3').attr('href', '/blog/blog/' + blog4.id);
     }
 
 </script>
