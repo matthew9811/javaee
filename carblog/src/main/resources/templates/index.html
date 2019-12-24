@@ -122,17 +122,15 @@
                 <p class="blog-post-cat">文章标签</p>
                 <a href="#">
                     <!--                    标题-->
-                    <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
+                    <h2 class="blog-post-title" id="lastNewBlogTitle"></h2>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid small">January
-                    1, 2014 by <a href="#">Mark</a></p>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
-                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
-                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                    risus.</p>
+                <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt="" class="img-fluid small"/>
+                <span id="lastNewBlogTime">
+                    by</span> <a href="#" id="lastNewBlogAuthor"></a></p>
+                <p id="lastNewBlogRemark"></p>
 
-                <a href="#" class="read-more">Continue Reading</a>
+                <a th:href="@{''}" id="lastNewBlogUrl" class="read-more">Continue Reading</a>
             </div>
 
             <!--文章 2篇（第2种样式）-->
@@ -319,6 +317,12 @@
             method: 'get',
             success: function (data) {
                 console.log(data);
+                let lastNewBlog = data.blog;
+                $('#lastNewBlogTime').text(lastNewBlog.createTime);
+                $('#lastNewBlogTitle').html(lastNewBlog.title);
+                $('#lastNewBlogAuthor').html(lastNewBlog.user.name);
+                $('#lastNewBlogRemark').html(lastNewBlog.blogContent.substr(0, 740));
+                $('#lastNewBlogUrl').attr('href', '/blog/blog/' + lastNewBlog.id);
             }
         })
     }

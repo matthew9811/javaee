@@ -135,8 +135,11 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     @Transactional(readOnly = true)
     public ResponsePojo findLastestBlog() {
+        ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "");
         Blog blog = blogRepository.findLastOnePass();
-        return null;
+        blog.setBlogContent(FileUtils.readHtml(blog.getBlogUrl()));
+        pojo.put("blog", blog);
+        return pojo;
     }
 
     @Override
