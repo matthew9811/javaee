@@ -103,10 +103,11 @@ public class ManagerController extends BaseController {
     }
 
     @GetMapping("/manageAdmin")
-    public String manageAdmin() {
+    public String manageAdmin(ModelMap modelMap) {
         if (ObjectUtil.isEmpty(UserUtil.getUserName())) {
             return "/admin/admin_login";
         }
+        modelMap.addAttribute("list", managerService.findAdmin());
         return prefix + "/manage_admin";
     }
 
@@ -140,15 +141,15 @@ public class ManagerController extends BaseController {
         return getResponsePojo(managerService.initManagerPageData());
     }
 
-    @GetMapping("/editUser/{id}")
-    @ResponseBody
-    public ResponsePojo editUser(@PathVariable("id") Integer id) {
-        boolean b = managerService.editUser(id);
-        if (true == b) {
-            getResponsePojo(ResponseStatus.SUCCESS, "修改成功");
-        }
-        return getResponsePojo(ResponseStatus.FAIL, "修改失败");
-    }
+//    @GetMapping("/editUser/{id}")
+//    @ResponseBody
+//    public ResponsePojo editUser(@PathVariable("id") Integer id) {
+//        boolean b = managerService.editUser(id);
+//        if (true == b) {
+//            getResponsePojo(ResponseStatus.SUCCESS, "修改成功");
+//        }
+//        return getResponsePojo(ResponseStatus.FAIL, "修改失败");
+//    }
 
     @PostMapping("/blogPass")
     @ResponseBody
@@ -162,6 +163,20 @@ public class ManagerController extends BaseController {
     public ResponsePojo blogDelete(@RequestBody String blogId){
         blogId = blogId.replace("id=", "");
         return managerService.updateStatus(blogId, StatusConstant.BLOG_REFUSE_STATUS);
+    }
+
+    @PostMapping("/blogRecommend")
+    @ResponseBody
+    public ResponsePojo blogRecommend(@RequestBody String blogId){
+        blogId = blogId.replace("id=", "");
+        return managerService.updateRecommend(blogId, StatusConstant.RECOMMEND_STATUS);
+    }
+
+    @PostMapping("/disableUser")
+    @ResponseBody
+    public ResponsePojo disableUser(@RequestBody String userId){
+        userId = userId.replace("id=", "");
+        return managerService.userStatus(Integer.valueOf(userId), StatusConstant.USER_DISABLE_STATUS);
     }
 
     @Autowired

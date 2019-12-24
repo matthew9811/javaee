@@ -24,17 +24,18 @@ public interface IManagerService {
 
 
     /**
-     * 获取所以用户管理需要的信息
+     * 获取所有用户管理需要的信息
      *
      * @return list
      */
     List<UserBlogLog> findAllUser();
 
     /**
-     * @param id
-     * @return 禁用用户
+     * 获取管理员信息
+     *
+     * @return list
      */
-    boolean editUser(Integer id);
+    List<UserBlogLog> findAdmin();
 
     /**
      * 修改文章状态
@@ -44,4 +45,22 @@ public interface IManagerService {
      * @return status and msg
      */
     ResponsePojo updateStatus(String blogId, String blogPassStatus);
+
+    /**
+     * 修改文章状态(推荐状态）
+     *
+     * @param blogId         blog id :String
+     * @param recommendStatus 要修改的状态
+     * @return status and msg
+     */
+    ResponsePojo updateRecommend(String blogId, String recommendStatus);
+
+    /**
+     * 修改用户状态(禁用状态）
+     *
+     * @param id         blog id :String
+     * @param status 要修改的状态
+     * @return status and msg
+     */
+    ResponsePojo userStatus(Integer id, String status);
 }
