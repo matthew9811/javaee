@@ -121,17 +121,17 @@
                 </div>
                 <p class="blog-post-cat">Lifestyle</p>
                 <a href="#">
-                    <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
+                    <h2 class="blog-post-title" id="bigTitle"></h2>
                 </a>
 
-                <p class="blog-post-meta"><img th:src="@{/images/blog/widget-2.jpg}" alt="" class="img-fluid small">January
-                    1, 2014 by <a href="#">Mark</a></p>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
-                    bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus,
-                    tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                    risus.</p>
+                <p class="blog-post-meta">
+                    <img th:src="@{/images/blog/widget-2.jpg}" alt=""
+                                               class="img-fluid small"/>
+                    <span id="bigTime"></span>
+                    by <a id="bigAuthor" href="#">Mark</a></p>
+                <p id="bigRemark"> </p>
 
-                <a href="#" class="read-more">Continue Reading</a>
+                <a id="bigBlogUrl" th:href="@{''}" class="read-more">Continue Reading</a>
             </div>
 
             <!--带小图片的博客3篇-->
@@ -147,7 +147,8 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
@@ -166,7 +167,8 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
@@ -185,7 +187,8 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
@@ -204,7 +207,8 @@
                                 <a href="#">
                                     <h3>Only Photography What You Love Women Modelling </h3>
                                 </a>
-                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
+                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus.</p>
 
                                 <a href="#" class="read-more">Continue Reading</a>
                             </div>
@@ -360,8 +364,19 @@
 </footer>
 <script th:inline="javascript">
     $(function () {
-        console.log([[${recommendList}]]);
+        initData();
     })
+
+    let initData = function () {
+        let blogs = [[${recommendList}]];
+        console.log(blogs);
+        let blog1 = blogs[0];
+        $('#bigTitle').html(blog1.title);
+        $('#bigTime').text(blog1.createTime);
+        $('#bigAuthor').html(blog1.user.name);
+        $('#bigRemark').html(blog1.blogContent.substr(0, 740));
+        $('#bigBlogUrl').attr('href', '/blog/blog/' + blog1.id);
+    }
 
 </script>
 </body>
