@@ -115,9 +115,14 @@ public class BlogController extends BaseController {
     }
 
     @GetMapping("/photoIndex")
-    public String photo(Model model) {
+    public String photoIndex(Model model) {
         model.addAllAttributes(blogService.findNewBlog());
         return prefix + "/photo_index";
+    }
+
+    @GetMapping("/photo")
+    public String photo() {
+        return prefix + "/photo";
     }
 
     @PostMapping("/addComment")

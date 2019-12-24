@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="format-detection" content="telephone=no">
+    <title>摄影家</title>
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="all" type="text/css">
+    <link th:href="@{/css/icofont.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/style.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/blog.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" media="all">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.easing.min.js}"></script>
+    <script th:src="@{/js/jquery.migrate.js}"></script>
+    <script th:src="@{/js/slick.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+</head>
+
+<body>
+
+<!--头部导航-->
+<header class="blog-header">
+    <nav class="navbar navbar-expand-lg site-navigation ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img th:src="@{/images/logo.png}" alt="logo" class="img-fluid"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse"
+                    aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="icofont icofont-navigation-menu"></i></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item" style="padding-top: 10px">
+                        <a class="nav-link page-scroll" th:href="@{/}">主页</a>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            博客
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" th:href="@{/blog/blogIndex}">博客主页</a>
+                            <a class="dropdown-item" th:href="@{/blog/addBlog}">写博客</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            相册
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" th:href="@{/blog/photoIndex}">相册首页</a>
+                            <a class="dropdown-item" th:href="@{/blog/addPhoto}">上传图片</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="padding-top: 10px">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            关于
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" th:href="@{/blog/about}">关于我们</a>
+                            <a class="dropdown-item" th:href="@{/blog/contact}">联系</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" style="padding-top: 10px">
+                        <a class="nav-link page-scroll" href="http://www.baidu.com">搜索</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link page-scroll navbar-brand" style="background:#fff;width: 100px;height: auto;">
+                            <img th:src="@{/images/blog/author.jpeg.jpg}" alt="" class="img-fluid rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                            <p th:switch="${T(com.shengxi.compent.utils.UserUtil).getUserName() != null}">
+                                <a th:case="false" class="dropdown-item" th:href="@{/login}"
+                                   style="background: #fff">登录/注册</a>
+                                <a th:case="true" class="dropdown-item" th:href="@{/blog/person}"
+                                   style="background: #fff">个人中心</a>
+                            </p>
+                            <a class="dropdown-item" th:href="@{/logout}" style="background: #fff">退出</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--封面图-->
+<div class="page-header jumbotron p-3 p-md-5 text-white">
+    <div class="dark-overlay"></div>
+    <div class="container">
+        <div class="col-md-6 px-0 mx-auto ">
+            <div class="text-center page-banner-coontent">
+                <h2>摄影相册</h2>
+                <p>在这里，网站用户分享了有关自己的摄影作品</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-12 blog-main grid-post col-sm-7">
+            <!--八张图片-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="blog-post ">
+                        <div class="row">
+                            <div class="blog-post-thumbnail-zone">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                            </div>
+                            <div class="blog-post-content py-3">
+                                <a href="#">
+                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                </a>
+
+                                <a href="#" class="read-more">Continue Reading</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-post ">
+                        <div class="row">
+                            <div class="blog-post-thumbnail-zone">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                            </div>
+                            <div class="blog-post-content py-3">
+                                <a href="#">
+                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                </a>
+
+                                <a href="#" class="read-more">Continue Reading</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-post ">
+                        <div class="row">
+                            <div class="blog-post-thumbnail-zone">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                            </div>
+                            <div class="blog-post-content py-3">
+                                <a href="#">
+                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                </a>
+
+                                <a href="#" class="read-more">Continue Reading</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="blog-post ">
+                        <div class="row">
+                            <div class="blog-post-thumbnail-zone">
+                                <img th:src="@{/images/blog/blog-img1.jpg}" alt="" class="img-fluid">
+                            </div>
+                            <div class="blog-post-content py-3">
+                                <a href="#">
+                                    <h3>Only Photography What You Love Women Modelling </h3>
+                                </a>
+
+                                <a href="#" class="read-more">Continue Reading</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav aria-label="navigation ">
+                <ul class="pagination blog-pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Older</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Newer</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</main>
+
+<footer class="blog-footer">
+
+    <div class="footer-social">
+        <a href="#" target="_blank" class="fa fa-facebook"></a>
+        <a href="#" target="_blank" class="fa fa-behance"></a>
+        <a href="#" target="_blank" class="fa fa-twitter"></a>
+        <a href="#" target="_blank" class="fa fa-linkedin"></a>
+        <a href="#" target="_blank" class="fa fa-google-plus"></a>
+        <a href="#" target="_blank" class="fa fa-youtube"></a>
+    </div>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+
+</body>
+
+</html>
