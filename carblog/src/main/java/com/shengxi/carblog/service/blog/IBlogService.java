@@ -53,6 +53,19 @@ public interface IBlogService {
      */
     Page<Blog> findAllByPage(Map<String, Object> params);
 
+    /**
+     * 获取对应的推荐页数据
+     *
+     * @param params paramMap
+     * @return list Blog
+     */
     Page<Blog> findPassByPage(Map<String, Object> params);
 
+    /**
+     * 获取最新的数据
+     * 初始化数据
+     *
+     * @return map
+     */
+    ResponsePojo findLastestBlog();
 }

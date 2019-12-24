@@ -58,6 +58,9 @@ public class Blog implements Serializable {
     @Transient
     private String imgUrl;
 
+    @Transient
+    private StringBuffer blogContent;
+
     public Blog() {
     }
 

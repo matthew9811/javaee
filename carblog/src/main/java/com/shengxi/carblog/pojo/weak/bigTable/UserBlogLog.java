@@ -39,5 +39,8 @@ public class UserBlogLog {
     @Column(name = "blogCount")
     private Long blogCount;
 
+    @Column(name = "create_time")
+    private LocalDateTime createTime;
+
 
 }

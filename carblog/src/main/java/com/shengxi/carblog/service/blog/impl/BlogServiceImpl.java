@@ -119,11 +119,31 @@ public class BlogServiceImpl implements IBlogService {
         Iterator<Blog> iterator = all.iterator();
         while (iterator.hasNext()) {
             Blog next = iterator.next();
+            //必须通过审核
             if (ObjectUtil.notEqual(StatusConstant.BLOG_PASS_STATUS, next.getStatus())) {
                 iterator.remove();
+                continue;
+            }
+            //推荐后不显示
+            if (ObjectUtil.equal(StatusConstant.RECOMMEND_STATUS, next.getRecommend())) {
+                iterator.remove();
+                continue;
             }
         }
         return all;
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponsePojo findLastestBlog() {
+        ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "");
+        List<Blog> blogList = blogRepository.findLastOnePass();
+        for (Blog blog : blogList) {
+            blog.setBlogContent(FileUtils.readHtml(blog.getBlogUrl()));
+        }
+        pojo.put("blogList", blogList);
+        return pojo;
     }
 
     @Override

@@ -28,6 +28,7 @@ public interface IUserBlogLogRepository extends JpaRepository<UserBlogLog, Integ
             "u.id AS id, " +
             "u.`name` AS `name`, " +
             "u.status AS status, " +
+            "u.`create_time` AS `create_time`," +
             "count( b.id ) AS blog_count " +
             "FROM " +
             "`user` AS u " +
