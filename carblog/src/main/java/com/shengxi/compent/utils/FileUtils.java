@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * 通用文件呢操作
  *
  * @author yan
- * @version 1.1.1
+ * @version 1.1.0
  * @date 2019-12-23 11:14:54
  */
 public class FileUtils {
@@ -33,11 +33,11 @@ public class FileUtils {
      * 保存文件
      *
      * @param fileName fileName
-     * @param data     data:String
+     * @param data     data
      * @return url
      * @throws IOException
      */
-    public static String saveFile(String fileName, String data) throws IOException {
+    public static String saveFile(String fileName, Map data) throws IOException {
         String tmpPath = LocalDate.now(ZoneId.of("Asia/Shanghai")).toString().replace("-", "");
         File dirFile = new File(UploadConstant.UPLOAD_PATH_PREFIX + tmpPath);
         /* 单例模式双重校验锁 */
@@ -57,7 +57,7 @@ public class FileUtils {
             }
         }
         FileOutputStream outputStream = new FileOutputStream(saveFile, true);
-        outputStream.write(data.getBytes("utf-8"));
+        outputStream.write(String.valueOf(data.get("content")).getBytes("utf-8"));
         outputStream.close();
         return tmpPath;
     }
@@ -113,7 +113,7 @@ public class FileUtils {
      * @param text 需要使用的字符串
      * @return imgUrl :String对应的图片的url
      */
-    public static String getImgUrl(StringBuffer text) {
+    public String getImgUrl(StringBuffer text) {
         List<String> pics = new ArrayList<>();
         Pattern p_image = Pattern.compile
                 (RegularConstant.IMG_REGULAR, Pattern.CASE_INSENSITIVE);

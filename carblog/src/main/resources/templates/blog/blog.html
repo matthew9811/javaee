@@ -112,7 +112,7 @@
 <main class="container">
     <div class="row">
         <div class="col-md-8 blog-main col-sm-7">
-            <div class="blog-post text-center blog-post-single">
+            <div class="blog-post text-center blog-post-single" th:object="${blog}">
                 <p class="blog-post-cat">关键字</p>
                 <a href="#">
                     <h2 class="blog-post-title" th:text="${blog.title}"></h2>
@@ -187,7 +187,7 @@
                         <li th:each="articles: ${latestList}">
                             <a th:href="@{/blog/blog/ } + ${articles.id}">
                                 <div class="rpost-img">
-                                    <img th:src="@{''} + ${imageUrl} " alt="" class="img-fluid">
+                                    <img th:src="@{/images/blog/widget-4.jpg}" alt="" class="img-fluid">
                                 </div>
                                 <h5 th:text="${articles.title}"></h5>
                                 <p class="text-muted"
