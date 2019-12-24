@@ -256,22 +256,10 @@
     $("#main table tbody tr td a").click(function () {
         let name = $(this);
         let id = name.attr("rel"); //对应id
-        if (event.srcElement.textContent == "驳回") {
-            if (window.confirm("此操作不可逆，是否确认？")) {
-                $.ajax({
-                    type: "POST",
-                    url: prefix + "blogDelete",
-                    data: "id=" + id,
-                    cache: false, //不缓存此页面
-                    success: function (data) {
-                        window.location.reload();
-                    }
-                });
-            }
-        }else {
+        if (event.srcElement.textContent == "推荐") {
             $.ajax({
                 type: "POST",
-                url: prefix + "blogPass",
+                url: prefix + "blogRecommend",
                 data: {id: id},
                 cache: false, //不缓存此页面
                 success: function (data) {

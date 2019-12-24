@@ -54,13 +54,8 @@ public class ManagerServiceImpl implements IManagerService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class, readOnly = false)
-    public boolean editUser(Integer id) {
-        int i = userRepository.updateStatus("1", id);
-        if (1 == i) {
-            return true;
-        }
-        return false;
+    public List<UserBlogLog> findAdmin() {
+        return userBlogLogRepository.selectAllUserBlogLog();
     }
 
     @Override
@@ -71,6 +66,26 @@ public class ManagerServiceImpl implements IManagerService {
             return new ResponsePojo(ResponseStatus.SUCCESS, "审核成功!");
         }
         return new ResponsePojo(ResponseStatus.FAIL, "审核失败!");
+    }
+
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public ResponsePojo updateRecommend(String blogId, String recommendStatus) {
+        int count = blogRepository.recommendBlog(blogId, recommendStatus, userRepository.findByName(UserUtil.getUserName()).getId());
+        if (count == 1) {
+            return new ResponsePojo(ResponseStatus.SUCCESS, "推荐成功!");
+        }
+        return new ResponsePojo(ResponseStatus.FAIL, "推荐失败!");
+    }
+
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public ResponsePojo userStatus(Integer id, String status){
+        int count = userRepository.updateStatus(id, status);
+        if (count == 1) {
+            return new ResponsePojo(ResponseStatus.SUCCESS, "操作成功!");
+        }
+        return new ResponsePojo(ResponseStatus.FAIL, "操作失败!");
     }
 
     @Autowired
@@ -96,5 +111,10 @@ public class ManagerServiceImpl implements IManagerService {
     @Autowired
     public void setUserBlogLogRepository(IUserBlogLogRepository userBlogLogRepository) {
         this.userBlogLogRepository = userBlogLogRepository;
+    }
+
+    @Autowired
+    public void setDrawRepository(IDrawRepository drawRepository) {
+        this.drawRepository = drawRepository;
     }
 }

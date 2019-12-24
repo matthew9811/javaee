@@ -51,4 +51,16 @@ public interface IBlogRepository extends JpaRepository<Blog, String>, JpaSpecifi
     @Modifying(clearAutomatically = true)
     @Query(value = "update blog set status = :status, reviewer = :userId where id = :blogId ;", nativeQuery = true)
     int passBlog(@Param("blogId") String blogId, @Param("status")String status, @Param("userId")Integer userId);
+
+    /**
+     * 更新博客的状态
+     *
+     * @param blogId 博客id
+     * @param recommend 修改后的状态
+     * @param userId 修改人id
+     * @return 修改的条数
+     */
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update blog set recommend = :recommend, reviewer = :userId where id = :blogId ;", nativeQuery = true)
+    int recommendBlog(@Param("blogId") String blogId, @Param("recommend")String recommend, @Param("userId")Integer userId);
 }

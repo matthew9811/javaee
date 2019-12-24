@@ -83,7 +83,7 @@
                         <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">ID</span></th>
                         <th><span class="glyphicon glyphicon-user"></span> <span class="visible-lg">用户名</span></th>
                         <th><span class="glyphicon glyphicon-pushpin"></span> <span class="visible-lg">文章</span></th>
-                        <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">上次登录时间</span></th>
+                        <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">注册时间</span></th>
                         <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
                     </tr>
                     </thead>
@@ -91,9 +91,9 @@
                     <tr th:each="user: ${list}">
                         <td th:text="${user.id}"></td>
                         <td th:text="${user.name}"></td>
-                        <td th:text="${user.blogCount}">4</td>
-                        <td>2015-12-03 15:14:27</td>
-                        <td><a th:id="${user.id}" onclick="editUser(this)">禁用</a></td>
+                        <td th:text="${user.blogCount}"></td>
+                        <td th:text="${#temporals.format(user.createTime, 'yyyy-MM-dd HH:mm')}"></td>
+                        <td><a th:rel="${user.id}">禁用</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -288,15 +288,22 @@
     });
 
 
-    editUser = function (e) {
-        $.ajax({
-            url: prefix + '/editUser/' + e.id,
-            method: 'get',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-    }
+    $("#main table tbody tr td a").click(function () {
+        let name = $(this);
+        let id = name.attr("rel"); //对应id
+        if (event.srcElement.textContent == "禁用") {
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: prefix + "/disableUser",
+                data: {id: id},
+                cache: false, //不缓存此页面
+                success: function (data) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>
