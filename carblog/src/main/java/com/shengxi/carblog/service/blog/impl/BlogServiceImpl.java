@@ -25,7 +25,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -150,7 +152,8 @@ public class BlogServiceImpl implements IBlogService {
     public HashMap<String, Object> findNewBlog() {
         HashMap<String, Object> data = new HashMap<>(2);
         List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven();
-        List<Blog> recommendList = blogRepository.findAll();
+        List<Blog> recommendresult = new ArrayList<>();
+        List<Blog> recommendList = blogRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
         List<Blog> blogList = new ArrayList<>();
         Iterator<Blog> iterator = recommendList.iterator();
         while (iterator.hasNext()) {
@@ -162,8 +165,13 @@ public class BlogServiceImpl implements IBlogService {
             } else {
                 next.setBlogContent(FileUtils.readHtml(next.getBlogUrl()));
                 next.setImgUrl(FileUtils.getImgUrl(next.getBlogContent()));
+                recommendresult.add(next);
+            }
+            if (recommendresult.size() > 7){
+                break;
             }
         }
+        recommendList = null;
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
             Blog blog = new Blog(obj[0].toString(), obj[1].toString(), obj[2].toString(), ((Timestamp) obj[3]).toLocalDateTime());
@@ -171,7 +179,7 @@ public class BlogServiceImpl implements IBlogService {
             blogList.add(blog);
         }
         data.put("latestList", blogList);
-        data.put("recommendList", recommendList);
+        data.put("recommendList", recommendresult);
         return data;
     }
 
