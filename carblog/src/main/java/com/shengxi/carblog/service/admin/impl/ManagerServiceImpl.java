@@ -1,5 +1,6 @@
 package com.shengxi.carblog.service.admin.impl;
 
+import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.repository.ICommentRepository;
@@ -8,6 +9,8 @@ import com.shengxi.carblog.repository.IManagerRepository;
 import com.shengxi.carblog.repository.IUserBlogLogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
+import com.shengxi.compent.utils.ResponseStatus;
+import com.shengxi.compent.utils.UserUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,10 +57,20 @@ public class ManagerServiceImpl implements IManagerService {
     @Transactional(rollbackFor = Exception.class, readOnly = false)
     public boolean editUser(Integer id) {
         int i = userRepository.updateStatus("1", id);
-        if (1 == i){
+        if (1 == i) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public ResponsePojo updateStatus(String blogId, String blogPassStatus) {
+        int count = blogRepository.passBlog(blogId, blogPassStatus, userRepository.findByName(UserUtil.getUserName()).getId());
+        if (count == 1) {
+            return new ResponsePojo(ResponseStatus.SUCCESS, "审核成功!");
+        }
+        return new ResponsePojo(ResponseStatus.FAIL, "审核失败!");
     }
 
     @Autowired
