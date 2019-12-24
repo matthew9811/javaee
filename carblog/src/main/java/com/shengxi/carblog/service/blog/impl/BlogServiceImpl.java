@@ -138,9 +138,11 @@ public class BlogServiceImpl implements IBlogService {
     @Transactional(readOnly = true)
     public ResponsePojo findLastestBlog() {
         ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "");
-        Blog blog = blogRepository.findLastOnePass();
-        blog.setBlogContent(FileUtils.readHtml(blog.getBlogUrl()));
-        pojo.put("blog", blog);
+        List<Blog> blogList = blogRepository.findLastOnePass();
+        for (Blog blog : blogList) {
+            blog.setBlogContent(FileUtils.readHtml(blog.getBlogUrl()));
+        }
+        pojo.put("blogList", blogList);
         return pojo;
     }
 

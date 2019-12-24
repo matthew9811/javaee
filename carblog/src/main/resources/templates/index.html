@@ -143,19 +143,17 @@
                     </div>
                     <div class=" col-lg-6">
                         <div class="blog-post-content ">
-                            <p class="blog-post-cat mt0">Fashion,Lifestyle</p>
+                            <p class="blog-post-cat mt0" >Fashion,Lifestyle</p>
                             <a href="#">
-                                <h3>Only Photography What You Love Women Modelling </h3>
+                                <h3 id="title-1">  </h3>
                             </a>
 
                             <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt=""
-                                                           class="img-fluid small">January 1, 2014 by <a
-                                    href="#">Mark</a></p>
-                            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo,
-                                tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                                                           class="img-fluid small"/><p id="dataTime-1"></p> <a
+                                    href="#" id="author-1"></a></p>
+                            <p id="content-1"></p>
 
-                            <a href="#" class="read-more">Continue Reading</a>
+                            <a id="blogUrl-1" th:href="@{''}" class="read-more">Continue Reading</a>
                         </div>
                     </div>
                 </div>
@@ -171,17 +169,15 @@
                         <div class="blog-post-content ">
                             <p class="blog-post-cat mt0">Lifestyle</p>
                             <a href="#">
-                                <h3>Youtube Black and White Photography Ideas </h3>
+                                <h3 id="title-2"> </h3>
                             </a>
 
                             <p class="blog-post-meta"><img th:src="@{images/blog/widget-3.jpg}" alt=""
-                                                           class="img-fluid small">January 1, 2014 by <a
-                                    href="#">Mark</a></p>
-                            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo,
-                                tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                                                           class="img-fluid small"/><p id="dataTime-2"></p> <a
+                                    href="#" id="author-2"></a></p>
+                            <p id="content-2"></p>
 
-                            <a href="#" class="read-more">Continue Reading</a>
+                            <a id="blogUrl-2" th:href="@{''}" class="read-more">Continue Reading</a>
                         </div>
                     </div>
                 </div>
@@ -317,12 +313,24 @@
             method: 'get',
             success: function (data) {
                 console.log(data);
-                let lastNewBlog = data.blog;
+                let lastNewBlog = data.blogList[0];
+                let blog1 = data.blogList[1];
+                let blog2 = data.blogList[2];
                 $('#lastNewBlogTime').text(lastNewBlog.createTime);
                 $('#lastNewBlogTitle').html(lastNewBlog.title);
                 $('#lastNewBlogAuthor').html(lastNewBlog.user.name);
                 $('#lastNewBlogRemark').html(lastNewBlog.blogContent.substr(0, 740));
                 $('#lastNewBlogUrl').attr('href', '/blog/blog/' + lastNewBlog.id);
+                $('#title-1').html(blog1.title);
+                $('#dataTime-1').text(blog1.createTime);
+                $('#author-1').html(blog1.user.name);
+                $('#content-1').html(blog1.blogContent.substr(0, 740));
+                $('#blogUrl-1').attr('href', '/blog/blog/' + blog1.id);
+                $('#title-2').html(blog2.title);
+                $('#dataTime-2').text(blog2.createTime);
+                $('#author-2').html(blog2.user.name);
+                $('#content-2').html(blog2.blogContent.substr(0, 740));
+                $('#blogUrl-2').attr('href', '/blog/blog/' + blog2.id);
             }
         })
     }

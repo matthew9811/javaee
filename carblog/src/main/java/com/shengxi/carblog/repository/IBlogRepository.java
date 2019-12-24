@@ -77,6 +77,6 @@ public interface IBlogRepository extends JpaRepository<Blog, String>, JpaSpecifi
             " `status` = 1  " +
             "ORDER BY " +
             " create_time DESC  " +
-            " LIMIT 1", nativeQuery = true)
-    Blog findLastOnePass();
+            " LIMIT 3", nativeQuery = true)
+    List<Blog> findLastOnePass();
 }

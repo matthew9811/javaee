@@ -53,6 +53,12 @@ public interface IBlogService {
      */
     Page<Blog> findAllByPage(Map<String, Object> params);
 
+    /**
+     * 获取对应的推荐页数据
+     *
+     * @param params paramMap
+     * @return list Blog
+     */
     Page<Blog> findPassByPage(Map<String, Object> params);
 
     /**
