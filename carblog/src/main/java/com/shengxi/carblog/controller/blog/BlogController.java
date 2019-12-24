@@ -127,6 +127,12 @@ public class BlogController extends BaseController {
         return ObjectUtil.isNull(pojo) ? new ResponsePojo(ResponseStatus.FAIL, "评论失败，请稍后再试!") : pojo;
     }
 
+    @GetMapping("/initData")
+    @ResponseBody
+    public ResponsePojo initData() {
+        return blogService.findLastestBlog();
+    }
+
 
     @Autowired
     public void setBlogService(IBlogService blogService) {

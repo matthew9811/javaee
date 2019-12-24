@@ -55,4 +55,11 @@ public interface IBlogService {
 
     Page<Blog> findPassByPage(Map<String, Object> params);
 
+    /**
+     * 获取最新的数据
+     * 初始化数据
+     *
+     * @return map
+     */
+    ResponsePojo findLastestBlog();
 }

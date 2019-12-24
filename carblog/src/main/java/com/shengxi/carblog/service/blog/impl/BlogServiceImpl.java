@@ -131,6 +131,14 @@ public class BlogServiceImpl implements IBlogService {
         return all;
     }
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponsePojo findLastestBlog() {
+        Blog blog = blogRepository.findLastOnePass();
+        return null;
+    }
+
     @Override
     public HashMap<String, Object> findNewBlog() {
         HashMap<String, Object> data = new HashMap<>(1);

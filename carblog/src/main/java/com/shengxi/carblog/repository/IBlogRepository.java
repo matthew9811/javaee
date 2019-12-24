@@ -36,7 +36,7 @@ public interface IBlogRepository extends JpaRepository<Blog, String>, JpaSpecifi
      * @return list<blog>
      */
     @Query(value = "select id,  blog_url AS blogUrl, title, create_time AS createTime from " +
-            "blog where status = '0' order by createTime desc limit 0, 7", nativeQuery = true)
+            "blog where status = '1' order by createTime desc limit 0, 7", nativeQuery = true)
     List<Object> findBlogLatestSeven();
 
 
@@ -50,17 +50,33 @@ public interface IBlogRepository extends JpaRepository<Blog, String>, JpaSpecifi
      */
     @Modifying(clearAutomatically = true)
     @Query(value = "update blog set status = :status, reviewer = :userId where id = :blogId ;", nativeQuery = true)
-    int passBlog(@Param("blogId") String blogId, @Param("status")String status, @Param("userId")Integer userId);
+    int passBlog(@Param("blogId") String blogId, @Param("status") String status, @Param("userId") Integer userId);
 
     /**
      * 更新博客的状态
      *
-     * @param blogId 博客id
+     * @param blogId    博客id
      * @param recommend 修改后的状态
-     * @param userId 修改人id
+     * @param userId    修改人id
      * @return 修改的条数
      */
     @Modifying(clearAutomatically = true)
     @Query(value = "update blog set recommend = :recommend, reviewer = :userId where id = :blogId ;", nativeQuery = true)
-    int recommendBlog(@Param("blogId") String blogId, @Param("recommend")String recommend, @Param("userId")Integer userId);
+    int recommendBlog(@Param("blogId") String blogId, @Param("recommend") String recommend, @Param("userId") Integer userId);
+
+    /**
+     * 获取一条通过审核，发表时间最新的数据
+     *
+     * @return 一条数据
+     */
+    @Query(value = "SELECT " +
+            " *  " +
+            "FROM " +
+            " `blog`  " +
+            "WHERE " +
+            " `status` = 1  " +
+            "ORDER BY " +
+            " create_time DESC  " +
+            " LIMIT 1", nativeQuery = true)
+    Blog findLastOnePass();
 }

@@ -121,6 +121,7 @@
                 </div>
                 <p class="blog-post-cat">文章标签</p>
                 <a href="#">
+                    <!--                    标题-->
                     <h2 class="blog-post-title">Only Photography What You Love Women Modelling </h2>
                 </a>
 
@@ -304,7 +305,24 @@
         <a href="#">Back to top</a>
     </p>
 </footer>
+<script th:inline="javascript">
+    let ctx = [[@{/}]];
+        let prefix = ctx + "blog/";
 
+    $(function () {
+        initData();
+    })
+
+    let initData = function () {
+        $.ajax({
+            url: prefix + 'initData',
+            method: 'get',
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+</script>
 </body>
 
 </html>
