@@ -1,5 +1,6 @@
 package com.shengxi.carblog.service.admin;
 
+import com.shengxi.carblog.pojo.Manager;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import java.util.List;
@@ -35,7 +36,7 @@ public interface IManagerService {
      *
      * @return list
      */
-    List<UserBlogLog> findAdmin();
+    List<Manager> findAdmin();
 
     /**
      * 修改文章状态
@@ -63,4 +64,21 @@ public interface IManagerService {
      * @return status and msg
      */
     ResponsePojo userStatus(Integer id, String status);
+
+    /**
+     * 修改管理员状态(禁用状态）
+     *
+     * @param id         blog id :String
+     * @param status 要修改的状态
+     * @return status and msg
+     */
+    ResponsePojo adminStatus(Integer id, String status);
+
+    /**
+     * 增加管理员
+     *
+     * @param id         blog id :String
+     * @return status and msg
+     */
+    ResponsePojo addAdmin(Integer id);
 }

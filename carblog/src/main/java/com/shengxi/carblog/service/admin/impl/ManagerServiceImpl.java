@@ -1,5 +1,7 @@
 package com.shengxi.carblog.service.admin.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.shengxi.carblog.pojo.Manager;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import com.shengxi.carblog.repository.IBlogRepository;
@@ -9,6 +11,7 @@ import com.shengxi.carblog.repository.IManagerRepository;
 import com.shengxi.carblog.repository.IUserBlogLogRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
+import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
 import java.util.HashMap;
@@ -54,8 +57,9 @@ public class ManagerServiceImpl implements IManagerService {
     }
 
     @Override
-    public List<UserBlogLog> findAdmin() {
-        return userBlogLogRepository.selectAllUserBlogLog();
+    public List<Manager> findAdmin() {
+        List<Manager> managerList = managerRepository.findAll();
+        return managerList;
     }
 
     @Override
@@ -86,6 +90,30 @@ public class ManagerServiceImpl implements IManagerService {
             return new ResponsePojo(ResponseStatus.SUCCESS, "操作成功!");
         }
         return new ResponsePojo(ResponseStatus.FAIL, "操作失败!");
+    }
+
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public ResponsePojo adminStatus(Integer id, String status){
+        int count = managerRepository.updateStatus(id, status);
+        if (count == 1) {
+            return new ResponsePojo(ResponseStatus.SUCCESS, "操作成功!");
+        }
+        return new ResponsePojo(ResponseStatus.FAIL, "操作失败!");
+    }
+
+    @Override
+    public ResponsePojo addAdmin(Integer id) {
+        Manager manager = new Manager();
+        manager.setMakeUp(userRepository.findByName(UserUtil.getUserName()));
+        manager.setStatus(StatusConstant.USER_CONFIG_STATUS);
+        manager.setUser(userRepository.findById(id).get());
+        Manager save = managerRepository.save(manager);
+        if (ObjectUtil.isNotEmpty(save)) {
+            ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "操作成功!");
+            return pojo;
+        }
+        return new ResponsePojo(ResponseStatus.FAIL, "服务器错误，请稍后再试!");
     }
 
     @Autowired
