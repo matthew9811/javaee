@@ -358,5 +358,11 @@
         <a href="#">Back to top</a>
     </p>
 </footer>
+<script th:inline="javascript">
+    $(function () {
+        console.log([[${recommendList}]]);
+    })
+
+</script>
 </body>
 </html>

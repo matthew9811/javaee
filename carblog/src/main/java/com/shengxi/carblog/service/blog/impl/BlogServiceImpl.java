@@ -148,10 +148,22 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public HashMap<String, Object> findNewBlog() {
-        HashMap<String, Object> data = new HashMap<>(1);
-
+        HashMap<String, Object> data = new HashMap<>(2);
         List<Object> blogLatestSeven = blogRepository.findBlogLatestSeven();
+        List<Blog> recommendList = blogRepository.findAll();
         List<Blog> blogList = new ArrayList<>();
+        Iterator<Blog> iterator = recommendList.iterator();
+        while (iterator.hasNext()) {
+            Blog next = iterator.next();
+            if (ObjectUtil.notEqual(next.getStatus(), StatusConstant.BLOG_PASS_STATUS) ||
+                    ObjectUtil.notEqual(next.getRecommend(), StatusConstant.RECOMMEND_STATUS)) {
+                iterator.remove();
+                continue;
+            } else {
+                next.setBlogContent(FileUtils.readHtml(next.getBlogUrl()));
+                next.setImgUrl(FileUtils.getImgUrl(next.getBlogContent()));
+            }
+        }
         for (int i = 0; i < blogLatestSeven.size(); i++) {
             Object[] obj = (Object[]) blogLatestSeven.get(i);
             Blog blog = new Blog(obj[0].toString(), obj[1].toString(), obj[2].toString(), ((Timestamp) obj[3]).toLocalDateTime());
@@ -159,6 +171,7 @@ public class BlogServiceImpl implements IBlogService {
             blogList.add(blog);
         }
         data.put("latestList", blogList);
+        data.put("recommendList", recommendList);
         return data;
     }
 
