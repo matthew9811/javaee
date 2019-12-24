@@ -29,6 +29,14 @@ public abstract class StatusConstant {
      * 博客不通过状态
      */
     public static final String BLOG_REFUSE_STATUS = "2";
+    /**
+     * 推荐初始化状态
+     */
+    public static final String RECOMMEND_CONFIG_STATUS = "0";
+    /**
+     * 文章推荐状态
+     */
+    public static final String RECOMMEND_STATUS = "1";
 
 
 }

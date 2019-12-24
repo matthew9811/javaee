@@ -5,6 +5,7 @@ import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
 import com.shengxi.carblog.service.admin.IManagerService;
 import com.shengxi.carblog.service.blog.IBlogService;
+import com.shengxi.compent.constant.StatusConstant;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
@@ -16,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,7 +73,7 @@ public class ManagerController extends BaseController {
             return "/admin/admin_login";
         }
         params.put("page", Integer.valueOf((String) params.get("offset")) / Integer.valueOf((String) params.get("limit")) + 1);
-        modelMap.addAttribute("pageList", blogService.findAllByPage(params).getContent());
+        modelMap.addAttribute("pageList", blogService.findPassByPage(params).getContent());
         return prefix + "/recommend";
     }
 
@@ -149,9 +151,17 @@ public class ManagerController extends BaseController {
     }
 
     @PostMapping("/blogPass")
-    public ResponsePojo blogPass(String blogId){
-        System.out.println(blogId);
-        return null;
+    @ResponseBody
+    public ResponsePojo blogPass(@RequestBody String blogId){
+        blogId = blogId.replace("id=", "");
+        return managerService.updateStatus(blogId, StatusConstant.BLOG_PASS_STATUS);
+    }
+
+    @PostMapping("/blogDelete")
+    @ResponseBody
+    public ResponsePojo blogDelete(@RequestBody String blogId){
+        blogId = blogId.replace("id=", "");
+        return managerService.updateStatus(blogId, StatusConstant.BLOG_REFUSE_STATUS);
     }
 
     @Autowired

@@ -65,7 +65,7 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/manager/article?limit=10&offset=1}">文章</a></li>
-                <li><a th:href="@{/manager/recommend?limit=10&offset=1}">公告</a></li>
+                <li><a th:href="@{/manager/recommend?limit=10&offset=1}">推荐文章</a></li>
                 <li><a th:href="@{/manager/comment}">评论</a></li>
             </ul>
             <ul class="nav nav-sidebar">
@@ -254,8 +254,9 @@
     // 页数
     let offset = 1;
     $("#main table tbody tr td a").click(function () {
-        let name = $(this);
-        let id = name.attr("rel"); //对应id
+        var name = $(this);
+        var id = name.attr("rel"); //对应id
+        console.log(id);
         if (event.srcElement.textContent == "驳回") {
             if (window.confirm("此操作不可逆，是否确认？")) {
                 $.ajax({
@@ -272,7 +273,7 @@
             $.ajax({
                 type: "POST",
                 url: prefix + "blogPass",
-                data: {id: id},
+                data: "id=" + id,
                 cache: false, //不缓存此页面
                 success: function (data) {
                     window.location.reload();
@@ -282,8 +283,8 @@
     });
     //分页
     $("#page li").click(function () {
-        let name = $(this);
-        let id = name[0].id; //对应id
+        var name = $(this);
+        var id = name[0].id; //对应id
         $("#page li").removeAttr("class");
         $("#" + id).attr("class","active");
         if (id == "pagePre") {

@@ -5,6 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.shengxi.carblog.pojo.Blog;
 import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.repository.IBlogRepository;
+import com.shengxi.carblog.repository.ICommentRepository;
 import com.shengxi.carblog.repository.IUserRepository;
 import com.shengxi.carblog.service.blog.IBlogService;
 import com.shengxi.compent.constant.StatusConstant;
@@ -49,6 +50,8 @@ public class BlogServiceImpl implements IBlogService {
 
     private IUserRepository userRepository;
 
+    private ICommentRepository commentRepository;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponsePojo addBlog(Map data) throws IOException {
@@ -57,7 +60,7 @@ public class BlogServiceImpl implements IBlogService {
         Integer userId = userRepository.findByName(UserUtil.getUserName()).getId();
         /* 初始化审核人为自己 */
         blog.setReviewer(userId);
-        blog.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
+        blog.setStatus(StatusConstant.RECOMMEND_CONFIG_STATUS);
         blog.setUser(userRepository.findById(userId).get());
         blog.setRecommend(StatusConstant.BLOG_CONFIG_STATUS);
         blog.setCreateTime(LocalDateTime.now());
@@ -85,6 +88,7 @@ public class BlogServiceImpl implements IBlogService {
         StringBuffer stringBuffer = FileUtils.readHtml(blog.getBlogUrl());
         data.put("blog", blog);
         data.put("content", stringBuffer);
+        data.put("comment", commentRepository.findAllByBlogId(id));
         data.putAll(findNewBlog());
         return data;
     }
@@ -102,6 +106,20 @@ public class BlogServiceImpl implements IBlogService {
         while (iterator.hasNext()) {
             Blog next = iterator.next();
             if (ObjectUtil.notEqual(StatusConstant.BLOG_CONFIG_STATUS, next.getStatus())) {
+                iterator.remove();
+            }
+        }
+        return all;
+    }
+
+    @Override
+    public Page<Blog> findPassByPage(Map<String, Object> params) {
+        Pageable pageable = PageUtil.listPageable(params, "createTime");
+        Page<Blog> all = blogRepository.findAll(pageable);
+        Iterator<Blog> iterator = all.iterator();
+        while (iterator.hasNext()) {
+            Blog next = iterator.next();
+            if (ObjectUtil.notEqual(StatusConstant.BLOG_PASS_STATUS, next.getStatus())) {
                 iterator.remove();
             }
         }
@@ -132,5 +150,10 @@ public class BlogServiceImpl implements IBlogService {
     @Autowired
     public void setBlogRepository(IBlogRepository blogRepository) {
         this.blogRepository = blogRepository;
+    }
+
+    @Autowired
+    public void setCommentRepository(ICommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
     }
 }

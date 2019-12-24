@@ -162,9 +162,20 @@
                         <a id="commentSubimt" href="#" class="btn btn-sm btn-dark">发送</a>
                     </p>
                 </form>
+                <!--                已有评论-->
+                <div class="author-area" th:each="chu: ${comment}">
+                    <div class="author-info">
+                        <h4 class="upper">
+                            <a href="#" th:text="${chu.user.name} + ' :'"> </a>
+                        </h4>
+                        <p th:text="${chu.content}"></p>
+                    </div>
+                </div>
             </div>
             <!--  评论  END -->
+
         </div>
+
 
         <aside class="col-md-4 blog-sidebar col-sm-5">
 
@@ -231,6 +242,10 @@
                 }
             }
         })
+    });
+
+    $(function () {
+        console.log([[${comment}]])
     })
 
 </script>
