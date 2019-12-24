@@ -119,7 +119,12 @@ public class BlogServiceImpl implements IBlogService {
         Iterator<Blog> iterator = all.iterator();
         while (iterator.hasNext()) {
             Blog next = iterator.next();
+            //必须通过审核
             if (ObjectUtil.notEqual(StatusConstant.BLOG_PASS_STATUS, next.getStatus())) {
+                iterator.remove();
+            }
+            //推荐后不显示
+            if (ObjectUtil.notEqual(StatusConstant.RECOMMEND_STATUS, next.getRecommend())) {
                 iterator.remove();
             }
         }
