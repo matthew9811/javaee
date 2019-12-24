@@ -16,8 +16,11 @@ import com.shengxi.compent.utils.UserUtil;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -42,26 +45,30 @@ public class PhotoServiceImpl implements IPhotoService {
 
     @Autowired
     private IDrawRepository drawRepository;
+
     @Override
     public ResponsePojo addPhoto(Map data) throws IOException {
         Draw draw = new Draw();
+        StringBuffer text = new StringBuffer();
         ArrayList<String> photoArr = (ArrayList) data.get("photoArr");
         User byName = userRepository.findByName(UserUtil.getUserName());
         String fileName = UUID.randomUUID(true).toString().replace("-", "").concat(SUFFIX);
         /* 初始化审核人为自己 */
         draw.setReviewer(byName.getId());
         draw.setStatus(StatusConstant.BLOG_CONFIG_STATUS);
-        draw.setRecommend(StatusConstant.BLOG_CONFIG_STATUS);
+        draw.setRecommend(StatusConstant.RECOMMEND_CONFIG_STATUS);
         draw.setUploadTime(LocalDateTime.now());
         draw.setTitle((String) data.get("title"));
-        draw.setContentUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, data).concat("/") + fileName);
+        photoArr.forEach(v -> text.append(v));
+        draw.setContentUrl(UploadConstant.SQL_PATH_PREFIX + FileUtils.saveFile(fileName, text.toString()).concat("/") + fileName);
         draw.setUser(byName);
         Draw save = drawRepository.save(draw);
-        if (ObjectUtil.isNotEmpty(save)){
+        if (ObjectUtil.isNotEmpty(save)) {
             ResponsePojo pojo = new ResponsePojo(ResponseStatus.SUCCESS, "发表成功!");
             pojo.put("id", save.getId());
             return pojo;
         }
         return null;
     }
+
 }

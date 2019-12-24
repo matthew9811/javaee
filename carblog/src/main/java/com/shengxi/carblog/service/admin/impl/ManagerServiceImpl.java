@@ -138,8 +138,4 @@ public class ManagerServiceImpl implements IManagerService {
         this.userBlogLogRepository = userBlogLogRepository;
     }
 
-    @Autowired
-    public void setDrawRepository(IDrawRepository drawRepository) {
-        this.drawRepository = drawRepository;
-    }
 }
