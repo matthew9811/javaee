@@ -122,10 +122,12 @@ public class BlogServiceImpl implements IBlogService {
             //必须通过审核
             if (ObjectUtil.notEqual(StatusConstant.BLOG_PASS_STATUS, next.getStatus())) {
                 iterator.remove();
+                continue;
             }
             //推荐后不显示
             if (ObjectUtil.notEqual(StatusConstant.RECOMMEND_STATUS, next.getRecommend())) {
                 iterator.remove();
+                continue;
             }
         }
         return all;
