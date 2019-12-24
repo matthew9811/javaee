@@ -3,7 +3,9 @@ package com.shengxi.carblog.repository;
 import com.shengxi.carblog.pojo.Manager;
 import com.shengxi.carblog.pojo.weak.bigTable.UserBlogLog;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,17 +18,13 @@ import java.util.List;
 @Repository
 public interface IManagerRepository extends JpaRepository<Manager, Integer> {
     /**
-     * 获取所有的
-     * @return list
+     * 根据id修改状态
+     *
+     * @param id     要修改的id
+     * @param status 要修改的状态值
+     * @return 修改的条数
      */
-    @Query(value = "SELECT " +
-            "m.id AS id, " +
-            "m.`name` AS `name`, " +
-            "m.status AS status, " +
-            "m.`create_time` AS `create_time`," +
-            "count( b.id ) AS blog_count " +
-            "FROM " +
-            "`manager` AS m " +
-            "LEFT JOIN blog AS b ON u.id = b.user_id GROUP BY u.id;", nativeQuery = true)
-    List<UserBlogLog> selectAllUserBlogLog();
+    @Modifying
+    @Query(value = "UPDATE `manager` SET `status` = :status WHERE id = :id", nativeQuery = true)
+    int updateStatus(@Param("id") Integer id, @Param("status") String status);
 }

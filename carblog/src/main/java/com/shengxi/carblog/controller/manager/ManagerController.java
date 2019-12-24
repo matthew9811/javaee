@@ -179,6 +179,21 @@ public class ManagerController extends BaseController {
         return managerService.userStatus(Integer.valueOf(userId), StatusConstant.USER_DISABLE_STATUS);
     }
 
+//    升级管理员
+    @PostMapping("/addAdmin")
+    @ResponseBody
+    public ResponsePojo addAdmin(@RequestBody String userId){
+        userId = userId.replace("id=", "");
+        return managerService.addAdmin(Integer.valueOf(userId));
+    }
+
+    @PostMapping("/disableAdmin")
+    @ResponseBody
+    public ResponsePojo disableAdmin(@RequestBody String id){
+        id = id.replace("id=", "");
+        return managerService.adminStatus(Integer.valueOf(id), StatusConstant.USER_DISABLE_STATUS);
+    }
+
     @Autowired
     public void setManagerService(IManagerService managerService) {
         this.managerService = managerService;

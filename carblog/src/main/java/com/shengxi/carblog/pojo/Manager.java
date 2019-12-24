@@ -26,7 +26,7 @@ public class Manager {
     private Integer id;
 
     @Column(name = "status")
-    private char status;
+    private String status;
 
 
     @OneToOne( targetEntity = User.class)
@@ -45,11 +45,11 @@ public class Manager {
         this.id = id;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
