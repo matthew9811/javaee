@@ -13,12 +13,14 @@ import com.shengxi.compent.utils.ResponseStatus;
 import com.shengxi.compent.utils.UserUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,6 +103,7 @@ public class BlogController extends BaseController {
     @GetMapping("/blogIndex")
     public String blogIndex(Model model) {
         model.addAllAttributes(blogService.findNewBlog());
+        model.addAllAttributes(photoService.findPhotoList());
         return prefix + "/blog_index";
     }
 
@@ -117,11 +120,13 @@ public class BlogController extends BaseController {
     @GetMapping("/photoIndex")
     public String photoIndex(Model model) {
         model.addAllAttributes(blogService.findNewBlog());
+        model.addAllAttributes(photoService.findPhotoList());
         return prefix + "/photo_index";
     }
 
-    @GetMapping("/photo")
-    public String photo() {
+    @GetMapping("/photo/{id}")
+    public String photo(@PathVariable("id") Integer id, Model model) {
+        model.addAllAttributes(photoService.findPhotoDetail(id));
         return prefix + "/photo";
     }
 

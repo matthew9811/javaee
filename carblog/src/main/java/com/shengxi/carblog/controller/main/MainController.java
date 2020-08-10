@@ -7,6 +7,7 @@ import com.shengxi.carblog.pojo.weak.ResponsePojo;
 import com.shengxi.carblog.pojo.weak.SessionMsgPojo;
 import com.shengxi.carblog.service.admin.IUserService;
 import com.shengxi.carblog.service.blog.IBlogService;
+import com.shengxi.carblog.service.blog.IPhotoService;
 import com.shengxi.compent.utils.BaseController;
 import com.shengxi.compent.utils.ResponseStatus;
 import java.time.LocalDateTime;
@@ -39,6 +40,7 @@ public class MainController extends BaseController {
     private IUserService userService;
     private String prefix = "";
     private IBlogService blogService;
+    private IPhotoService photoService;
 
     /**
      * 进入注册页面
@@ -63,6 +65,7 @@ public class MainController extends BaseController {
         ResponsePojo responsePojo = userService.register(register);
         if (ResponseStatus.SUCCESS.equals(responsePojo.getStatus())) {
             map.addAttribute("msg", responsePojo.getMsg());
+            map.addAllAttributes(photoService.findPhotoList());
             return prefix + "/index";
         }
         map.addAttribute("msg", responsePojo.getMsg());
@@ -87,6 +90,7 @@ public class MainController extends BaseController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAllAttributes(blogService.findNewBlog());
+        model.addAllAttributes(photoService.findPhotoList());
         return prefix + "/index";
     }
 
@@ -110,7 +114,7 @@ public class MainController extends BaseController {
         Cookie cookie = saveToSessionAndCookies(request, loginUser);
         response.addCookie(cookie);
         modelMap.put("msg", "欢迎登录博客家!");
-
+        modelMap.addAllAttributes(photoService.findPhotoList());
         modelMap.addAllAttributes(blogService.findNewBlog());
         return prefix + "/index";
     }
@@ -141,6 +145,7 @@ public class MainController extends BaseController {
     public String logout(ModelMap modelMap, HttpServletRequest request) {
         this.deleteSession(request);
         modelMap.addAllAttributes(blogService.findNewBlog());
+        modelMap.addAllAttributes(photoService.findPhotoList());
         return prefix + "/index";
     }
 
@@ -181,6 +186,12 @@ public class MainController extends BaseController {
     @Autowired
     public void setBlogService(IBlogService blogService) {
         this.blogService = blogService;
+    }
+
+
+    @Autowired
+    public void setPhotoService(IPhotoService photoService) {
+        this.photoService = photoService;
     }
 
     /**

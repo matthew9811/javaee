@@ -209,19 +209,9 @@
             <div class="py-3">
                 <div class="sidebar-block instagram">
                     <h4 class="sidebar-title">最新摄影</h4>
-                    <div class="instgram-posts">
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
-                        <a href="#"><img th:src="@{images/blog/widget-1.jpg}" alt="" class="img-fluid"></a>
+                    <div class="instgram-posts"  th:each="weak :${weakList}">
+                        <a th:href="@{/blog/photo/} + ${weak.id}">
+                            <img th:src="${weak.img}" alt="" class="img-fluid"></a>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ public class FileUtils {
      * @param url 相对路径
      * @return concent :StringBuffer
      */
-    public static StringBuffer readHtml(String url) {
+    public synchronized static StringBuffer readHtml(String url) {
         StringBuffer content = new StringBuffer();
         String line = "";
         InputStreamReader reader = null;
